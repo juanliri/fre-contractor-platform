@@ -722,6 +722,8 @@ const SHARED = {
         const openDrawer = () => {
             drawer.classList.add('open');
             document.body.classList.add('drawer-open');
+            const drawerBody = drawer.querySelector('.mobile-drawer-body');
+            if (drawerBody) drawerBody.scrollTop = 0;
         };
         const closeDrawer = () => {
             drawer.classList.remove('open');
@@ -736,6 +738,11 @@ const SHARED = {
             }
         });
         if (close) close.addEventListener('click', closeDrawer);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && drawer.classList.contains('open')) {
+                closeDrawer();
+            }
+        });
         drawer.querySelectorAll('.mob-nav-item, .mob-action-card, .mob-drawer-call-link, .mob-link').forEach(l => {
             l.addEventListener('click', closeDrawer);
         });
