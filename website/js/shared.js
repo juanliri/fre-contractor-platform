@@ -283,69 +283,156 @@ const SHARED = {
     <div id="fre-corridor-gate" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="corridor-gate-title">
         <div class="corridor-gate-container">
             <button class="corridor-gate-close" id="btn-close-corridor-gate" aria-label="Close modal">✕</button>
-            <div style="text-align:center;max-width:680px;margin:0 auto;">
-                <span class="badge" style="background:rgba(245,130,32,0.15);border-color:rgba(245,130,32,0.35);color:var(--amber);margin-bottom:12px;font-size:0.75rem;">Multi-Sector Enterprise Gateway</span>
-                <h2 id="corridor-gate-title" style="font-size:1.85rem;font-weight:900;color:#fff;margin-bottom:10px;letter-spacing:-0.02em;">Select Your Profile &amp; Project Path</h2>
-                <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.5;">Choose your corridor below to access tailored workflows, instant calculators, public housing credentials, or contractor bidding portals.</p>
+            
+            <!-- Marketing Editorial Header -->
+            <div style="text-align:center;max-width:760px;margin:0 auto 6px auto;">
+                <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+                    <span class="badge" style="background:rgba(245,130,32,0.15);border-color:rgba(245,130,32,0.35);color:var(--amber);font-size:0.75rem;padding:4px 10px;">🏛️ Multi-Sector Enterprise Gateway</span>
+                    <span class="badge" style="background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.3);color:#38bdf8;font-size:0.75rem;padding:4px 10px;">⭐ NYC DOS ID: 6658255 • Bronx &amp; NYC</span>
+                </div>
+                <h2 id="corridor-gate-title" style="font-size:2rem;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-0.025em;line-height:1.2;">
+                    Welcome to <span style="background:linear-gradient(135deg,#ffffff,#F58220);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">F.R.E. Contractor LLC</span>
+                </h2>
+                <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.5;max-width:620px;margin:0 auto;">
+                    Precision Craftsmanship Meets Modern NYC Infrastructure. Choose your specialized corridor below, or claim our <strong>2026 CSI Div 09 Cost Guide + $250 Welcome Credit</strong>.
+                </p>
+            </div>
+
+            <!-- Marketing Newsletter & VIP Perk Incentive Bar -->
+            <div class="gate-newsletter-banner">
+                <div class="gate-newsletter-left">
+                    <span class="gate-perk-badge">🎁 VIP PRIVILEGE</span>
+                    <p class="gate-newsletter-title">
+                        Claim Your <span>2026 NYC Estimating Benchmark</span> &amp; <span>$250 Project Credit</span>
+                    </p>
+                </div>
+                <div class="gate-newsletter-form" id="gate-newsletter-form-container">
+                    <input type="email" id="gate-vip-email" class="gate-newsletter-input" placeholder="Enter work or personal email..." aria-label="Enter email for voucher" required>
+                    <button type="button" id="btn-gate-claim-vip" class="gate-newsletter-btn">Claim $250 Perk ➔</button>
+                </div>
+                <div id="gate-vip-success" class="gate-newsletter-success">
+                    <span>🎉 Privilege Activated! Promo Code <strong>FRE250-VIP</strong> applied to your session.</span>
+                </div>
             </div>
             
+            <!-- Photographic Corridor Cards Grid -->
             <div class="corridor-gate-grid">
                 <!-- Corridor 1: Residential -->
                 <a href="residential.html" class="corridor-gate-option opt-res" data-corridor="residential">
-                    <div style="font-size:2rem;margin-bottom:14px;">🏠</div>
-                    <div>
-                        <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--amber);font-weight:800;display:block;margin-bottom:4px;">Homeowners &amp; Co-Ops</span>
-                        <h3 style="font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:8px;">Residential Corridor</h3>
-                        <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;margin-bottom:16px;">Apartments, townhouses, luxury interior painting, dustless popcorn ceiling removal, and spray cabinet refinishing.</p>
+                    <div class="corridor-gate-thumb">
+                        <img src="assets/images/hero-residential.jpg" alt="Residential Interior Finishes" loading="eager">
+                        <div class="corridor-gate-thumb-overlay"></div>
+                        <div class="corridor-gate-status-pill">
+                            <span class="dot"></span> Level 5 Luxury Interior
+                        </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--amber);font-weight:700;margin-top:auto;">
-                        <span>Enter Residential Portal</span> →
+                    <div class="corridor-gate-content">
+                        <div>
+                            <span class="corridor-gate-sector">Homeowners &amp; Co-Ops</span>
+                            <h3 class="corridor-gate-name">Residential Corridor</h3>
+                            <p class="corridor-gate-desc">Apartments, luxury townhouses, dustless popcorn ceiling skim-coating, and fine spray cabinet refinishing.</p>
+                            <div class="corridor-gate-tags">
+                                <span class="corridor-gate-tag">🎨 Luxury Paint</span>
+                                <span class="corridor-gate-tag">✨ Dustless Skim</span>
+                            </div>
+                        </div>
+                        <div class="corridor-gate-cta">
+                            <span>Enter Residential Portal</span>
+                            <span class="arrow">→</span>
+                        </div>
                     </div>
                 </a>
 
                 <!-- Corridor 2: Commercial PM -->
                 <a href="commercial.html" class="corridor-gate-option opt-comm" data-corridor="commercial">
-                    <div style="font-size:2rem;margin-bottom:14px;">🏢</div>
-                    <div>
-                        <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:#38bdf8;font-weight:800;display:block;margin-bottom:4px;">Property Managers &amp; Retail</span>
-                        <h3 style="font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:8px;">Commercial Corridor</h3>
-                        <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;margin-bottom:16px;">Turnkey retail rollouts (T-Mobile), off-hours night execution, high-durability Scuff-X coatings, and multi-unit turns.</p>
+                    <div class="corridor-gate-thumb">
+                        <img src="assets/images/hero-commercial.jpg" alt="Commercial Retail Rollouts" loading="eager">
+                        <div class="corridor-gate-thumb-overlay"></div>
+                        <div class="corridor-gate-status-pill">
+                            <span class="dot"></span> Turnkey Retail &amp; Night Turns
+                        </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:#38bdf8;font-weight:700;margin-top:auto;">
-                        <span>Enter Commercial Hub</span> →
+                    <div class="corridor-gate-content">
+                        <div>
+                            <span class="corridor-gate-sector">Property Managers &amp; Retail</span>
+                            <h3 class="corridor-gate-name">Commercial Corridor</h3>
+                            <p class="corridor-gate-desc">Turnkey retail rollouts (T-Mobile), off-hours night execution, high-durability Scuff-X coatings, and multi-unit turns.</p>
+                            <div class="corridor-gate-tags">
+                                <span class="corridor-gate-tag">🏢 Off-Hours Night</span>
+                                <span class="corridor-gate-tag">🛡️ Scuff-X Finish</span>
+                            </div>
+                        </div>
+                        <div class="corridor-gate-cta">
+                            <span>Enter Commercial Hub</span>
+                            <span class="arrow">→</span>
+                        </div>
                     </div>
                 </a>
 
                 <!-- Corridor 3: Government / NYCHA -->
                 <a href="government-verification.html" class="corridor-gate-option opt-gov" data-corridor="government">
-                    <div style="font-size:2rem;margin-bottom:14px;">🏛️</div>
-                    <div>
-                        <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);font-weight:800;display:block;margin-bottom:4px;">Public Agencies &amp; Housing</span>
-                        <h3 style="font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:8px;">Government &amp; NYCHA</h3>
-                        <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;margin-bottom:16px;">Official NY DOS ID: 6658255, prevailing wage verification, certified payroll, $2M insurance, and municipal compliance records.</p>
+                    <div class="corridor-gate-thumb">
+                        <img src="assets/images/gallery-commercial.jpg" alt="Government & Public Housing" loading="eager">
+                        <div class="corridor-gate-thumb-overlay"></div>
+                        <div class="corridor-gate-status-pill">
+                            <span class="dot"></span> NYCHA &amp; Public Works
+                        </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--green);font-weight:700;margin-top:auto;">
-                        <span>Verify Credentials</span> →
+                    <div class="corridor-gate-content">
+                        <div>
+                            <span class="corridor-gate-sector">Public Agencies &amp; Housing</span>
+                            <h3 class="corridor-gate-name">Government &amp; NYCHA</h3>
+                            <p class="corridor-gate-desc">Official NY DOS ID: 6658255, certified payroll, prevailing wage verification, and $2M municipal liability records.</p>
+                            <div class="corridor-gate-tags">
+                                <span class="corridor-gate-tag">🏛️ Certified Payroll</span>
+                                <span class="corridor-gate-tag">📄 $2M Insured</span>
+                            </div>
+                        </div>
+                        <div class="corridor-gate-cta">
+                            <span>Verify Credentials</span>
+                            <span class="arrow">→</span>
+                        </div>
                     </div>
                 </a>
 
                 <!-- Corridor 4: General Contractors / Subcontract Bidding -->
                 <a href="bid-portal.html" class="corridor-gate-option opt-gc" data-corridor="gc">
-                    <div style="font-size:2rem;margin-bottom:14px;">📐</div>
-                    <div>
-                        <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:#fbbf24;font-weight:800;display:block;margin-bottom:4px;">General Contractors &amp; Estimators</span>
-                        <h3 style="font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:8px;">Contractor Bid Desk</h3>
-                        <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.4;margin-bottom:16px;">Instant blueprint uploads, CSI MasterFormat Div 09 takeoffs, 24-hr binding proposal turnaround, and OSHA 30 teams.</p>
+                    <div class="corridor-gate-thumb">
+                        <img src="assets/images/hero-blueprints.jpg" alt="Contractor Blueprint Takeoffs" loading="eager">
+                        <div class="corridor-gate-thumb-overlay"></div>
+                        <div class="corridor-gate-status-pill">
+                            <span class="dot"></span> 24-Hr Takeoff Turnaround
+                        </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:#fbbf24;font-weight:700;margin-top:auto;">
-                        <span>Upload Plans &amp; RFP</span> →
+                    <div class="corridor-gate-content">
+                        <div>
+                            <span class="corridor-gate-sector">General Contractors &amp; Estimators</span>
+                            <h3 class="corridor-gate-name">Contractor Bid Desk</h3>
+                            <p class="corridor-gate-desc">Instant blueprint uploads, CSI MasterFormat Div 09 takeoffs, 24-hr binding proposal turnaround, and OSHA 30 teams.</p>
+                            <div class="corridor-gate-tags">
+                                <span class="corridor-gate-tag">📐 Div 09 Blueprints</span>
+                                <span class="corridor-gate-tag">⚡ 24h Turnaround</span>
+                            </div>
+                        </div>
+                        <div class="corridor-gate-cta">
+                            <span>Upload Plans &amp; RFP</span>
+                            <span class="arrow">→</span>
+                        </div>
                     </div>
                 </a>
             </div>
 
-            <div style="text-align:center;margin-top:24px;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-                <span style="font-size:0.78rem;color:var(--text-sub);">Looking for Materials only? <a href="store.html" style="color:var(--amber);text-decoration:underline;">Browse Flooring &amp; Paint Store</a></span>
-                <button type="button" id="btn-continue-general" style="background:none;border:none;color:var(--text-muted);font-size:0.78rem;cursor:pointer;text-decoration:underline;">Explore standard full website overview →</button>
+            <!-- Footer & Quick Links -->
+            <div class="corridor-gate-footer">
+                <a href="store.html" class="gate-footer-badge-link">
+                    <span>📦</span> Need Materials Only? <strong style="color:var(--amber);text-decoration:underline;">Browse Flooring &amp; Paint Store</strong>
+                </a>
+                <div class="gate-footer-actions">
+                    <a href="tel:+19294127546" class="gate-footer-badge-link" style="color:#38bdf8;">
+                        <span>📞</span> Direct Line: (929) 412-7546
+                    </a>
+                    <button type="button" id="btn-continue-general" class="gate-skip-btn">Explore standard full website overview →</button>
+                </div>
             </div>
         </div>
     </div>`,
@@ -477,6 +564,48 @@ const SHARED = {
             });
         });
 
+        // Handle VIP Newsletter / $250 Voucher Submission
+        const claimVipBtn = document.getElementById('btn-gate-claim-vip');
+        const vipEmailInput = document.getElementById('gate-vip-email');
+        const formContainer = document.getElementById('gate-newsletter-form-container');
+        const successNotice = document.getElementById('gate-vip-success');
+
+        const existingVipEmail = localStorage.getItem('fre_vip_email');
+        if (existingVipEmail && successNotice && formContainer) {
+            formContainer.style.display = 'none';
+            successNotice.style.display = 'flex';
+            successNotice.innerHTML = `<span>✓ VIP Privilege Active for <strong>${existingVipEmail}</strong> (Code: <strong>FRE250-VIP</strong>)</span>`;
+        }
+
+        if (claimVipBtn && vipEmailInput) {
+            const handleVipSubmit = (e) => {
+                if (e) e.preventDefault();
+                const email = (vipEmailInput.value || '').trim();
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    vipEmailInput.style.borderColor = '#ef4444';
+                    vipEmailInput.placeholder = 'Please enter a valid email address';
+                    vipEmailInput.focus();
+                    return;
+                }
+
+                // Persist VIP registration
+                localStorage.setItem('fre_vip_email', email);
+                localStorage.setItem('fre_vip_code', 'FRE250-VIP');
+
+                // Animate to success
+                if (formContainer) formContainer.style.display = 'none';
+                if (successNotice) {
+                    successNotice.style.display = 'flex';
+                    successNotice.innerHTML = `<span>🎉 VIP Privilege Activated for <strong>${email}</strong>! Code <strong>FRE250-VIP</strong> applied.</span>`;
+                }
+            };
+
+            claimVipBtn.addEventListener('click', handleVipSubmit);
+            vipEmailInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') handleVipSubmit(e);
+            });
+        }
+
         // First-time visitor automatic launch on index/homepage
         const path = window.location.pathname.split('/').pop() || 'index.html';
         const isHomePage = path === 'index.html' || path === '' || path === '/';
@@ -485,7 +614,7 @@ const SHARED = {
         if (isHomePage && !alreadyChosen) {
             setTimeout(() => {
                 openGate();
-            }, 350);
+            }, 300);
         }
     },
 

@@ -25,3 +25,5 @@ yarn-error.log*
 .tempmediaStorage/
 .user_uploaded/
 scratch/
+
+.vercel

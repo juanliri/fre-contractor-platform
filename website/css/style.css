@@ -282,41 +282,65 @@ p { line-height: 1.7; }
   animation: pulseAnim 2s infinite;
 }
 
-/* ─── FIRST-TIME CORRIDOR GATEWAY OVERLAY ────────────────────────── */
+/* ─── FIRST-TIME CORRIDOR GATEWAY OVERLAY (MARKETING & NEWSLETTER EDITION) ─── */
 #fre-corridor-gate {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: rgba(3, 12, 23, 0.94);
+  background: radial-gradient(circle at 50% 20%, rgba(14, 34, 61, 0.92) 0%, rgba(2, 8, 18, 0.97) 100%);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  animation: gateFadeIn 0.35s ease-out both;
+  padding: 20px 16px;
+  overflow-y: auto;
+  animation: gateFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @keyframes gateFadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
+@keyframes gateScaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(14px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 25px rgba(245, 130, 32, 0.15); }
+  50% { box-shadow: 0 0 45px rgba(245, 130, 32, 0.35); }
+}
+
 .corridor-gate-container {
-  max-width: 980px;
+  max-width: 1060px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(7, 23, 43, 0.98) 0%, rgba(4, 16, 30, 0.99) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--r-xl);
-  padding: 40px 36px;
+  max-height: 94vh;
+  overflow-y: auto;
+  background: linear-gradient(175deg, rgba(8, 22, 42, 0.98) 0%, rgba(4, 14, 28, 0.99) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 22px;
+  padding: 32px 32px;
   position: relative;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(245, 130, 32, 0.1);
-  overflow: hidden;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.92), 0 0 50px rgba(245, 130, 32, 0.15);
+  animation: gateScaleUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+.corridor-gate-container::-webkit-scrollbar {
+  width: 6px;
+}
+.corridor-gate-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
 .corridor-gate-close {
   position: absolute;
   top: 18px;
   right: 18px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--text-muted);
   width: 38px;
   height: 38px;
@@ -325,49 +349,338 @@ p { line-height: 1.7; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  transition: all var(--t-fast);
+  font-size: 1.15rem;
+  transition: all 0.25s ease;
+  z-index: 10;
 }
 .corridor-gate-close:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(245, 130, 32, 0.2);
+  border-color: var(--amber);
   color: #fff;
+  transform: rotate(90deg);
 }
+
+/* ─── NEWSLETTER & VIP PERK BAR ─── */
+.gate-newsletter-banner {
+  background: linear-gradient(90deg, rgba(245, 130, 32, 0.14) 0%, rgba(56, 189, 248, 0.09) 100%);
+  border: 1px solid rgba(245, 130, 32, 0.32);
+  border-radius: 14px;
+  padding: 14px 20px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.gate-newsletter-banner:hover {
+  border-color: rgba(245, 130, 32, 0.5);
+  box-shadow: 0 8px 24px rgba(245, 130, 32, 0.12);
+}
+.gate-newsletter-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 280px;
+}
+.gate-perk-badge {
+  background: linear-gradient(135deg, #f58220, #ea580c);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  padding: 4px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.gate-newsletter-title {
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.35;
+}
+.gate-newsletter-title span {
+  color: var(--amber);
+}
+.gate-newsletter-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 440px;
+  min-width: 260px;
+}
+.gate-newsletter-input {
+  flex: 1;
+  background: rgba(3, 12, 23, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.gate-newsletter-input:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 10px rgba(245, 130, 32, 0.25);
+  background: rgba(5, 16, 32, 0.95);
+}
+.gate-newsletter-btn {
+  background: linear-gradient(135deg, #f58220, #ea580c);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(245, 130, 32, 0.35);
+}
+.gate-newsletter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 130, 32, 0.5);
+}
+.gate-newsletter-success {
+  color: #34d399;
+  font-size: 0.84rem;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  animation: gateFadeIn 0.3s ease both;
+}
+
+/* ─── CORRIDOR CARDS GRID (PHOTOGRAPHIC & EDITORIAL) ─── */
 .corridor-gate-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-top: 28px;
+  margin-top: 22px;
 }
 .corridor-gate-option {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 24px 18px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   text-decoration: none;
-  transition: all var(--t-base);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
-.corridor-gate-option:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-}
-.corridor-gate-option.opt-res:hover { border-color: var(--amber); }
-.corridor-gate-option.opt-comm:hover { border-color: #38bdf8; }
-.corridor-gate-option.opt-gov:hover { border-color: var(--green); }
-.corridor-gate-option.opt-gc:hover { border-color: #fbbf24; }
+.corridor-gate-option:nth-child(1) { animation: cardFadeUp 0.45s 0.06s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.corridor-gate-option:nth-child(2) { animation: cardFadeUp 0.45s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.corridor-gate-option:nth-child(3) { animation: cardFadeUp 0.45s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.corridor-gate-option:nth-child(4) { animation: cardFadeUp 0.45s 0.24s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-@media (max-width: 880px) {
-  .corridor-gate-grid { grid-template-columns: repeat(2, 1fr); }
+.corridor-gate-thumb {
+  position: relative;
+  height: 125px;
+  overflow: hidden;
+  background-color: #020812;
 }
-@media (max-width: 520px) {
+.corridor-gate-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(0.9) contrast(1.05);
+}
+.corridor-gate-option:hover .corridor-gate-thumb img {
+  transform: scale(1.08);
+  filter: brightness(1.02) contrast(1.1);
+}
+.corridor-gate-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2, 8, 18, 0.15) 0%, rgba(4, 14, 28, 0.95) 100%);
+}
+.corridor-gate-status-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(3, 12, 23, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+}
+.corridor-gate-status-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.opt-res .dot { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.opt-comm .dot { background: #38bdf8; box-shadow: 0 0 6px #38bdf8; }
+.opt-gov .dot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.opt-gc .dot { background: #fbbf24; box-shadow: 0 0 6px #fbbf24; }
+
+.corridor-gate-content {
+  padding: 16px 16px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+.corridor-gate-sector {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin-bottom: 4px;
+  display: block;
+}
+.opt-res .corridor-gate-sector { color: var(--amber); }
+.opt-comm .corridor-gate-sector { color: #38bdf8; }
+.opt-gov .corridor-gate-sector { color: var(--green); }
+.opt-gc .corridor-gate-sector { color: #fbbf24; }
+
+.corridor-gate-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.corridor-gate-desc {
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+.corridor-gate-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+.corridor-gate-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: var(--text-sub);
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.corridor-gate-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.2s ease;
+}
+.corridor-gate-cta .arrow {
+  transition: transform 0.25s ease;
+}
+
+/* Card Hover Accent States */
+.corridor-gate-option:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.05);
+}
+.corridor-gate-option:hover .corridor-gate-cta .arrow {
+  transform: translateX(4px);
+}
+.corridor-gate-option.opt-res:hover {
+  border-color: rgba(245, 130, 32, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 130, 32, 0.25);
+}
+.corridor-gate-option.opt-res .corridor-gate-cta { color: var(--amber); }
+
+.corridor-gate-option.opt-comm:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.25);
+}
+.corridor-gate-option.opt-comm .corridor-gate-cta { color: #38bdf8; }
+
+.corridor-gate-option.opt-gov:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(16, 185, 129, 0.25);
+}
+.corridor-gate-option.opt-gov .corridor-gate-cta { color: var(--green); }
+
+.corridor-gate-option.opt-gc:hover {
+  border-color: rgba(251, 191, 36, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(251, 191, 36, 0.25);
+}
+.corridor-gate-option.opt-gc .corridor-gate-cta { color: #fbbf24; }
+
+/* ─── GATEWAY FOOTER ─── */
+.corridor-gate-footer {
+  margin-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.gate-footer-badge-link {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.gate-footer-badge-link:hover {
+  color: var(--amber);
+}
+.gate-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.gate-skip-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+.gate-skip-btn:hover {
+  color: #fff;
+}
+
+@media (max-width: 960px) {
+  .corridor-gate-grid { grid-template-columns: repeat(2, 1fr); }
+  .gate-newsletter-banner { flex-direction: column; align-items: stretch; }
+  .gate-newsletter-form { max-width: 100%; }
+}
+@media (max-width: 540px) {
   .corridor-gate-grid { grid-template-columns: 1fr; }
-  .corridor-gate-container { padding: 24px 18px; }
+  .corridor-gate-container { padding: 22px 16px; }
+  .corridor-gate-thumb { height: 110px; }
+  .corridor-gate-footer { flex-direction: column; align-items: flex-start; }
 }
 
 /* ─── CROSS-PLATFORM PWA INSTALL MODAL ────────────────────────── */
