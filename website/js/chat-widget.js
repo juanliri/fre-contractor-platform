@@ -19,34 +19,41 @@
 #fre-chat-btn { width:56px; height:56px; background:linear-gradient(135deg,#0B2545,#1D9A76); border-radius:50%; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.4); transition:transform .2s ease; }
 #fre-chat-btn:hover { transform:scale(1.08); }
 #fre-chat-badge { position:absolute; top:-3px; right:-3px; width:16px; height:16px; background:#F58220; border-radius:50%; border:2px solid #07172B; font-size:9px; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
-#fre-chat-box { position:absolute; bottom:68px; right:0; width:320px; background:rgba(7,23,43,.98); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.1); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.6); display:none; flex-direction:column; overflow:hidden; }
-#fre-chat-box.open { display:flex; animation:chatFadeIn .25s ease; }
-@keyframes chatFadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
-#fre-chat-head { padding:14px 16px; background:linear-gradient(135deg,rgba(11,37,69,.8),rgba(29,154,118,.15)); border-bottom:1px solid rgba(255,255,255,.06); display:flex; align-items:center; gap:10px; }
-#fre-chat-head img { width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #1D9A76; }
+#fre-chat-box { position:fixed; bottom:92px; right:24px; width:340px; max-width:calc(100vw - 32px); height:auto; max-height:min(540px, calc(100vh - 110px)); max-height:min(540px, calc(100dvh - 110px)); background:rgba(7,23,43,.98); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.14); border-radius:16px; box-shadow:0 24px 60px rgba(0,0,0,.75); display:none; flex-direction:column; overflow:hidden; z-index:9999; }
+#fre-chat-box.open { display:flex; animation:chatFadeIn .22s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes chatFadeIn { from{opacity:0;transform:translateY(12px) scale(0.98)} to{opacity:1;transform:none} }
+#fre-chat-head { flex-shrink:0; padding:12px 16px; background:linear-gradient(135deg,rgba(11,37,69,.9),rgba(29,154,118,.25)); border-bottom:1px solid rgba(255,255,255,.08); display:flex; align-items:center; gap:10px; }
+#fre-chat-head img { width:34px; height:34px; border-radius:50%; object-fit:cover; border:2px solid #1D9A76; flex-shrink:0; }
 .fre-agent-info strong { color:#fff; font-size:.88rem; display:block; }
 .fre-agent-info span { color:#94a3b8; font-size:.74rem; }
 .fre-online { width:8px; height:8px; background:#22c55e; border-radius:50%; margin-left:auto; flex-shrink:0; box-shadow:0 0 6px rgba(34,197,94,.6); }
-#fre-chat-close { background:none; border:none; color:#94a3b8; cursor:pointer; font-size:1.1rem; padding:0 0 0 4px; line-height:1; }
-#fre-chat-msgs { padding:14px; flex:1; max-height:260px; overflow-y:auto; display:flex; flex-direction:column; gap:8px; }
+#fre-chat-close { background:rgba(255,255,255,0.08); border:none; color:#cbd5e1; cursor:pointer; font-size:1.1rem; width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; line-height:1; transition:background .15s, color .15s; flex-shrink:0; margin-left:6px; }
+#fre-chat-close:hover { background:rgba(239,68,68,0.25); color:#ef4444; }
+#fre-chat-msgs { padding:12px 14px; flex:1 1 auto; max-height:210px; min-height:80px; overflow-y:auto; display:flex; flex-direction:column; gap:8px; }
 #fre-chat-msgs::-webkit-scrollbar { width:4px; }
 #fre-chat-msgs::-webkit-scrollbar-track { background:transparent; }
-#fre-chat-msgs::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1); border-radius:4px; }
-.chat-bubble { padding:9px 12px; border-radius:12px; font-size:.83rem; line-height:1.5; max-width:85%; }
-.chat-bubble.bot { background:rgba(255,255,255,.06); color:#cbd5e1; align-self:flex-start; border-bottom-left-radius:4px; }
+#fre-chat-msgs::-webkit-scrollbar-thumb { background:rgba(255,255,255,.15); border-radius:4px; }
+.chat-bubble { padding:8px 12px; border-radius:12px; font-size:.82rem; line-height:1.45; max-width:88%; }
+.chat-bubble.bot { background:rgba(255,255,255,.07); color:#cbd5e1; align-self:flex-start; border-bottom-left-radius:4px; }
 .chat-bubble.user { background:linear-gradient(135deg,#1D9A76,#0B2545); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
 .chat-bubble a { color:#F58220; }
-#fre-chat-faqs { padding:0 14px 10px; display:flex; flex-direction:column; gap:6px; }
-.faq-btn { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:#94a3b8; padding:8px 12px; border-radius:10px; text-align:left; cursor:pointer; font-size:.78rem; font-family:inherit; transition:all .15s ease; }
-.faq-btn:hover { background:rgba(245,130,32,.1); border-color:rgba(245,130,32,.3); color:#F58220; }
-#fre-chat-footer { padding:10px 14px; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:8px; }
-#fre-chat-input { flex:1; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 12px; color:#fff; font-size:.83rem; outline:none; font-family:inherit; }
+#fre-chat-faqs { flex-shrink:0; padding:0 14px 8px; max-height:130px; overflow-y:auto; display:flex; flex-direction:column; gap:5px; }
+#fre-chat-faqs::-webkit-scrollbar { width:4px; }
+#fre-chat-faqs::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1); border-radius:4px; }
+.faq-btn { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09); color:#94a3b8; padding:7px 11px; border-radius:8px; text-align:left; cursor:pointer; font-size:.76rem; font-family:inherit; transition:all .15s ease; }
+.faq-btn:hover { background:rgba(245,130,32,.12); border-color:rgba(245,130,32,.35); color:#F58220; }
+#fre-chat-footer { flex-shrink:0; padding:8px 14px; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:8px; }
+#fre-chat-input { flex:1; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:8px 12px; color:#fff; font-size:.82rem; outline:none; font-family:inherit; }
 #fre-chat-input::placeholder { color:#475569; }
-#fre-chat-send { background:#F58220; border:none; border-radius:8px; padding:8px 12px; cursor:pointer; color:#fff; font-weight:700; font-size:.8rem; transition:background .2s; }
+#fre-chat-send { background:#F58220; border:none; border-radius:8px; padding:8px 14px; cursor:pointer; color:#fff; font-weight:700; font-size:.8rem; transition:background .2s; }
 #fre-chat-send:hover { background:#d97010; }
-#fre-chat-wa { padding:8px 14px 14px; }
-#fre-chat-wa a { display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(37,211,102,.12); border:1px solid rgba(37,211,102,.25); color:#22c55e; padding:9px; border-radius:10px; text-decoration:none; font-size:.8rem; font-weight:700; transition:all .2s; }
+#fre-chat-wa { flex-shrink:0; padding:6px 14px 12px; }
+#fre-chat-wa a { display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(37,211,102,.12); border:1px solid rgba(37,211,102,.25); color:#22c55e; padding:8px; border-radius:8px; text-decoration:none; font-size:.78rem; font-weight:700; transition:all .2s; }
 #fre-chat-wa a:hover { background:rgba(37,211,102,.2); }
+@media (max-width:480px) {
+  #fre-chat-box { bottom:76px; right:12px; left:12px; width:auto; max-width:none; max-height:calc(100vh - 90px); max-height:calc(100dvh - 90px); }
+  #fre-chat-widget { bottom:134px; right:16px; }
+}
 `;
 
     const HTML = `
@@ -146,14 +153,33 @@
             }, 400);
         }
 
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             open = !open;
             box.classList.toggle('open', open);
             badge.style.display = 'none';
         });
-        close.addEventListener('click', () => { open = false; box.classList.remove('open'); });
+        close.addEventListener('click', (e) => {
+            e.stopPropagation();
+            open = false;
+            box.classList.remove('open');
+        });
         send.addEventListener('click', handleInput);
         input.addEventListener('keydown', e => e.key === 'Enter' && handleInput());
+
+        // Close on ESC or click outside
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && open) {
+                open = false;
+                box.classList.remove('open');
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (open && !box.contains(e.target) && !btn.contains(e.target)) {
+                open = false;
+                box.classList.remove('open');
+            }
+        });
 
         // Show badge after delay
         setTimeout(() => {

@@ -7,7 +7,7 @@
     <meta name="description" content="Buy contractor-grade flooring, architectural coatings, drywall skim compound, and professional sundries at wholesale NYC pricing. Jobsite delivery and turnkey furnish & install options.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=2026.4">
+    <link rel="stylesheet" href="css/style.css?v=2026.5">
     <style>
         .store-grid {
             display: grid !important;
@@ -263,12 +263,13 @@
             </div>
 
             <!-- CATEGORY FILTER PILLS -->
-            <div class="store-category-bar" id="store-cat-bar">
+            <div class="store-category-bar" id="store-cat-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
                 <button type="button" class="store-cat-pill active" data-cat="all" onclick="STORE.setCategory('all')">🏷️ All Materials (<span id="count-all">8</span>)</button>
                 <button type="button" class="store-cat-pill" data-cat="flooring" onclick="STORE.setCategory('flooring')">🪵 Flooring & LVP (<span id="count-flooring">3</span>)</button>
                 <button type="button" class="store-cat-pill" data-cat="paints" onclick="STORE.setCategory('paints')">🎨 Paints & Primers (<span id="count-paints">3</span>)</button>
                 <button type="button" class="store-cat-pill" data-cat="drywall" onclick="STORE.setCategory('drywall')">🧱 Drywall & Skim (<span id="count-drywall">1</span>)</button>
                 <button type="button" class="store-cat-pill" data-cat="sundries" onclick="STORE.setCategory('sundries')">🧰 Contractor Kits (<span id="count-sundries">1</span>)</button>
+                <button type="button" class="btn btn-outline" id="store-cat-cart-btn" style="margin-left:auto;padding:8px 16px;font-size:0.82rem;display:inline-flex;align-items:center;gap:8px;border-color:rgba(245,130,32,0.5);color:#F58220;border-radius:20px;font-weight:700;" onclick="STORE.openCart()">🛒 Cart (<span id="cat-cart-count">0</span>)</button>
             </div>
 
             <!-- PRODUCT CATALOG GRID -->
@@ -574,63 +575,75 @@
         </div>
     </section>
 
-    <!-- FLOATING STICKY CART PREVIEW BAR -->
-    <div id="store-sticky-cart">
-        <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:36px;height:36px;border-radius:50%;background:var(--amber);color:#04101e;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;" id="sticky-cart-icon">🛒</div>
-            <div>
-                <strong style="color:#fff;font-size:0.88rem;display:block;"><span id="sticky-cart-count">0</span> items in cart</strong>
-                <span style="color:var(--green-light);font-size:0.78rem;font-weight:700;" id="sticky-cart-total">$0.00</span>
-            </div>
+    <!-- STORE TOAST NOTIFICATION -->
+    <div id="store-toast" class="store-toast"></div>
+
+    <!-- UNOBTRUSIVE FLOATING CART TRIGGER (Appears when items added, never blocks products) -->
+    <button type="button" id="store-cart-float-btn" onclick="STORE.openCart()" aria-label="Open Materials Cart">
+        <div class="store-cart-float-icon">🛒</div>
+        <div class="store-cart-float-info">
+            <span class="store-cart-float-title"><span id="float-cart-count">0</span> items in cart</span>
+            <span class="store-cart-float-price" id="float-cart-total">$0.00</span>
         </div>
-        <button type="button" class="btn btn-primary" style="padding:8px 18px;font-size:0.84rem;border-radius:20px;" onclick="STORE.openCart()">View Cart / Checkout →</button>
-    </div>
+    </button>
 
-    <!-- SHOPPING CART / QUOTE MODAL -->
-    <div class="modal-backdrop" id="modal-cart">
-        <div class="modal-box" style="max-width:580px;">
-            <div class="modal-header">
+    <!-- SLIDE-OUT CART BACKDROP -->
+    <div id="store-cart-backdrop" class="cart-backdrop" onclick="STORE.closeCart()"></div>
+
+    <!-- LUXURY SLIDE-OUT CART DRAWER -->
+    <div id="store-cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+        <div class="cart-drawer-header">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="cart-drawer-icon">🛒</div>
                 <div>
-                    <h3 class="modal-title" id="cart-title">🛒 Materials Order & Quote</h3>
-                    <p class="modal-subtitle">Review your selected items and choose delivery or installation.</p>
+                    <h3 class="cart-drawer-title" id="drawer-title">Materials Order & Quote</h3>
+                    <span class="cart-drawer-subtitle"><span id="drawer-item-count">0</span> items selected</span>
                 </div>
-                <button class="modal-close-btn" onclick="STORE.closeCart()">✕</button>
             </div>
-            <div class="modal-body">
-                <div id="cart-items" style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;max-height:240px;overflow-y:auto;">
-                    <!-- Injected dynamically -->
-                </div>
-                <div style="border-top:1px solid var(--border);padding-top:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-weight:700;color:var(--text-sub);">Estimated Subtotal:</span>
-                    <span style="font-size:1.4rem;font-weight:900;color:var(--green-light);" id="cart-total">$0.00</span>
-                </div>
+            <button type="button" class="cart-drawer-close" onclick="STORE.closeCart()" aria-label="Close cart">✕</button>
+        </div>
 
-                <form id="form-cart-checkout">
-                    <div class="form-grid" style="gap:12px;margin-bottom:14px;">
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label class="form-label">Full Name *</label>
-                            <input type="text" class="form-control" id="cart-name" required placeholder="Juan James">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label class="form-label">Phone Number *</label>
-                            <input type="tel" class="form-control" id="cart-phone" required placeholder="(929) 555-0100">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">NYC Delivery / Project Address *</label>
-                        <input type="text" class="form-control" id="cart-address" required placeholder="2760 Holland Ave, Bronx NY 10467">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Fulfillment Option</label>
-                        <select class="form-control" id="cart-fulfillment">
-                            <option value="delivery">📦 Delivery Only (Drop-off to job site)</option>
-                            <option value="bundle">🔨 Bundle with F.R.E. Labor (Turnkey Furnish & Install)</option>
-                            <option value="pickup">🏢 Contractor Warehouse Pickup (Bronx, NY)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;" id="btn-submit-cart">Submit Material Order / Quote →</button>
-                </form>
+        <div class="cart-drawer-body" id="cart-drawer-items">
+            <!-- Dynamically populated -->
+        </div>
+
+        <div class="cart-drawer-footer">
+            <div class="cart-subtotal-box">
+                <span class="cart-subtotal-label">Estimated Subtotal:</span>
+                <span class="cart-subtotal-amount" id="drawer-subtotal">$0.00</span>
             </div>
+            <div class="cart-perks">
+                <span>⚡ 24hr Bronx Dispatch</span>
+                <span>✓ Direct Wholesale Pricing</span>
+            </div>
+
+            <form id="form-cart-checkout">
+                <div class="form-grid" style="gap:10px;margin-bottom:10px;">
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Full Name *</label>
+                        <input type="text" class="form-control" id="cart-name" required placeholder="Juan James" style="padding:8px 12px;font-size:0.84rem;">
+                    </div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Phone Number *</label>
+                        <input type="tel" class="form-control" id="cart-phone" required placeholder="(929) 555-0100" style="padding:8px 12px;font-size:0.84rem;">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:10px;">
+                    <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">NYC Delivery / Project Address *</label>
+                    <input type="text" class="form-control" id="cart-address" required placeholder="2760 Holland Ave, Bronx NY 10467" style="padding:8px 12px;font-size:0.84rem;">
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Fulfillment Option</label>
+                    <select class="form-control" id="cart-fulfillment" style="padding:8px 12px;font-size:0.84rem;">
+                        <option value="delivery">📦 Delivery Only (Drop-off to NYC job site)</option>
+                        <option value="bundle">🔨 Bundle with F.R.E. Labor (Turnkey Furnish & Install)</option>
+                        <option value="pickup">🏢 Contractor Warehouse Pickup (Bronx, NY)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;padding:12px 16px;font-weight:800;" id="btn-submit-cart">
+                    Submit Material Order / Quote →
+                </button>
+            </form>
         </div>
     </div>
 
@@ -638,10 +651,10 @@
 
 <div id="site-footer"></div>
 
-<script src="js/shared.js?v=2026.4"></script>
+<script src="js/shared.js?v=2026.5"></script>
 <script src="js/supabase-client.js"></script>
-<script src="js/animations.js?v=2026.4"></script>
-<script src="js/chat-widget.js"></script>
+<script src="js/animations.js?v=2026.5"></script>
+<script src="js/chat-widget.js?v=2026.5"></script>
 
 <script>
 const STORE = {
@@ -709,13 +722,17 @@ const STORE = {
         const units = parseInt(document.getElementById('res-units').textContent) || 1;
         const totalCost = parseFloat(document.getElementById('res-total').textContent.replace(/[$,]/g, '')) || 0;
 
+        const itemTitle = title + (this.mode === 'bundle' ? ' (Furnish & Install)' : ' (Supply Only)');
         this.cart.push({
-            id: opt.value,
-            title: title + (this.mode === 'bundle' ? ' (Furnish & Install)' : ' (Supply Only)'),
+            id: opt.value + '-' + Date.now(),
+            title: itemTitle,
+            detail: `${units} Units • ${document.getElementById('res-pack')?.textContent || ''}`,
             qty: units,
+            unitPrice: totalCost / units,
             total: totalCost
         });
-        this.updateStickyCart();
+        this.updateCartUI();
+        this.showToast(`✓ Added to Cart: ${title}`);
         this.openCart();
     },
 
@@ -731,22 +748,26 @@ const STORE = {
         const qtyEl = document.getElementById(qtyElemId);
         const qty = qtyEl ? (parseInt(qtyEl.textContent) || 1) : 1;
         const multiplier = (packSqft > 1 && !id.startsWith('paint')) ? packSqft : 1;
-        const total = unitPrice * multiplier * qty;
+        const itemUnitPrice = unitPrice * multiplier;
+        const total = itemUnitPrice * qty;
 
         // Check if item exists in cart
         const existing = this.cart.find(i => i.id === id);
         if (existing) {
             existing.qty += qty;
-            existing.total += total;
+            existing.total = existing.unitPrice * existing.qty;
         } else {
             this.cart.push({
                 id: id,
-                title: `${title} (${qty > 1 ? qty + 'x' : '1'} Unit)`,
+                title: title,
+                detail: packSqft > 1 ? `${packSqft} sqft coverage/pack` : 'Standard Contractor Spec',
                 qty: qty,
+                unitPrice: itemUnitPrice,
                 total: total
             });
         }
-        this.updateStickyCart();
+        this.updateCartUI();
+        this.showToast(`✓ Added to Cart: ${title} (${qty}x)`);
         this.openCart();
     },
 
@@ -783,12 +804,17 @@ const STORE = {
         }
     },
 
-    updateStickyCart() {
-        const sticky = document.getElementById('store-sticky-cart');
-        const countEl = document.getElementById('sticky-cart-count');
-        const totalEl = document.getElementById('sticky-cart-total');
-        if (!sticky) return;
+    toastTimer: null,
+    showToast(msg) {
+        const toast = document.getElementById('store-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('show');
+        if (this.toastTimer) clearTimeout(this.toastTimer);
+        this.toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+    },
 
+    updateCartUI() {
         let totalCount = 0;
         let subtotal = 0;
         this.cart.forEach(item => {
@@ -796,61 +822,127 @@ const STORE = {
             subtotal += item.total;
         });
 
-        if (totalCount > 0) {
-            countEl.textContent = totalCount;
-            totalEl.textContent = '$' + subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            sticky.classList.add('active');
-        } else {
-            sticky.classList.remove('active');
+        const formattedSubtotal = '$' + subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+        const floatBtn = document.getElementById('store-cart-float-btn');
+        const floatCount = document.getElementById('float-cart-count');
+        const floatTotal = document.getElementById('float-cart-total');
+        const catCount = document.getElementById('cat-cart-count');
+        const drawerCount = document.getElementById('drawer-item-count');
+        const drawerSubtotal = document.getElementById('drawer-subtotal');
+
+        if (floatCount) floatCount.textContent = totalCount;
+        if (floatTotal) floatTotal.textContent = formattedSubtotal;
+        if (catCount) catCount.textContent = totalCount;
+        if (drawerCount) drawerCount.textContent = totalCount;
+        if (drawerSubtotal) drawerSubtotal.textContent = formattedSubtotal;
+
+        if (floatBtn) {
+            floatBtn.classList.toggle('visible', totalCount > 0);
         }
     },
 
-    openCart() {
-        const container = document.getElementById('cart-items');
+    renderCartItems() {
+        const container = document.getElementById('cart-drawer-items');
+        if (!container) return;
         container.innerHTML = '';
         let subtotal = 0;
 
         if (this.cart.length === 0) {
-            container.innerHTML = '<p style="color:var(--text-muted);font-size:0.88rem;text-align:center;padding:16px;">Your material cart is currently empty.</p>';
+            container.innerHTML = `
+                <div class="cart-empty-state">
+                    <div class="cart-empty-icon">🛒</div>
+                    <h4 style="color:#ffffff;font-size:1.05rem;margin-bottom:6px;">Your material cart is empty</h4>
+                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;">Browse commercial LVP flooring, Benjamin Moore paint, or sundries to calculate quotes.</p>
+                    <button type="button" class="btn btn-outline" style="font-size:0.82rem;padding:8px 16px;border-radius:20px;" onclick="STORE.closeCart()">Start Browsing →</button>
+                </div>
+            `;
         } else {
             this.cart.forEach((item, index) => {
                 subtotal += item.total;
-                const row = document.createElement('div');
-                row.style.cssText = "display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--border);";
-                row.innerHTML = `
-                    <div>
-                        <strong style="color:#fff;font-size:0.90rem;display:block;">${item.title}</strong>
-                        <span style="color:var(--text-dim);font-size:0.75rem;">Units / Packs: ${item.qty}</span>
+                const card = document.createElement('div');
+                card.className = 'cart-item-card';
+                card.innerHTML = `
+                    <div class="cart-item-top">
+                        <div>
+                            <div class="cart-item-title">${item.title}</div>
+                            ${item.detail ? `<div style="font-size:0.75rem;color:#94a3b8;margin-top:2px;">${item.detail}</div>` : ''}
+                        </div>
+                        <button type="button" class="cart-item-del" onclick="STORE.removeItem(${index})" aria-label="Remove item" title="Remove item">✕</button>
                     </div>
-                    <div style="display:flex;align-items:center;gap:12px;">
-                        <span style="font-weight:800;color:var(--green-light);">$${item.total.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span>
-                        <button type="button" style="background:none;border:none;color:#EF4444;cursor:pointer;font-weight:800;" onclick="STORE.removeItem(${index})">✕</button>
+                    <div class="cart-item-bottom">
+                        <div class="cart-item-stepper">
+                            <button type="button" class="cart-stepper-btn" onclick="STORE.stepCartItem(${index}, -1)" aria-label="Decrease quantity">−</button>
+                            <span class="cart-stepper-val">${item.qty}</span>
+                            <button type="button" class="cart-stepper-btn" onclick="STORE.stepCartItem(${index}, 1)" aria-label="Increase quantity">+</button>
+                        </div>
+                        <div class="cart-item-price">$${item.total.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
                     </div>
                 `;
-                container.appendChild(row);
+                container.appendChild(card);
             });
         }
 
-        document.getElementById('cart-total').textContent = '$' + subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById('modal-cart').classList.add('open');
+        const drawerSubtotal = document.getElementById('drawer-subtotal');
+        if (drawerSubtotal) {
+            drawerSubtotal.textContent = '$' + subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+    },
+
+    stepCartItem(idx, delta) {
+        const item = this.cart[idx];
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) {
+            this.cart.splice(idx, 1);
+        } else {
+            item.total = (item.unitPrice || (item.total / (item.qty - delta))) * item.qty;
+        }
+        this.updateCartUI();
+        this.renderCartItems();
     },
 
     removeItem(idx) {
         this.cart.splice(idx, 1);
-        this.updateStickyCart();
-        this.openCart();
+        this.updateCartUI();
+        this.renderCartItems();
+    },
+
+    openCart() {
+        this.renderCartItems();
+        const backdrop = document.getElementById('store-cart-backdrop');
+        const drawer = document.getElementById('store-cart-drawer');
+        if (backdrop) backdrop.classList.add('open');
+        if (drawer) drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
     },
 
     closeCart() {
-        document.getElementById('modal-cart').classList.remove('open');
+        const backdrop = document.getElementById('store-cart-backdrop');
+        const drawer = document.getElementById('store-cart-drawer');
+        if (backdrop) backdrop.classList.remove('open');
+        if (drawer) drawer.classList.remove('open');
+        document.body.style.overflow = '';
     }
 };
 
-document.getElementById('form-cart-checkout').addEventListener('submit', async (e) => {
+// Handle ESC key to close cart
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        STORE.closeCart();
+    }
+});
+
+document.getElementById('form-cart-checkout')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('btn-submit-cart');
+    if (STORE.cart.length === 0) {
+        alert("Your cart is empty! Please add materials first.");
+        return;
+    }
+
     btn.disabled = true;
-    btn.textContent = "Processing Order...";
+    btn.textContent = "Submitting Order...";
 
     const payload = {
         name: document.getElementById('cart-name').value,
@@ -858,7 +950,7 @@ document.getElementById('form-cart-checkout').addEventListener('submit', async (
         address: document.getElementById('cart-address').value,
         fulfillment: document.getElementById('cart-fulfillment').value,
         items: STORE.cart,
-        total: parseFloat(document.getElementById('cart-total').textContent.replace(/[$,]/g, '')) || 0,
+        total: parseFloat(document.getElementById('drawer-subtotal').textContent.replace(/[$,]/g, '')) || 0,
         source: 'materials_store'
     };
 
@@ -872,14 +964,16 @@ document.getElementById('form-cart-checkout').addEventListener('submit', async (
                 source: 'store_checkout'
             });
         }
-    } catch(err) {}
+    } catch(err) {
+        console.error(err);
+    }
 
     STORE.cart = [];
-    STORE.updateStickyCart();
+    STORE.updateCartUI();
     STORE.closeCart();
-    alert("✅ Thank you! Your material quote / order has been received. An F.R.E. representative will call you within 2 hours to confirm availability and schedule delivery.");
     btn.disabled = false;
     btn.textContent = "Submit Material Order / Quote →";
+    alert("✅ Thank you! Your material quote / order has been received. An F.R.E. representative will call you within 2 hours to confirm availability and schedule delivery.");
 });
 
 document.addEventListener('DOMContentLoaded', () => {
