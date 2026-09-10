@@ -71,11 +71,12 @@
         Install on your computer or mobile device for instant access to instant calculators, wholesale materials ordering, project tracking, and offline operation with zero app store downloads.
       </p>
 
-      <!-- Native 1-Click Install Button (When Supported) -->
-      <div id="btn-native-install-wrapper" style="text-align:center;margin-bottom:22px;">
-        <button id="btn-native-install-trigger" class="btn" style="background:linear-gradient(135deg, var(--amber) 0%, #fbbf24 100%);color:#040d1a;font-weight:800;padding:12px 24px;border-radius:10px;border:none;font-size:0.95rem;box-shadow:0 4px 20px rgba(245,130,32,0.4);cursor:pointer;display:inline-flex;align-items:center;gap:8px;">
-          ⚡ Install App Instantly
+      <!-- Native 1-Click Install Button & Windows Launcher -->
+      <div id="btn-native-install-wrapper" style="text-align:center;margin-bottom:20px;display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <button id="btn-native-install-trigger" class="btn" style="background:linear-gradient(135deg, #F58220 0%, #fbbf24 100%);color:#040d1a;font-weight:900;padding:12px 28px;border-radius:12px;border:none;font-size:1rem;box-shadow:0 6px 24px rgba(245,130,32,0.45);cursor:pointer;display:inline-flex;align-items:center;gap:10px;">
+          ⚡ Install App Instantly (PWA / Desktop)
         </button>
+        <span id="install-feedback-msg" style="font-size:0.78rem;color:#34d399;font-weight:700;display:none;"></span>
       </div>
 
       <!-- Platform Selection Tabs -->
@@ -88,6 +89,20 @@
 
       <!-- Tab 1: Windows (PC) -->
       <div class="install-tab-content" id="tab-windows">
+        <div style="background:rgba(245,130,32,0.1);border:1px solid rgba(245,130,32,0.3);border-radius:10px;padding:14px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+          <div>
+            <strong style="color:#ffffff;font-size:0.88rem;display:block;">Direct Windows Desktop Launcher:</strong>
+            <span style="color:#cbd5e1;font-size:0.78rem;">Download 1-click standalone desktop launcher (no browser bar, native speed).</span>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button type="button" id="btn-dl-win-bat" class="btn btn-primary" style="font-size:0.78rem;padding:7px 12px;border-radius:8px;">
+              💾 Download .bat App
+            </button>
+            <button type="button" id="btn-dl-win-url" class="btn btn-outline" style="font-size:0.78rem;padding:7px 12px;border-radius:8px;">
+              📥 Desktop Shortcut
+            </button>
+          </div>
+        </div>
         <div class="install-step-card">
           <div class="step-num">1</div>
           <div class="step-text">
@@ -254,6 +269,54 @@
       });
     });
 
+    function downloadFile(filename, content, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 300);
+    }
+
+    function triggerWindowsBatDownload() {
+      const batContent = `@echo off\r\ntitle F.R.E. Contractor LLC Desktop App\r\necho Launching F.R.E. Contractor Platform...\r\nwhere msedge >nul 2>&1\r\nif %errorlevel%==0 (\r\n    start msedge --app=https://fre-contractor-platform.vercel.app --window-size=1280,850\r\n    exit\r\n)\r\nwhere chrome >nul 2>&1\r\nif %errorlevel%==0 (\r\n    start chrome --app=https://fre-contractor-platform.vercel.app --window-size=1280,850\r\n    exit\r\n)\r\nstart https://fre-contractor-platform.vercel.app\r\n`;
+      downloadFile('Launch-FRE-Contractor.bat', batContent, 'application/x-bat');
+    }
+
+    function triggerWindowsUrlDownload() {
+      const urlContent = `[InternetShortcut]\r\nURL=https://fre-contractor-platform.vercel.app/\r\nIconIndex=0\r\nIconFile=https://fre-contractor-platform.vercel.app/assets/logo.png\r\n`;
+      downloadFile('FRE-Contractor.url', urlContent, 'application/octet-stream');
+    }
+
+    const dlBatBtn = document.getElementById('btn-dl-win-bat');
+    const dlUrlBtn = document.getElementById('btn-dl-win-url');
+    const feedbackMsg = document.getElementById('install-feedback-msg');
+
+    if (dlBatBtn) {
+      dlBatBtn.addEventListener('click', () => {
+        triggerWindowsBatDownload();
+        if (feedbackMsg) {
+          feedbackMsg.textContent = '✅ Launch-FRE-Contractor.bat downloaded!';
+          feedbackMsg.style.display = 'block';
+        }
+      });
+    }
+
+    if (dlUrlBtn) {
+      dlUrlBtn.addEventListener('click', () => {
+        triggerWindowsUrlDownload();
+        if (feedbackMsg) {
+          feedbackMsg.textContent = '✅ FRE-Contractor.url shortcut downloaded!';
+          feedbackMsg.style.display = 'block';
+        }
+      });
+    }
+
     // Native install trigger handler
     if (nativeBtn) {
       nativeBtn.addEventListener('click', async () => {
@@ -263,6 +326,13 @@
           console.log('[PWA] User response to install prompt:', outcome);
           deferredPrompt = null;
           closeModal();
+        } else if (currentPlatform === 'windows') {
+          triggerWindowsBatDownload();
+          if (feedbackMsg) {
+            feedbackMsg.textContent = '✅ Launch-FRE-Contractor.bat downloaded! Click to open as desktop app.';
+            feedbackMsg.style.display = 'block';
+          }
+          activateTab('tab-windows');
         } else {
           // If native prompt not directly supported (e.g. iOS or already installed)
           activateTab('tab-' + currentPlatform);

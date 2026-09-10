@@ -8,6 +8,157 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .store-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 26px !important;
+            margin-top: 24px !important;
+        }
+        .store-card {
+            background: linear-gradient(175deg, rgba(11,37,69,0.95) 0%, rgba(4,16,30,0.98) 100%) !important;
+            border: 1px solid rgba(255,255,255,0.12) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+        }
+        .store-card:hover {
+            transform: translateY(-5px) !important;
+            border-color: rgba(245,130,32,0.45) !important;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 0 20px rgba(245,130,32,0.15) !important;
+        }
+        .store-card-body {
+            padding: 22px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 !important;
+        }
+        .store-search-wrap {
+            display: flex !important;
+            align-items: center !important;
+            gap: 14px !important;
+            margin-bottom: 24px !important;
+            background: rgba(11,37,69,0.95) !important;
+            border: 1.5px solid rgba(245,130,32,0.45) !important;
+            border-radius: 50px !important;
+            padding: 10px 22px !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+        }
+        .store-search-input {
+            flex: 1 !important;
+            background: transparent !important;
+            border: none !important;
+            color: #ffffff !important;
+            font-size: 0.96rem !important;
+            outline: none !important;
+            font-family: inherit !important;
+            padding: 0 !important;
+        }
+        .store-search-input::placeholder {
+            color: #94a3b8 !important;
+        }
+        .store-category-bar {
+            display: flex !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 28px !important;
+        }
+        .store-cat-pill {
+            background: rgba(13,27,42,0.85) !important;
+            border: 1.5px solid rgba(255,255,255,0.12) !important;
+            color: #cbd5e1 !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            padding: 8px 18px !important;
+            border-radius: 30px !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            transition: all 0.2s ease !important;
+        }
+        .store-cat-pill:hover,
+        .store-cat-pill.active {
+            background: linear-gradient(135deg, #F58220 0%, #d97114 100%) !important;
+            border-color: #F58220 !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 16px rgba(245,130,32,0.4) !important;
+        }
+        .store-card-action-box {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .store-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .store-price-sub {
+            font-size: 0.78rem;
+            color: #94a3b8;
+        }
+        .store-btn-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .store-qty-control {
+            display: flex !important;
+            align-items: center !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            border-radius: 8px !important;
+            background: rgba(0,0,0,0.4) !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+        .store-qty-btn {
+            background: none !important;
+            border: none !important;
+            color: #fff !important;
+            width: 32px !important;
+            height: 32px !important;
+            cursor: pointer !important;
+            font-size: 1.1rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        .store-qty-val {
+            width: 30px !important;
+            text-align: center !important;
+            color: #fff !important;
+            font-size: 0.88rem !important;
+            font-weight: 800 !important;
+        }
+        .store-add-btn {
+            flex: 1 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            padding: 8px 14px !important;
+            font-size: 0.86rem !important;
+            font-weight: 800 !important;
+            border-radius: 8px !important;
+            background: linear-gradient(135deg, #F58220 0%, #e06d0c 100%) !important;
+            border: none !important;
+            color: #ffffff !important;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(245,130,32,0.3);
+        }
+        .store-add-btn:hover {
+            background: linear-gradient(135deg, #ff9436 0%, #F58220 100%) !important;
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
 <body>
 <div id="site-header"></div>
@@ -105,14 +256,14 @@
             </div>
 
             <!-- SEARCH BAR -->
-            <div class="store-search-wrap reveal">
-                <span class="store-search-icon">🔍</span>
-                <input type="text" id="store-search-input" class="store-search-input" placeholder="Search materials (e.g. LVP, Benjamin Moore, Scuff-X, Sheetrock, primer, rollers)..." oninput="STORE.filterProducts()">
-                <button type="button" class="btn btn-ghost" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:0.78rem;padding:6px 12px;" onclick="document.getElementById('store-search-input').value=''; STORE.filterProducts();">Clear</button>
+            <div class="store-search-wrap">
+                <span class="store-search-icon" style="font-size:1.2rem;color:#F58220;">🔍</span>
+                <input type="text" id="store-search-input" class="store-search-input" placeholder="Search contractor materials, paint brands, LVP flooring, drywall..." oninput="STORE.filterProducts()">
+                <button type="button" class="btn btn-ghost" style="font-size:0.80rem;padding:6px 14px;color:#94a3b8;" onclick="document.getElementById('store-search-input').value=''; STORE.filterProducts();">Clear</button>
             </div>
 
             <!-- CATEGORY FILTER PILLS -->
-            <div class="store-category-bar reveal" id="store-cat-bar">
+            <div class="store-category-bar" id="store-cat-bar">
                 <button type="button" class="store-cat-pill active" data-cat="all" onclick="STORE.setCategory('all')">🏷️ All Materials (<span id="count-all">8</span>)</button>
                 <button type="button" class="store-cat-pill" data-cat="flooring" onclick="STORE.setCategory('flooring')">🪵 Flooring & LVP (<span id="count-flooring">3</span>)</button>
                 <button type="button" class="store-cat-pill" data-cat="paints" onclick="STORE.setCategory('paints')">🎨 Paints & Primers (<span id="count-paints">3</span>)</button>
@@ -140,18 +291,20 @@
                             <span>●</span> In Stock (Bronx Hub) • Next-Day Delivery
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$2.85 <small>/ sqft</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">$68.40 per 24-sqft box</span>
+                                <span class="store-price-sub">$68.40 / 24-sqft box</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-lvp', -1)">−</button>
                                     <span class="store-qty-val" id="qty-lvp">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-lvp', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('lvp', 'LVP Flooring — Natural Oak', 2.85, 24, 'qty-lvp')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('lvp', 'LVP Flooring — Natural Oak', 2.85, 24, 'qty-lvp')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -174,18 +327,20 @@
                             <span>●</span> In Stock • Free Delivery on 10+ boxes
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$5.40 <small>/ sqft</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">$118.80 per 22-sqft box</span>
+                                <span class="store-price-sub">$118.80 / 22-sqft box</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-oak', -1)">−</button>
                                     <span class="store-qty-val" id="qty-oak">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-oak', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('hardwood', 'Engineered White Oak', 5.40, 22, 'qty-oak')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('hardwood', 'Engineered White Oak', 5.40, 22, 'qty-oak')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -208,18 +363,20 @@
                             <span>●</span> In Stock (Custom Tinted On-Demand)
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$68.00 <small>/ gallon</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers 400 sq ft</span>
+                                <span class="store-price-sub">Covers 400 sq ft</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-regal', -1)">−</button>
                                     <span class="store-qty-val" id="qty-regal">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-regal', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('paint_regal', 'BM Regal Select Interior', 68.00, 1, 'qty-regal')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('paint_regal', 'BM Regal Select Interior', 68.00, 1, 'qty-regal')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -242,18 +399,20 @@
                             <span>●</span> In Stock (50+ Gal in Bronx Depot)
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$84.00 <small>/ gallon</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers 400 sq ft</span>
+                                <span class="store-price-sub">Covers 400 sq ft</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-scuff', -1)">−</button>
                                     <span class="store-qty-val" id="qty-scuff">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-scuff', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('paint_scuffx', 'BM Scuff-X Commercial', 84.00, 1, 'qty-scuff')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('paint_scuffx', 'BM Scuff-X Commercial', 84.00, 1, 'qty-scuff')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -276,18 +435,20 @@
                             <span>●</span> In Stock (180+ Boxes available)
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$2.20 <small>/ sqft</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">$105.60 per 48-sqft box</span>
+                                <span class="store-price-sub">$105.60 / 48-sqft box</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-carpet', -1)">−</button>
                                     <span class="store-qty-val" id="qty-carpet">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-carpet', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('carpet_tile', 'Commercial Carpet Tiles', 2.20, 48, 'qty-carpet')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('carpet_tile', 'Commercial Carpet Tiles', 2.20, 48, 'qty-carpet')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -310,18 +471,20 @@
                             <span>●</span> In Stock (Wholesale Pallet Available)
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$54.00 <small>/ gallon</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers 400 sq ft</span>
+                                <span class="store-price-sub">Covers 400 sq ft</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-promar', -1)">−</button>
                                     <span class="store-qty-val" id="qty-promar">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-promar', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('paint_promar', 'SW ProMar 200 Zero VOC', 54.00, 1, 'qty-promar')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('paint_promar', 'SW ProMar 200 Zero VOC', 54.00, 1, 'qty-promar')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -344,18 +507,20 @@
                             <span>●</span> In Stock (Bronx Warehouse)
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$24.50 <small>/ 4.5 Gal Pail</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers approx 450 sq ft</span>
+                                <span class="store-price-sub">Covers approx 450 sq ft</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sheetrock', -1)">−</button>
                                     <span class="store-qty-val" id="qty-sheetrock">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sheetrock', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('drywall_plus3', 'USG Sheetrock Plus 3 (4.5 Gal)', 24.50, 1, 'qty-sheetrock')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('drywall_plus3', 'USG Sheetrock Plus 3 (4.5 Gal)', 24.50, 1, 'qty-sheetrock')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -378,18 +543,20 @@
                             <span>●</span> In Stock (Ready to ship)
                         </div>
 
-                        <div class="store-card-footer">
-                            <div>
+                        <div class="store-card-action-box">
+                            <div class="store-price-row">
                                 <div class="store-price">$55.00 <small>/ complete kit</small></div>
-                                <span style="font-size:0.74rem;color:var(--text-dim);">Saves $22 vs buying retail</span>
+                                <span class="store-price-sub">Saves $22 vs retail</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="store-btn-row">
                                 <div class="store-qty-control">
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sundries', -1)">−</button>
                                     <span class="store-qty-val" id="qty-sundries">1</span>
                                     <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sundries', 1)">+</button>
                                 </div>
-                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('sundries', 'Pro Sundries Package', 55.00, 1, 'qty-sundries')">Add</button>
+                                <button class="store-add-btn" onclick="STORE.addWithQty('sundries', 'Pro Sundries Package', 55.00, 1, 'qty-sundries')">
+                                    Add to Cart 🛒
+                                </button>
                             </div>
                         </div>
                     </div>

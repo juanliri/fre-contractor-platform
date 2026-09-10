@@ -26,4 +26,7 @@ yarn-error.log*
 .user_uploaded/
 scratch/
 
+# Internal Confidential Pricing & Launchers
+internal-pitch-playbook.html
+*.bat
 .vercel
