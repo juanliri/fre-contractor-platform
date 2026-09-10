@@ -83,7 +83,7 @@ const SHARED = {
                                 <span class="megamenu-icon">🏬</span>
                                 <div class="megamenu-text">
                                     <strong>Retail Rollouts</strong>
-                                    <span>T-Mobile, storefronts</span>
+                                    <span>Retail buildouts &amp; storefronts</span>
                                 </div>
                             </a>
                             <a href="service-nycha-housing.html" class="megamenu-link">
@@ -128,7 +128,7 @@ const SHARED = {
                                 <span class="megamenu-icon">🎨</span>
                                 <div class="megamenu-text">
                                     <strong>Paint & Coatings</strong>
-                                    <span>Benjamin Moore & Scuff-X</span>
+                                    <span>F.R.E. Master Finish Spec</span>
                                 </div>
                             </a>
                             <a href="store.html#material-calculator" class="megamenu-link">
@@ -192,22 +192,6 @@ const SHARED = {
                 </div>
             </div>
             <div class="mobile-drawer-body">
-                <div class="mob-action-grid">
-                    <a href="booking.html" class="mob-action-card mob-action-book">
-                        <span class="mob-action-icon">📅</span>
-                        <div>
-                            <strong>Book Estimate Visit</strong>
-                            <span>Free On-Site Laser Assessment</span>
-                        </div>
-                    </a>
-                    <button type="button" class="mob-action-card mob-action-install btn-trigger-install">
-                        <span class="mob-action-icon">📲</span>
-                        <div>
-                            <strong>Install Native App</strong>
-                            <span>iOS • Android • Windows • Mac</span>
-                        </div>
-                    </button>
-                </div>
                 <div class="mob-menu-group">
                     <span class="mob-group-title">Executive Corridors & Portals</span>
                     <a href="residential.html" class="mob-nav-item">
@@ -222,7 +206,7 @@ const SHARED = {
                         <span class="mob-item-icon" style="color:#38bdf8;">🏢</span>
                         <div class="mob-item-text">
                             <strong>Commercial Corridor</strong>
-                            <span>Retail Rollouts, Scuff-X & Night Turns</span>
+                            <span>Retail Rollouts, SCUFF-SHIELD™ &amp; Night Turns</span>
                         </div>
                         <span class="mob-item-arrow">›</span>
                     </a>
@@ -257,9 +241,9 @@ const SHARED = {
                         <span class="mob-item-icon">🛒</span>
                         <div class="mob-item-text">
                             <strong>Contractor Materials Store</strong>
-                            <span>Wholesale LVP Flooring & BM Paints</span>
+                            <span>Wholesale LVP Flooring & Coatings</span>
                         </div>
-                        <span class="mob-item-pill">Amazon Store</span>
+                        <span class="mob-item-pill">Trade Hub</span>
                     </a>
                     <a href="estimate.html" class="mob-nav-item">
                         <span class="mob-item-icon" style="color:var(--green);">💰</span>
@@ -455,10 +439,10 @@ const SHARED = {
                         <div>
                             <span class="corridor-gate-sector">Property Managers &amp; Retail</span>
                             <h3 class="corridor-gate-name">Commercial Corridor</h3>
-                            <p class="corridor-gate-desc">Turnkey retail rollouts (T-Mobile), off-hours night execution, high-durability Scuff-X coatings, and multi-unit turns.</p>
+                            <p class="corridor-gate-desc">Turnkey retail rollouts, off-hours night execution, high-durability SCUFF-SHIELD™ coatings, and multi-unit turns.</p>
                             <div class="corridor-gate-tags">
                                 <span class="corridor-gate-tag">🏢 Off-Hours Night</span>
-                                <span class="corridor-gate-tag">🛡️ Scuff-X Finish</span>
+                                <span class="corridor-gate-tag">🛡️ SCUFF-SHIELD™ Spec</span>
                             </div>
                         </div>
                         <div class="corridor-gate-cta">

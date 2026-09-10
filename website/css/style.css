@@ -3512,7 +3512,7 @@ body.drawer-open .mobile-call-bar {
   gap: 5px;
 }
 
-/* ─── AMAZON-STYLE STORE UI ENHANCEMENTS ─────────────────────────── */
+/* ─── F.R.E. TRADE STORE UI ENHANCEMENTS ─────────────────────────── */
 .store-search-wrap {
   display: flex;
   align-items: center;
@@ -3572,8 +3572,8 @@ body.drawer-open .mobile-call-bar {
   box-shadow: 0 4px 14px rgba(245, 130, 32, 0.3);
 }
 
-/* Amazon Card Specifics */
-.store-amazon-badge {
+/* Contractor Badge Specifics */
+.store-badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
