@@ -169,27 +169,37 @@ p { line-height: 1.7; }
 .text-green { color: var(--green); }
 .text-muted { color: var(--text-muted); }
 
-/* ─── TOP BANNER ─────────────────────────────────────────────────── */
+/* ─── TOP BANNER — STRICT SINGLE-LINE ARCHITECTURE ─────────────────── */
 .top-banner {
   background: linear-gradient(90deg, var(--navy-deeper), var(--navy-primary), var(--navy-deeper));
   border-bottom: 1px solid var(--border);
-  padding: 8px 0;
-  font-size: 0.8rem;
+  padding: 6px 0;
+  font-size: 0.78rem;
+  line-height: 1;
 }
-.top-banner .container {
+.top-banner-container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 12px;
+  width: 100%;
+}
+.top-banner-left {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 16px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
-.top-banner-links {
+.top-banner-right {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
-.top-banner-links a {
+.top-banner a {
   color: var(--text-muted);
   text-decoration: none;
   display: inline-flex;
@@ -197,8 +207,20 @@ p { line-height: 1.7; }
   gap: 6px;
   transition: color var(--t-fast);
   font-weight: 500;
+  white-space: nowrap;
 }
-.top-banner-links a:hover { color: var(--amber); }
+.top-banner a:hover { color: var(--amber); }
+
+/* Progressive disclosure classes */
+@media (max-width: 1240px) {
+  .top-banner-wide { display: none !important; }
+}
+@media (max-width: 991px) {
+  .top-banner-desktop { display: none !important; }
+}
+@media (max-width: 639px) {
+  .top-banner-tablet { display: none !important; }
+}
 
 .top-banner-appointment-btn {
   display: inline-flex;
@@ -3656,18 +3678,27 @@ body.drawer-open .mobile-call-bar {
    5. Footer — not collapsing correctly
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ─── TOP BANNER MOBILE ─── */
+/* ─── TOP BANNER MOBILE & TABLET (STRICT SINGLE-LINE, BALANCED) ─── */
 @media (max-width: 768px) {
-  .top-banner { padding: 6px 0; font-size: 0.72rem; }
-  .top-banner .container { flex-direction: column; align-items: flex-start; gap: 4px; padding: 0 14px; }
-  .top-banner-links { gap: 10px; }
-  /* Hide corridor/install pills from banner on small phones — they have drawer nav */
-  .top-banner-corridor-btn,
-  .top-banner-install-btn { display: none !important; }
+  .top-banner { padding: 5px 0; font-size: 0.74rem; }
+  .top-banner .container,
+  .top-banner-container {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    padding: 0 16px;
+  }
+}
+@media (max-width: 480px) {
+  .top-banner { padding: 4px 0; font-size: 0.72rem; }
+  .top-banner .container,
+  .top-banner-container { padding: 0 12px; }
+  .top-phone span { font-weight: 700; font-size: 0.76rem; }
 }
 
-/* ─── NAV HEADER MOBILE ─── */
-@media (max-width: 1024px) {
+/* ─── NAV HEADER RESPONSIVE BREAKPOINT (TABLET & MOBILE) ─── */
+@media (max-width: 1080px) {
   .nav-menu { display: none !important; }
   .mobile-menu-btn { display: flex !important; }
   .nav-actions .btn:not(.btn-primary) { display: none; }
