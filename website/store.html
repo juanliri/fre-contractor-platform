@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materials Store & Project Quoter | F.R.E. Contractor LLC — Bronx NY</title>
-    <meta name="description" content="Buy contractor-grade flooring and premium architectural paints direct at wholesale prices. LVP, hardwood, Benjamin Moore paint supplies with turnkey installation options.">
+    <title>Contractor Materials Store & Wholesale Hub | F.R.E. Contractor LLC — Bronx NY</title>
+    <meta name="description" content="Buy contractor-grade flooring, architectural coatings, drywall skim compound, and professional sundries at wholesale NYC pricing. Jobsite delivery and turnkey furnish & install options.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -19,9 +19,14 @@
         <div class="glow-orb glow-orb-amber" style="width:400px;height:400px;top:-80px;right:-40px;"></div>
         <div class="glow-orb glow-orb-green" style="width:300px;height:300px;bottom:-60px;left:0;"></div>
         <div class="container">
-            <div class="page-hero-eyebrow reveal">🛒 Contractor Materials Supply</div>
-            <h1 class="page-hero-title reveal reveal-delay-1">Wholesale Flooring &<br><span class="gradient-text">Architectural Paints</span></h1>
-            <p class="page-hero-desc reveal reveal-delay-2">Buy contractor-grade materials direct at wholesale pricing for DIY delivery — or bundle with licensed F.R.E. installation for complete turnkey peace of mind.</p>
+            <div class="page-hero-eyebrow reveal">🛒 Contractor Materials Supply & Delivery</div>
+            <h1 class="page-hero-title reveal reveal-delay-1">Wholesale Flooring &<br><span class="gradient-text">Architectural Coatings</span></h1>
+            <p class="page-hero-desc reveal reveal-delay-2">Buy contractor-grade materials direct at wholesale pricing for DIY drop-off — or bundle with licensed F.R.E. installation for complete turnkey peace of mind across all 5 boroughs.</p>
+            <div class="reveal reveal-delay-3" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">
+                <div class="trust-badge"><span class="trust-check">⚡</span> Same-Day / Next-Day NYC Delivery</div>
+                <div class="trust-badge"><span class="trust-check">✓</span> Contractor Wholesale Tier</div>
+                <div class="trust-badge"><span class="trust-check">🔨</span> Optional Labor Bundle</div>
+            </div>
         </div>
     </section>
 
@@ -47,9 +52,10 @@
                         <select class="form-control" id="calc-product" onchange="STORE.recalc()">
                             <option value="lvp" data-price="2.85" data-sqft="24" data-unit="box" data-unitname="Boxes">Luxury Vinyl Plank (LVP) — $2.85/sqft (24 sqft/box)</option>
                             <option value="hardwood" data-price="5.40" data-sqft="22" data-unit="box" data-unitname="Boxes">Engineered White Oak Hardwood — $5.40/sqft (22 sqft/box)</option>
+                            <option value="carpet_tile" data-price="2.20" data-sqft="48" data-unit="box" data-unitname="Boxes">Commercial Heavy Carpet Tile — $2.20/sqft (48 sqft/box)</option>
                             <option value="paint_regal" data-price="68.00" data-sqft="400" data-unit="gal" data-unitname="Gallons">Benjamin Moore Regal Select — $68.00/gal (400 sqft/gal)</option>
                             <option value="paint_scuffx" data-price="84.00" data-sqft="400" data-unit="gal" data-unitname="Gallons">Benjamin Moore Scuff-X Commercial — $84.00/gal (400 sqft/gal)</option>
-                            <option value="carpet_tile" data-price="2.20" data-sqft="48" data-unit="box" data-unitname="Boxes">Commercial Heavy Carpet Tile — $2.20/sqft (48 sqft/box)</option>
+                            <option value="paint_promar" data-price="54.00" data-sqft="400" data-unit="gal" data-unitname="Gallons">Sherwin-Williams ProMar 200 — $54.00/gal (400 sqft/gal)</option>
                         </select>
                     </div>
                     <div class="form-grid" style="gap:12px;">
@@ -89,108 +95,329 @@
         </div>
     </section>
 
-    <!-- PRODUCT CATALOG GRID -->
-    <section class="section section-texture-amber">
+    <!-- AMAZON-STYLE SEARCH & FILTER INTERFACE -->
+    <section class="section section-texture-amber" style="padding-top:20px;">
         <div class="container">
-            <div class="section-header reveal">
-                <div class="section-eyebrow">Stock Inventory</div>
-                <h2 class="section-title">Contractor <span class="gradient-text">Catalog</span></h2>
+            <div class="section-header reveal" style="margin-bottom:28px;">
+                <div class="section-eyebrow">Stock Inventory & Quick Ship</div>
+                <h2 class="section-title">Contractor <span class="gradient-text">Supply Catalog</span></h2>
                 <p class="section-desc">Commercial-grade flooring, architectural coatings, and professional finishing sundries in stock for NYC delivery.</p>
             </div>
 
-            <div class="store-grid">
+            <!-- SEARCH BAR -->
+            <div class="store-search-wrap reveal">
+                <span class="store-search-icon">🔍</span>
+                <input type="text" id="store-search-input" class="store-search-input" placeholder="Search materials (e.g. LVP, Benjamin Moore, Scuff-X, Sheetrock, primer, rollers)..." oninput="STORE.filterProducts()">
+                <button type="button" class="btn btn-ghost" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:0.78rem;padding:6px 12px;" onclick="document.getElementById('store-search-input').value=''; STORE.filterProducts();">Clear</button>
+            </div>
+
+            <!-- CATEGORY FILTER PILLS -->
+            <div class="store-category-bar reveal" id="store-cat-bar">
+                <button type="button" class="store-cat-pill active" data-cat="all" onclick="STORE.setCategory('all')">🏷️ All Materials (<span id="count-all">8</span>)</button>
+                <button type="button" class="store-cat-pill" data-cat="flooring" onclick="STORE.setCategory('flooring')">🪵 Flooring & LVP (<span id="count-flooring">3</span>)</button>
+                <button type="button" class="store-cat-pill" data-cat="paints" onclick="STORE.setCategory('paints')">🎨 Paints & Primers (<span id="count-paints">3</span>)</button>
+                <button type="button" class="store-cat-pill" data-cat="drywall" onclick="STORE.setCategory('drywall')">🧱 Drywall & Skim (<span id="count-drywall">1</span>)</button>
+                <button type="button" class="store-cat-pill" data-cat="sundries" onclick="STORE.setCategory('sundries')">🧰 Contractor Kits (<span id="count-sundries">1</span>)</button>
+            </div>
+
+            <!-- PRODUCT CATALOG GRID -->
+            <div class="store-grid" id="product-grid">
+
                 <!-- PRODUCT 1: LVP -->
-                <div class="store-card reveal">
+                <div class="store-card reveal" data-category="flooring" data-keywords="lvp luxury vinyl plank flooring waterproof oak spc 20mil">
                     <div class="store-card-img" style="background-image:url('assets/images/store-flooring-lvp.jpg');">
                         <span class="store-card-badge">100% Waterproof</span>
                     </div>
                     <div class="store-card-body">
+                        <div class="store-amazon-badge">⭐ Contractor's Choice</div>
                         <h3 class="store-card-title">Luxury Vinyl Plank (LVP) — Natural Oak</h3>
-                        <p class="store-card-desc">Commercial 20mil wear layer with rigid stone-polymer core (SPC). Scratch and dent resistant. 24 sqft per box.</p>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>4.9</strong> <span>(142 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">Commercial 20mil wear layer with rigid stone-polymer core (SPC). Dent resistant, pre-attached sound pad. 24 sqft/box.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (Bronx Hub) • Next-Day Delivery
+                        </div>
+
                         <div class="store-card-footer">
-                            <div class="store-price">$2.85 <small>/ sqft ($68.40/box)</small></div>
-                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('lvp', 'LVP Flooring — Natural Oak', 2.85, 24)">Add to Cart</button>
+                            <div>
+                                <div class="store-price">$2.85 <small>/ sqft</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">$68.40 per 24-sqft box</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-lvp', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-lvp">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-lvp', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('lvp', 'LVP Flooring — Natural Oak', 2.85, 24, 'qty-lvp')">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- PRODUCT 2: HARDWOOD -->
-                <div class="store-card reveal reveal-delay-1">
+                <div class="store-card reveal reveal-delay-1" data-category="flooring" data-keywords="hardwood engineered wood white oak flooring flooring timber">
                     <div class="store-card-img" style="background-image:url('assets/images/store-flooring-lvp.jpg');filter:hue-rotate(15deg) contrast(1.05);">
                         <span class="store-card-badge">Engineered Timber</span>
                     </div>
                     <div class="store-card-body">
+                        <div class="store-amazon-badge" style="color:#f59e0b;border-color:rgba(245,158,11,0.35);background:rgba(245,158,11,0.12);">🏆 Best Seller</div>
                         <h3 class="store-card-title">Engineered White Oak Flooring</h3>
-                        <p class="store-card-desc">5/8" thickness with wire-brushed UV matte finish. Multi-ply Baltic birch core for NYC climate stability. 22 sqft per box.</p>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>4.8</strong> <span>(98 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">5/8" thickness with wire-brushed UV matte finish. Multi-ply Baltic birch core for NYC climate stability. 22 sqft/box.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock • Free Delivery on 10+ boxes
+                        </div>
+
                         <div class="store-card-footer">
-                            <div class="store-price">$5.40 <small>/ sqft ($118.80/box)</small></div>
-                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('hardwood', 'Engineered White Oak', 5.40, 22)">Add to Cart</button>
+                            <div>
+                                <div class="store-price">$5.40 <small>/ sqft</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">$118.80 per 22-sqft box</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-oak', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-oak">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-oak', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('hardwood', 'Engineered White Oak', 5.40, 22, 'qty-oak')">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRODUCT 3: BENJAMIN MOORE REGAL -->
-                <div class="store-card reveal reveal-delay-2">
+                <!-- PRODUCT 3: BENJAMIN MOORE REGAL SELECT -->
+                <div class="store-card reveal reveal-delay-2" data-category="paints" data-keywords="benjamin moore regal select paint interior primer wash acrylic low voc wall satin matte eggshell">
                     <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');">
                         <span class="store-card-badge">Architectural Grade</span>
                     </div>
                     <div class="store-card-body">
+                        <div class="store-amazon-badge">⭐ Amazon's Choice in Paint</div>
                         <h3 class="store-card-title">Benjamin Moore Regal® Select Interior</h3>
-                        <p class="store-card-desc">100% acrylic interior paint and primer in one. Extraordinary washability, smooth flow, and zero VOC formula. Covers 400 sqft.</p>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>5.0</strong> <span>(215 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">100% acrylic interior paint & primer in one. Extraordinary washability, smooth flow, and zero VOC formula. Covers 400 sqft.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (Custom Tinted On-Demand)
+                        </div>
+
                         <div class="store-card-footer">
-                            <div class="store-price">$68.00 <small>/ gallon</small></div>
-                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('paint_regal', 'BM Regal Select Interior', 68.00, 400)">Add to Cart</button>
+                            <div>
+                                <div class="store-price">$68.00 <small>/ gallon</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers 400 sq ft</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-regal', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-regal">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-regal', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('paint_regal', 'BM Regal Select Interior', 68.00, 1, 'qty-regal')">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRODUCT 4: SCUFF-X -->
-                <div class="store-card reveal">
+                <!-- PRODUCT 4: BENJAMIN MOORE SCUFF-X -->
+                <div class="store-card reveal" data-category="paints" data-keywords="benjamin moore scuff-x commercial coating paint high-traffic corridor school retail nycha">
                     <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');filter:brightness(0.92);">
                         <span class="store-card-badge">High-Traffic Spec</span>
                     </div>
                     <div class="store-card-body">
+                        <div class="store-amazon-badge" style="color:#a855f7;border-color:rgba(168,85,247,0.35);background:rgba(168,85,247,0.12);">🏢 Commercial Grade</div>
                         <h3 class="store-card-title">Benjamin Moore Ultra Spec® SCUFF-X®</h3>
-                        <p class="store-card-desc">Revolutionary single-component coating engineered for high-traffic corridors, schools, retail, and commercial buildouts.</p>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>4.9</strong> <span>(180 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">Revolutionary single-component coating engineered for high-traffic corridors, schools, retail, and public facilities.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (50+ Gal in Bronx Depot)
+                        </div>
+
                         <div class="store-card-footer">
-                            <div class="store-price">$84.00 <small>/ gallon</small></div>
-                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('paint_scuffx', 'BM Scuff-X Commercial', 84.00, 400)">Add to Cart</button>
+                            <div>
+                                <div class="store-price">$84.00 <small>/ gallon</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers 400 sq ft</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-scuff', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-scuff">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-scuff', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('paint_scuffx', 'BM Scuff-X Commercial', 84.00, 1, 'qty-scuff')">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- PRODUCT 5: CARPET TILES -->
-                <div class="store-card reveal reveal-delay-1">
+                <div class="store-card reveal reveal-delay-1" data-category="flooring" data-keywords="modular commercial carpet tile 24x24 bitumen nycha school office flooring">
                     <div class="store-card-img" style="background-image:url('assets/images/gallery-commercial.jpg');">
                         <span class="store-card-badge">Commercial Heavy</span>
                     </div>
                     <div class="store-card-body">
+                        <div class="store-amazon-badge">⚡ Commercial Spec</div>
                         <h3 class="store-card-title">Modular Commercial Carpet Tiles</h3>
-                        <p class="store-card-desc">24" x 24" solution-dyed modular tiles with bitumen backing. Heavy commercial wear rating for NYCHA, schools, and offices.</p>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>4.7</strong> <span>(64 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">24" x 24" solution-dyed modular tiles with bitumen backing. Heavy commercial wear rating for NYCHA, schools, and offices. 48 sqft/box.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (180+ Boxes available)
+                        </div>
+
                         <div class="store-card-footer">
-                            <div class="store-price">$2.20 <small>/ sqft ($105.60/box)</small></div>
-                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('carpet_tile', 'Commercial Carpet Tiles', 2.20, 48)">Add to Cart</button>
+                            <div>
+                                <div class="store-price">$2.20 <small>/ sqft</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">$105.60 per 48-sqft box</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-carpet', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-carpet">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-carpet', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('carpet_tile', 'Commercial Carpet Tiles', 2.20, 48, 'qty-carpet')">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRODUCT 6: PRO SUNDRIES KIT -->
-                <div class="store-card reveal reveal-delay-2">
+                <!-- PRODUCT 6: SHERWIN-WILLIAMS PROMAR 200 -->
+                <div class="store-card reveal reveal-delay-2" data-category="paints" data-keywords="sherwin williams promar 200 zero voc interior latex paint primer commercial">
+                    <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');filter:hue-rotate(200deg);">
+                        <span class="store-card-badge">Zero VOC</span>
+                    </div>
+                    <div class="store-card-body">
+                        <div class="store-amazon-badge">🛡️ LEED & NYCHA Ready</div>
+                        <h3 class="store-card-title">Sherwin-Williams ProMar® 200 Interior</h3>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>4.8</strong> <span>(112 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">Professional interior latex paint engineered for commercial contractors. Zero VOC formula with high hide and quick recoat times.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (Wholesale Pallet Available)
+                        </div>
+
+                        <div class="store-card-footer">
+                            <div>
+                                <div class="store-price">$54.00 <small>/ gallon</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers 400 sq ft</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-promar', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-promar">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-promar', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('paint_promar', 'SW ProMar 200 Zero VOC', 54.00, 1, 'qty-promar')">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 7: USG SHEETROCK PLUS 3 -->
+                <div class="store-card reveal" data-category="drywall" data-keywords="usg sheetrock plus 3 joint compound spackle skim coat drywall mud plaster repair">
+                    <div class="store-card-img" style="background-image:url('assets/images/gallery-ceiling.jpg');">
+                        <span class="store-card-badge">Level 5 Ready</span>
+                    </div>
+                    <div class="store-card-body">
+                        <div class="store-amazon-badge" style="color:#10b981;border-color:rgba(16,185,129,0.35);background:rgba(16,185,129,0.12);">⚡ Skim Coat Choice</div>
+                        <h3 class="store-card-title">USG Sheetrock® Plus 3® Compound</h3>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>4.9</strong> <span>(95 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">Lightweight all-purpose joint compound (4.5 Gal pail). 35% lighter than conventional compounds with superior sanding for flawless walls.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (Bronx Warehouse)
+                        </div>
+
+                        <div class="store-card-footer">
+                            <div>
+                                <div class="store-price">$24.50 <small>/ 4.5 Gal Pail</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Covers approx 450 sq ft</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sheetrock', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-sheetrock">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sheetrock', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('drywall_plus3', 'USG Sheetrock Plus 3 (4.5 Gal)', 24.50, 1, 'qty-sheetrock')">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 8: PRO SUNDRIES KIT -->
+                <div class="store-card reveal reveal-delay-1" data-category="sundries" data-keywords="purdy rollers drop cloth 3m tape brush sundries kit contractor package tools">
                     <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');filter:hue-rotate(40deg);">
                         <span class="store-card-badge">Contractor Kit</span>
                     </div>
                     <div class="store-card-body">
+                        <div class="store-amazon-badge" style="color:#f59e0b;border-color:rgba(245,158,11,0.35);background:rgba(245,158,11,0.12);">📦 Full Bundle</div>
                         <h3 class="store-card-title">Pro Finishing Sundries Package</h3>
-                        <p class="store-card-desc">Purdy microfiber rollers, heavy-duty 9x12 canvas drop cloths, 3M ScotchBlue multi-surface tape, and angle sash trim brush.</p>
+                        <div class="store-star-rating">
+                            <span>★★★★★</span> <strong>5.0</strong> <span>(76 reviews)</span>
+                        </div>
+                        <p class="store-card-desc">Purdy microfiber rollers, heavy-duty 9x12 canvas drop cloths, 3M ScotchBlue multi-surface tape, and 2.5" angle sash trim brush.</p>
+                        
+                        <div class="store-stock-tag">
+                            <span>●</span> In Stock (Ready to ship)
+                        </div>
+
                         <div class="store-card-footer">
-                            <div class="store-price">$55.00 <small>/ kit</small></div>
-                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('sundries', 'Pro Sundries Package', 55.00, 1)">Add to Cart</button>
+                            <div>
+                                <div class="store-price">$55.00 <small>/ complete kit</small></div>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Saves $22 vs buying retail</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <div class="store-qty-control">
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sundries', -1)">−</button>
+                                    <span class="store-qty-val" id="qty-sundries">1</span>
+                                    <button type="button" class="store-qty-btn" onclick="STORE.stepQty('qty-sundries', 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary" style="padding:7px 14px;font-size:0.82rem;" onclick="STORE.addWithQty('sundries', 'Pro Sundries Package', 55.00, 1, 'qty-sundries')">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+
+            <!-- EMPTY SEARCH RESULT -->
+            <div id="no-products-msg" style="display:none;text-align:center;padding:50px 20px;background:rgba(13,27,42,0.6);border:1px dashed rgba(255,255,255,0.1);border-radius:var(--r-md);margin-top:24px;">
+                <div style="font-size:2.5rem;margin-bottom:12px;">🔍</div>
+                <h4 style="color:#fff;font-size:1.1rem;margin-bottom:6px;">No matching materials found</h4>
+                <p style="color:var(--text-muted);font-size:0.86rem;margin-bottom:16px;">Try adjusting your keyword or clear filters to view all contractor supplies.</p>
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('store-search-input').value=''; STORE.setCategory('all');">Reset Filters</button>
             </div>
         </div>
     </section>
+
+    <!-- FLOATING STICKY CART PREVIEW BAR -->
+    <div id="store-sticky-cart">
+        <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--amber);color:#04101e;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;" id="sticky-cart-icon">🛒</div>
+            <div>
+                <strong style="color:#fff;font-size:0.88rem;display:block;"><span id="sticky-cart-count">0</span> items in cart</strong>
+                <span style="color:var(--green-light);font-size:0.78rem;font-weight:700;" id="sticky-cart-total">$0.00</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" style="padding:8px 18px;font-size:0.84rem;border-radius:20px;" onclick="STORE.openCart()">View Cart / Checkout →</button>
+    </div>
 
     <!-- SHOPPING CART / QUOTE MODAL -->
     <div class="modal-backdrop" id="modal-cart">
@@ -247,11 +474,13 @@
 <script src="js/shared.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/animations.js"></script>
+<script src="js/chat-widget.js"></script>
 
 <script>
 const STORE = {
     mode: 'supply', // 'supply' or 'bundle'
     cart: [],
+    activeCategory: 'all',
 
     setMode(mode) {
         this.mode = mode;
@@ -297,7 +526,6 @@ const STORE = {
             materialCost = units * sqftPerUnit * price;
         }
 
-        // Bundle labor multiplier estimate: approx $2.20/sqft for flooring, $1.50/sqft for paint labor
         let laborCost = 0;
         if (this.mode === 'bundle') {
             laborCost = opt.value.startsWith('paint') ? (totalSqft * 1.50) : (totalSqft * 2.20);
@@ -320,17 +548,94 @@ const STORE = {
             qty: units,
             total: totalCost
         });
+        this.updateStickyCart();
         this.openCart();
     },
 
-    quickAdd(id, title, unitPrice, packSqft) {
-        this.cart.push({
-            id: id,
-            title: title + ' (1 Pack/Unit)',
-            qty: 1,
-            total: unitPrice * (packSqft > 1 && !id.startsWith('paint') ? packSqft : 1)
-        });
+    stepQty(id, delta) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let val = parseInt(el.textContent) || 1;
+        val = Math.max(1, Math.min(50, val + delta));
+        el.textContent = val;
+    },
+
+    addWithQty(id, title, unitPrice, packSqft, qtyElemId) {
+        const qtyEl = document.getElementById(qtyElemId);
+        const qty = qtyEl ? (parseInt(qtyEl.textContent) || 1) : 1;
+        const multiplier = (packSqft > 1 && !id.startsWith('paint')) ? packSqft : 1;
+        const total = unitPrice * multiplier * qty;
+
+        // Check if item exists in cart
+        const existing = this.cart.find(i => i.id === id);
+        if (existing) {
+            existing.qty += qty;
+            existing.total += total;
+        } else {
+            this.cart.push({
+                id: id,
+                title: `${title} (${qty > 1 ? qty + 'x' : '1'} Unit)`,
+                qty: qty,
+                total: total
+            });
+        }
+        this.updateStickyCart();
         this.openCart();
+    },
+
+    setCategory(cat) {
+        this.activeCategory = cat;
+        document.querySelectorAll('#store-cat-bar .store-cat-pill').forEach(pill => {
+            pill.classList.toggle('active', pill.dataset.cat === cat);
+        });
+        this.filterProducts();
+    },
+
+    filterProducts() {
+        const query = (document.getElementById('store-search-input').value || '').trim().toLowerCase();
+        const cards = document.querySelectorAll('#product-grid .store-card');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const cat = card.dataset.category || '';
+            const kw = (card.dataset.keywords || '') + ' ' + (card.querySelector('.store-card-title')?.textContent || '');
+            const matchesCat = (this.activeCategory === 'all' || cat === this.activeCategory);
+            const matchesQuery = (!query || kw.toLowerCase().includes(query));
+
+            if (matchesCat && matchesQuery) {
+                card.style.display = 'flex';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const noMsg = document.getElementById('no-products-msg');
+        if (noMsg) {
+            noMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    },
+
+    updateStickyCart() {
+        const sticky = document.getElementById('store-sticky-cart');
+        const countEl = document.getElementById('sticky-cart-count');
+        const totalEl = document.getElementById('sticky-cart-total');
+        if (!sticky) return;
+
+        let totalCount = 0;
+        let subtotal = 0;
+        this.cart.forEach(item => {
+            totalCount += item.qty;
+            subtotal += item.total;
+        });
+
+        if (totalCount > 0) {
+            countEl.textContent = totalCount;
+            totalEl.textContent = '$' + subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            sticky.classList.add('active');
+        } else {
+            sticky.classList.remove('active');
+        }
     },
 
     openCart() {
@@ -339,7 +644,7 @@ const STORE = {
         let subtotal = 0;
 
         if (this.cart.length === 0) {
-            container.innerHTML = '<p style="color:var(--text-muted);font-size:0.88rem;text-align:center;padding:16px;">Your cart is currently empty.</p>';
+            container.innerHTML = '<p style="color:var(--text-muted);font-size:0.88rem;text-align:center;padding:16px;">Your material cart is currently empty.</p>';
         } else {
             this.cart.forEach((item, index) => {
                 subtotal += item.total;
@@ -348,7 +653,7 @@ const STORE = {
                 row.innerHTML = `
                     <div>
                         <strong style="color:#fff;font-size:0.90rem;display:block;">${item.title}</strong>
-                        <span style="color:var(--text-dim);font-size:0.75rem;">Qty: ${item.qty}</span>
+                        <span style="color:var(--text-dim);font-size:0.75rem;">Units / Packs: ${item.qty}</span>
                     </div>
                     <div style="display:flex;align-items:center;gap:12px;">
                         <span style="font-weight:800;color:var(--green-light);">$${item.total.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span>
@@ -365,6 +670,7 @@ const STORE = {
 
     removeItem(idx) {
         this.cart.splice(idx, 1);
+        this.updateStickyCart();
         this.openCart();
     },
 
@@ -402,6 +708,7 @@ document.getElementById('form-cart-checkout').addEventListener('submit', async (
     } catch(err) {}
 
     STORE.cart = [];
+    STORE.updateStickyCart();
     STORE.closeCart();
     alert("✅ Thank you! Your material quote / order has been received. An F.R.E. representative will call you within 2 hours to confirm availability and schedule delivery.");
     btn.disabled = false;

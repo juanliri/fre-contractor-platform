@@ -11,17 +11,17 @@ const SHARED = {
     <div class="top-banner">
         <div class="container">
             <div class="top-banner-links">
-                <a href="tel:+19294127546">
+                <a href="tel:+19294127546" class="top-phone">
                     <svg width="13" height="13" fill="currentColor" viewBox="0 0 18 18"><path d="M14.707 12.707l-2-2a1 1 0 00-1.414 0l-1.086 1.086a9.08 9.08 0 01-3.586-3.586l1.086-1.086a1 1 0 000-1.414l-2-2a1 1 0 00-1.414 0L2.586 5.414C2.211 5.789 2 6.285 2 6.808c0 4.965 4.227 8.99 9.192 8.99.523 0 1.019-.211 1.394-.586l1.707-1.707a1 1 0 000-1.414z"/></svg>
                     (929) 412-7546
                 </a>
-                <a href="https://wa.me/19294127546" target="_blank" rel="noopener">
+                <a href="https://wa.me/19294127546" target="_blank" rel="noopener" class="top-banner-desktop">
                     <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     WhatsApp
                 </a>
-                <span style="color:#64748B;">2760 Holland Ave, Bronx NY</span>
-                <a href="booking.html" class="top-banner-appointment-btn"><span class="pulse-dot"></span> 📅 Book On-Site Estimate Visit</a>
-                <button type="button" class="top-banner-corridor-btn" id="btn-open-corridor-gate" title="Select your profile corridor">🏛️ Client Gateway ▾</button>
+                <span class="top-banner-desktop" style="color:#64748B;">2760 Holland Ave, Bronx NY</span>
+                <a href="booking.html" class="top-banner-appointment-btn top-banner-desktop"><span class="pulse-dot"></span> 📅 Book On-Site Estimate Visit</a>
+                <button type="button" class="top-banner-corridor-btn top-banner-desktop" id="btn-open-corridor-gate" title="Select your profile corridor">🏛️ Client Gateway ▾</button>
                 <button type="button" class="top-banner-install-btn" id="btn-open-install-modal" title="Install App on Desktop or Mobile"><span style="font-size:0.85rem;">📲</span> Install App</button>
             </div>
             <div class="lang-switch">
@@ -44,7 +44,6 @@ const SHARED = {
                 <li class="nav-item has-megamenu">
                     <a href="residential.html" class="nav-link">Services & Materials ▾</a>
                     <div class="megamenu">
-                        <!-- Col 1: Residential Subpages -->
                         <div class="megamenu-col">
                             <span class="megamenu-title">🏠 Residential</span>
                             <a href="service-interior-painting.html" class="megamenu-link">
@@ -76,7 +75,6 @@ const SHARED = {
                                 </div>
                             </a>
                         </div>
-                        <!-- Col 2: Commercial, Public Housing & Verification Subpages -->
                         <div class="megamenu-col">
                             <span class="megamenu-title">🏢 Commercial & GC</span>
                             <a href="service-commercial-retail.html" class="megamenu-link">
@@ -115,7 +113,6 @@ const SHARED = {
                                 </div>
                             </a>
                         </div>
-                        <!-- Col 3: Materials Supply Store & Calculators -->
                         <div class="megamenu-col">
                             <span class="megamenu-title">🛒 Materials Store</span>
                             <a href="store.html#flooring" class="megamenu-link">
@@ -147,7 +144,6 @@ const SHARED = {
                                 </div>
                             </a>
                         </div>
-                        <!-- Col 4: Fast Booking Hub -->
                         <div class="megamenu-banner">
                             <div>
                                 <span class="megamenu-banner-badge">📅 Online Scheduling</span>
@@ -174,33 +170,134 @@ const SHARED = {
                 </button>
             </div>
         </div>
-        <!-- Mobile Drawer -->
+        
         <div class="mobile-drawer" id="mobile-drawer">
-            <div class="mobile-drawer-inner">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
-                    <img src="assets/logo.png" alt="FRE Logo" style="height:44px;">
-                    <button class="mobile-close-btn" id="mobile-close">✕</button>
+            <div class="mobile-drawer-header">
+                <a href="index.html" class="mob-drawer-logo">
+                    <img src="assets/logo.png" alt="FRE Logo" style="height:40px;">
+                    <div style="display:flex;flex-direction:column;text-align:left;">
+                        <strong style="color:#fff;font-size:1.05rem;line-height:1.1;letter-spacing:-0.01em;">F.R.E. Contractor</strong>
+                        <span style="color:var(--amber);font-size:0.68rem;font-weight:700;">Fast · Reliable · Efficient</span>
+                    </div>
+                </a>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <div class="lang-switch" style="padding:2px 8px;background:rgba(255,255,255,0.06);border-radius:20px;">
+                        <button class="lang-btn" data-lang="en">EN</button>
+                        <span style="color:#475569;">|</span>
+                        <button class="lang-btn" data-lang="es">ES</button>
+                    </div>
+                    <button class="mobile-close-btn" id="mobile-close" aria-label="Close mobile menu">✕</button>
                 </div>
-                <nav style="display:flex;flex-direction:column;gap:4px;">
-                    <a href="index.html" class="mob-link">🏠 Home</a>
-                    <a href="#" class="mob-link btn-trigger-install" style="color:#22c55e;font-weight:800;background:rgba(34,197,94,0.08);">📲 Install App (iPhone / Android / PC)</a>
-                    <a href="booking.html" class="mob-link" style="color:#38bdf8;font-weight:800;background:rgba(56,189,248,0.08);">📅 Book Appointment / Estimate Visit</a>
-                    <a href="portal.html" class="mob-link" style="color:var(--amber);font-weight:700;">🏛️ Client Sector Gateway</a>
-                    <a href="store.html" class="mob-link" style="color:var(--amber);font-weight:800;">🛒 Materials Store (Flooring & Paints)</a>
-                    <a href="estimate.html" class="mob-link" style="color:var(--green);font-weight:700;">💰 Instant Cost Estimator</a>
-                    <a href="residential.html" class="mob-link">🏠 Residential Services Hub</a>
-                    <a href="commercial.html" class="mob-link">🏢 Commercial & Retail Hub</a>
-                    <a href="government-verification.html" class="mob-link" style="color:#4ade80;">🛡️ Government & NYCHA Compliance</a>
-                    <a href="bid-portal.html" class="mob-link">📋 Contractor Bid Desk</a>
-                    <a href="portfolio.html" class="mob-link">📸 Project Portfolio</a>
-                    <a href="about.html" class="mob-link">👷 About Us & Milestones</a>
-                    <a href="reviews.html" class="mob-link">⭐ Client Reviews</a>
-                    <a href="contact.html" class="mob-link">📍 Contact & Bronx HQ</a>
-                </nav>
-                <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px;">
-                    <a href="booking.html" class="btn btn-primary" style="text-align:center;background:#38bdf8;color:#04101e;font-weight:800;">📅 Book Appointment</a>
-                    <a href="estimate.html" class="btn btn-outline" style="text-align:center;">Get Free Estimate</a>
-                    <a href="tel:+19294127546" class="btn btn-outline" style="text-align:center;">Call (929) 412-7546</a>
+            </div>
+            <div class="mobile-drawer-body">
+                <div class="mob-action-grid">
+                    <a href="booking.html" class="mob-action-card mob-action-book">
+                        <span class="mob-action-icon">📅</span>
+                        <div>
+                            <strong>Book Estimate Visit</strong>
+                            <span>Free On-Site Laser Assessment</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mob-action-card mob-action-install btn-trigger-install">
+                        <span class="mob-action-icon">📲</span>
+                        <div>
+                            <strong>Install Native App</strong>
+                            <span>iOS • Android • Windows • Mac</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="mob-menu-group">
+                    <span class="mob-group-title">Executive Corridors & Portals</span>
+                    <a href="residential.html" class="mob-nav-item">
+                        <span class="mob-item-icon" style="color:var(--amber);">🏠</span>
+                        <div class="mob-item-text">
+                            <strong>Residential Services Hub</strong>
+                            <span>Apartments, Townhouses, Luxury Paint</span>
+                        </div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="commercial.html" class="mob-nav-item">
+                        <span class="mob-item-icon" style="color:#38bdf8;">🏢</span>
+                        <div class="mob-item-text">
+                            <strong>Commercial Corridor</strong>
+                            <span>Retail Rollouts, Scuff-X & Night Turns</span>
+                        </div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="government-verification.html" class="mob-nav-item">
+                        <span class="mob-item-icon" style="color:var(--green);">🛡️</span>
+                        <div class="mob-item-text">
+                            <strong>Government & NYCHA Compliance</strong>
+                            <span>DOS ID 6658255, Prevailing Wage, $2M COI</span>
+                        </div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="bid-portal.html" class="mob-nav-item">
+                        <span class="mob-item-icon" style="color:#fbbf24;">📋</span>
+                        <div class="mob-item-text">
+                            <strong>Contractor Bid Desk</strong>
+                            <span>CSI Div 09 Blueprints & 24-Hr Takeoffs</span>
+                        </div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="portal.html" class="mob-nav-item">
+                        <span class="mob-item-icon" style="color:#c084fc;">🏛️</span>
+                        <div class="mob-item-text">
+                            <strong>Multi-Sector Gateway</strong>
+                            <span>Switch Dedicated Corridor View</span>
+                        </div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                </div>
+                <div class="mob-menu-group">
+                    <span class="mob-group-title">Supply Store & Estimator Tools</span>
+                    <a href="store.html" class="mob-nav-item highlight-store">
+                        <span class="mob-item-icon">🛒</span>
+                        <div class="mob-item-text">
+                            <strong>Contractor Materials Store</strong>
+                            <span>Wholesale LVP Flooring & BM Paints</span>
+                        </div>
+                        <span class="mob-item-pill">Amazon Store</span>
+                    </a>
+                    <a href="estimate.html" class="mob-nav-item">
+                        <span class="mob-item-icon" style="color:var(--green);">💰</span>
+                        <div class="mob-item-text">
+                            <strong>Instant Cost Estimator</strong>
+                            <span>Calculate Project Budget in 60 Sec</span>
+                        </div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                </div>
+                <div class="mob-menu-group">
+                    <span class="mob-group-title">Verification & Company</span>
+                    <a href="portfolio.html" class="mob-nav-item">
+                        <span class="mob-item-icon">📸</span>
+                        <div class="mob-item-text"><strong>Project Portfolio (Before & After)</strong></div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="reviews.html" class="mob-nav-item">
+                        <span class="mob-item-icon">⭐</span>
+                        <div class="mob-item-text"><strong>Client Reviews (5.0 Stars)</strong></div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="about.html" class="mob-nav-item">
+                        <span class="mob-item-icon">👷</span>
+                        <div class="mob-item-text"><strong>About F.R.E. & Milestones</strong></div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                    <a href="contact.html" class="mob-nav-item">
+                        <span class="mob-item-icon">📍</span>
+                        <div class="mob-item-text"><strong>Contact Bronx HQ</strong></div>
+                        <span class="mob-item-arrow">›</span>
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-drawer-footer">
+                <a href="tel:+19294127546" class="mob-drawer-call-link">
+                    <span>📞</span> Tap to Call (929) 412-7546
+                </a>
+                <div class="mob-drawer-sub">
+                    2760 Holland Ave, Bronx, NY 10467 • DOS ID: 6658255
                 </div>
             </div>
         </div>
@@ -211,7 +308,7 @@ const SHARED = {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="assets/logo.png" alt="F.R.E. Contractor LLC" class="footer-brand-logo" style="height:64px;margin-bottom:16px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));">
+                    <img src="assets/logo.png" alt="F.R.E. Contractor LLC" class="footer-brand-logo" style="height:60px;margin-bottom:14px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));">
                     <p class="footer-desc footer-tagline">Fast · Reliable · Efficient. Serving the Bronx and all five NYC boroughs with premium painting and finishing services since 2022.</p>
                     <div class="footer-social footer-socials">
                         <a href="https://www.instagram.com/f.r.e.contractornyc/" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-btn">
@@ -638,10 +735,25 @@ const SHARED = {
         const drawer = document.getElementById('mobile-drawer');
         if (!btn || !drawer) return;
 
-        btn.addEventListener('click', () => drawer.classList.toggle('open'));
-        if (close) close.addEventListener('click', () => drawer.classList.remove('open'));
-        drawer.querySelectorAll('.mob-link, .btn').forEach(l => {
-            l.addEventListener('click', () => drawer.classList.remove('open'));
+        const openDrawer = () => {
+            drawer.classList.add('open');
+            document.body.classList.add('drawer-open');
+        };
+        const closeDrawer = () => {
+            drawer.classList.remove('open');
+            document.body.classList.remove('drawer-open');
+        };
+
+        btn.addEventListener('click', () => {
+            if (drawer.classList.contains('open')) {
+                closeDrawer();
+            } else {
+                openDrawer();
+            }
+        });
+        if (close) close.addEventListener('click', closeDrawer);
+        drawer.querySelectorAll('.mob-nav-item, .mob-action-card, .mob-drawer-call-link, .mob-link').forEach(l => {
+            l.addEventListener('click', closeDrawer);
         });
     },
 

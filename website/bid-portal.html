@@ -30,144 +30,260 @@
     </section>
 
     <section class="section" style="padding-top:0;">
-        <div class="container" style="max-width:800px;">
+        <div class="container">
+            <div class="bid-desk-grid">
 
-            <!-- SLA PROMISE BANNER -->
-            <div class="sla-banner reveal">
-                <div class="sla-icon">🕐</div>
-                <div>
-                    <strong>24-Hour Bid Response SLA</strong>
-                    <p>Every RFQ submitted through this portal receives a formal, itemized bid package within one business day — guaranteed. No exceptions.</p>
+                <!-- SIDEBAR: CREDENTIALS & SLA -->
+                <aside class="bid-desk-sidebar reveal">
+                    <!-- 24-HR SLA CARD -->
+                    <div class="bid-sidebar-card" style="border-color:rgba(245,130,32,0.3);background:linear-gradient(180deg, rgba(245,130,32,0.08) 0%, rgba(13,27,42,0.85) 100%);">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                            <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,130,32,0.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">⚡</div>
+                            <div>
+                                <h3 style="font-size:1.05rem;color:var(--text-white);margin:0;font-weight:800;">24-Hr Estimating SLA</h3>
+                                <span style="font-size:0.75rem;color:var(--amber-brand);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Guaranteed Turnaround</span>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.55;margin:0 0 14px;">Every commercial RFP submitted through this portal is assigned to our Bronx estimating desk for immediate takeoff and itemized proposal delivery.</p>
+                        <div style="padding:10px 14px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px dashed rgba(245,130,32,0.35);font-size:0.78rem;color:var(--text-white);display:flex;align-items:center;gap:8px;">
+                            <span>📐</span> <span>Blueprints, Procore, PlanGrid & specs accepted.</span>
+                        </div>
+                    </div>
+
+                    <!-- CSI DIVISION 09 SCOPE BREAKDOWN -->
+                    <div class="bid-sidebar-card">
+                        <h4 style="font-size:0.92rem;color:var(--text-white);margin:0 0 12px;text-transform:uppercase;letter-spacing:0.06em;font-weight:800;display:flex;align-items:center;gap:8px;">
+                            <span>📑</span> CSI MasterFormat Div 09 Scope
+                        </h4>
+                        <ul class="bid-scope-list">
+                            <li>
+                                <span class="bid-scope-code">09 91 00</span>
+                                <div>
+                                    <div style="color:var(--text-white);font-weight:600;font-size:0.84rem;">Painting & Architectural Coatings</div>
+                                    <div style="color:var(--text-dim);font-size:0.74rem;">Interior/exterior, epoxy, electrostatic, low-VOC</div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="bid-scope-code">09 29 00</span>
+                                <div>
+                                    <div style="color:var(--text-white);font-weight:600;font-size:0.84rem;">Gypsum Board & Level 5 Skim</div>
+                                    <div style="color:var(--text-dim);font-size:0.74rem;">Tape, spackle, plaster repair, skim coating</div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="bid-scope-code">09 65 00</span>
+                                <div>
+                                    <div style="color:var(--text-white);font-weight:600;font-size:0.84rem;">Resilient & LVP Flooring</div>
+                                    <div style="color:var(--text-dim);font-size:0.74rem;">Commercial vinyl, subfloor prep, transitions</div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="bid-scope-code">09 51 00</span>
+                                <div>
+                                    <div style="color:var(--text-white);font-weight:600;font-size:0.84rem;">Acoustical Ceilings</div>
+                                    <div style="color:var(--text-dim);font-size:0.74rem;">Drop-tile grids, ceiling repairs & recoating</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CREDENTIALS & COMPLIANCE -->
+                    <div class="bid-sidebar-card">
+                        <h4 style="font-size:0.92rem;color:var(--text-white);margin:0 0 14px;text-transform:uppercase;letter-spacing:0.06em;font-weight:800;display:flex;align-items:center;gap:8px;">
+                            <span>🛡️</span> Compliance & Credentials
+                        </h4>
+                        <div class="bid-credential-row">
+                            <span class="cred-dot"></span>
+                            <div>
+                                <strong style="color:var(--text-white);font-size:0.82rem;display:block;">$2,000,000 Commercial General Liability</strong>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Same-day COI with GC named as additional insured</span>
+                            </div>
+                        </div>
+                        <div class="bid-credential-row">
+                            <span class="cred-dot"></span>
+                            <div>
+                                <strong style="color:var(--text-white);font-size:0.82rem;display:block;">NYCHA & NYC HPD Ready</strong>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Background-checked crews, MWBE & Section 3 compliant</span>
+                            </div>
+                        </div>
+                        <div class="bid-credential-row">
+                            <span class="cred-dot"></span>
+                            <div>
+                                <strong style="color:var(--text-white);font-size:0.82rem;display:block;">OSHA 30 Certified Supervisors</strong>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">On-site safety compliance across all 5 boroughs</span>
+                            </div>
+                        </div>
+                        <div class="bid-credential-row">
+                            <span class="cred-dot"></span>
+                            <div>
+                                <strong style="color:var(--text-white);font-size:0.82rem;display:block;">Prevailing Wage & Certified Payroll</strong>
+                                <span style="font-size:0.74rem;color:var(--text-dim);">Accurate reporting for public work contracts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DIRECT CONTACT DESK -->
+                    <div class="bid-sidebar-card" style="text-align:center;">
+                        <h5 style="color:var(--text-white);font-size:0.88rem;margin:0 0 6px;">Need to send plans directly?</h5>
+                        <p style="color:var(--text-dim);font-size:0.78rem;margin:0 0 12px;">Email our Chief Estimator or send blueprint links:</p>
+                        <a href="mailto:info@frecontractor.com?subject=Direct%20Commercial%20RFP%20Plans" class="btn btn-outline" style="width:100%;font-size:0.82rem;padding:9px 12px;margin-bottom:8px;">
+                            ✉️ info@frecontractor.com
+                        </a>
+                        <a href="tel:+19294127546" class="btn btn-ghost" style="width:100%;font-size:0.82rem;padding:8px 12px;color:var(--amber-brand);">
+                            📞 (929) 412-7546
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- MAIN RFP DESK FORM -->
+                <div class="bid-desk-main">
+                    <div class="form-card reveal reveal-delay-1" id="rfq-form-wrap" style="padding:32px 36px;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:16px;">
+                            <div>
+                                <h2 style="font-size:1.45rem;font-weight:800;color:var(--text-white);margin-bottom:4px;">Contractor Bid Desk & RFP Submission</h2>
+                                <p style="color:var(--text-muted);font-size:.88rem;margin:0;">Fill in your project specifications to receive our formal itemized CSI Div 09 proposal.</p>
+                            </div>
+                            <span class="badge" style="background:rgba(29,154,118,0.18);border:1px solid rgba(29,154,118,0.35);color:var(--green-patina);font-size:0.75rem;padding:4px 10px;border-radius:20px;">
+                                🟢 Estimators Online
+                            </span>
+                        </div>
+
+                        <form id="rfq-form" novalidate>
+                            <h4 class="form-section-head">1. General Contractor & Organization</h4>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-company">GC / Developer / Company Name *</label>
+                                    <input class="form-input" type="text" id="rfq-company" required placeholder="e.g. Gotham Builders LLC">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-contact">Project Manager / Estimator Name *</label>
+                                    <input class="form-input" type="text" id="rfq-contact" required placeholder="e.g. John Miller">
+                                </div>
+                            </div>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-phone">Direct Phone *</label>
+                                    <input class="form-input" type="tel" id="rfq-phone" required placeholder="(212) 555-0199">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-email">Business Email *</label>
+                                    <input class="form-input" type="email" id="rfq-email" required placeholder="bids@gothambuilders.com">
+                                </div>
+                            </div>
+
+                            <h4 class="form-section-head" style="margin-top:28px;">2. Jobsite & Project Specs</h4>
+                            <div class="form-group">
+                                <label class="form-label" for="rfq-address">Project / Jobsite Address & Borough *</label>
+                                <input class="form-input" type="text" id="rfq-address" required placeholder="e.g. 450 E 138th St, Bronx NY 10454">
+                            </div>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-type">Facility / Sector Type *</label>
+                                    <select class="form-input" id="rfq-type" required>
+                                        <option value="">Select project type...</option>
+                                        <option>NYCHA / Public Housing Development</option>
+                                        <option>Commercial Office Building</option>
+                                        <option>Retail Storefront / Shopping Center</option>
+                                        <option>Multi-Family Residential Turnover (50+ units)</option>
+                                        <option>Healthcare / Medical Facility</option>
+                                        <option>School / Educational Institution</option>
+                                        <option>Hospitality / Restaurant</option>
+                                        <option>Warehouse / Industrial Coating</option>
+                                        <option>Other Commercial Facility</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-sqft">Approx. Square Footage / Unit Count</label>
+                                    <input class="form-input" type="text" id="rfq-sqft" placeholder="e.g. 15,000 sq ft or 24 units">
+                                </div>
+                            </div>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-start">Desired Start Date</label>
+                                    <input class="form-input" type="date" id="rfq-start">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="rfq-end">Completion / Turnover Deadline</label>
+                                    <input class="form-input" type="date" id="rfq-end">
+                                </div>
+                            </div>
+
+                            <h4 class="form-section-head" style="margin-top:28px;">3. Scope of Work & Blueprint Link</h4>
+                            <div class="form-group">
+                                <label class="form-label" for="rfq-scope">Detailed Scope & Surfaces *</label>
+                                <textarea class="form-input form-textarea" id="rfq-scope" rows="4" required placeholder="Detail surfaces, paint specifications (Benjamin Moore / Sherwin-Williams), drywall finish level, number of coats, occupied vs vacant, phasing requirements..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="rfq-blueprint-link">Blueprint / Cloud Storage Link (Procore, Google Drive, Box, OneDrive)</label>
+                                <input class="form-input" type="url" id="rfq-blueprint-link" placeholder="https://app.procore.com/... or https://drive.google.com/...">
+                                <span style="font-size:0.75rem;color:var(--text-dim);margin-top:4px;display:block;">Paste link to architectural sheets, specs, or addenda.</span>
+                            </div>
+
+                            <h4 class="form-section-head" style="margin-top:28px;">4. Compliance, Wage & Insurance Requirements</h4>
+                            <div class="rfq-checks">
+                                <label class="rfq-check-item">
+                                    <input type="checkbox" id="rfq-coi" checked> Certificate of Insurance (COI) with GC as Additional Insured
+                                </label>
+                                <label class="rfq-check-item">
+                                    <input type="checkbox" id="rfq-pw"> Prevailing Wage / Davis-Bacon / Certified Payroll
+                                </label>
+                                <label class="rfq-check-item">
+                                    <input type="checkbox" id="rfq-night"> Off-Hours / Night Shift / Weekend Phasing
+                                </label>
+                                <label class="rfq-check-item">
+                                    <input type="checkbox" id="rfq-occupied"> Occupied Facility / Active Tenant Protection Protocols
+                                </label>
+                            </div>
+
+                            <div class="form-group" style="margin-top:20px;">
+                                <label class="form-label" for="rfq-budget">Estimated Budget Range</label>
+                                <select class="form-input" id="rfq-budget">
+                                    <option value="">Select range...</option>
+                                    <option>$10,000 – $25,000</option>
+                                    <option>$25,000 – $50,000</option>
+                                    <option>$50,000 – $100,000</option>
+                                    <option>$100,000 – $250,000</option>
+                                    <option>$250,000 – $500,000+</option>
+                                </select>
+                            </div>
+
+                            <!-- HTML5 CANVAS SIGNATURE PAD -->
+                            <h4 class="form-section-head" style="margin-top:28px;">5. Authorization & Digital Signature</h4>
+                            <p style="color:var(--text-muted);font-size:.84rem;margin-bottom:12px;">By signing below, you authorize F.R.E. Contractor LLC's commercial estimating department to prepare a formal bid and review plan files.</p>
+                            <div class="sig-pad-wrap">
+                                <canvas id="sig-canvas" width="700" height="140"></canvas>
+                                <div class="sig-pad-actions">
+                                    <button type="button" id="sig-clear" class="btn btn-ghost" style="font-size:.78rem;padding:6px 12px;">Clear Signature</button>
+                                    <span id="sig-status" style="font-size:.78rem;color:var(--text-dim);">Sign above</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:26px;font-size:1.02rem;padding:14px;">
+                                📤 Submit Commercial RFQ — 24-Hr Bid Guarantee
+                            </button>
+
+                            <p style="color:var(--text-dim);font-size:.76rem;text-align:center;margin-top:14px;">
+                                Need an immediate verbal quote or site walk? Call Chief Estimator at <a href="tel:+19294127546" style="color:var(--amber-brand);font-weight:700;">(929) 412-7546</a>
+                            </p>
+                        </form>
+
+                        <div id="rfq-confirmed" style="display:none;text-align:center;padding:40px 20px;">
+                            <div style="font-size:3.5rem;margin-bottom:16px;">📋</div>
+                            <h3 style="color:var(--text-white);font-size:1.5rem;margin-bottom:8px;">RFQ Successfully Logged!</h3>
+                            <p style="color:var(--text-muted);max-width:480px;margin:0 auto 20px;">Your Request for Quotation has been assigned to our commercial estimating desk. A formal, itemized CSI MasterFormat bid package will be delivered within <strong style="color:var(--amber-brand);">24 business hours</strong>.</p>
+                            <div style="background:rgba(29,154,118,.1);border:1px solid rgba(29,154,118,.3);border-radius:var(--radius-sm);padding:16px;margin-bottom:24px;">
+                                <p style="color:var(--green-patina);font-weight:700;">📞 Direct Estimator Follow-Up from (929) 412-7546</p>
+                                <p style="color:var(--text-muted);font-size:.86rem;">Our senior project estimator will contact you shortly to review blueprints and confirm walkthrough dates.</p>
+                            </div>
+                            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                                <a href="commercial.html" class="btn btn-outline">← Back to Commercial Services</a>
+                                <a href="store.html" class="btn btn-ghost" style="color:var(--amber-brand);">Browse Material Store →</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- RFQ FORM -->
-            <div class="form-card reveal reveal-delay-1" id="rfq-form-wrap">
-                <h2 style="font-size:1.4rem;font-weight:800;color:var(--text-white);margin-bottom:4px;">Project Request for Quotation</h2>
-                <p style="color:var(--text-muted);font-size:.86rem;margin-bottom:28px;">Complete all fields for the most accurate and fastest bid response.</p>
-                <form id="rfq-form" novalidate>
-
-                    <h4 class="form-section-head">Company & Contact</h4>
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-company">Company / GC Name *</label>
-                            <input class="form-input" type="text" id="rfq-company" required placeholder="ABC General Contractors LLC">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-contact">Your Name *</label>
-                            <input class="form-input" type="text" id="rfq-contact" required placeholder="John Smith">
-                        </div>
-                    </div>
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-phone">Phone *</label>
-                            <input class="form-input" type="tel" id="rfq-phone" required placeholder="(212) 555-0100">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-email">Email *</label>
-                            <input class="form-input" type="email" id="rfq-email" required placeholder="jsmith@abcgc.com">
-                        </div>
-                    </div>
-
-                    <h4 class="form-section-head" style="margin-top:28px;">Project Details</h4>
-                    <div class="form-group">
-                        <label class="form-label" for="rfq-address">Project Address *</label>
-                        <input class="form-input" type="text" id="rfq-address" required placeholder="123 Grand Ave, Bronx NY 10451">
-                    </div>
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-type">Project Type *</label>
-                            <select class="form-input" id="rfq-type" required>
-                                <option value="">Select type...</option>
-                                <option>NYCHA / Public Housing</option>
-                                <option>Retail / Restaurant</option>
-                                <option>Office / Commercial Building</option>
-                                <option>School / Institution</option>
-                                <option>Multi-Family Residential</option>
-                                <option>New Construction</option>
-                                <option>Other Commercial</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-sqft">Approx Square Footage</label>
-                            <input class="form-input" type="text" id="rfq-sqft" placeholder="e.g. 5,000 sqft">
-                        </div>
-                    </div>
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-start">Requested Start Date</label>
-                            <input class="form-input" type="date" id="rfq-start">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="rfq-end">Completion Deadline</label>
-                            <input class="form-input" type="date" id="rfq-end">
-                        </div>
-                    </div>
-
-                    <h4 class="form-section-head" style="margin-top:28px;">Scope of Work</h4>
-                    <div class="form-group">
-                        <label class="form-label" for="rfq-scope">Describe the Scope *</label>
-                        <textarea class="form-input form-textarea" id="rfq-scope" rows="5" required placeholder="Describe all areas to be painted, surfaces, special requirements, access considerations, occupied vs vacant, etc."></textarea>
-                    </div>
-
-                    <h4 class="form-section-head" style="margin-top:28px;">Requirements</h4>
-                    <div class="rfq-checks">
-                        <label class="rfq-check-item">
-                            <input type="checkbox" id="rfq-coi"> COI required (we provide same-day)
-                        </label>
-                        <label class="rfq-check-item">
-                            <input type="checkbox" id="rfq-pw"> Prevailing wage required
-                        </label>
-                        <label class="rfq-check-item">
-                            <input type="checkbox" id="rfq-night"> Night / weekend work only
-                        </label>
-                        <label class="rfq-check-item">
-                            <input type="checkbox" id="rfq-occupied"> Occupied building / tenant protocols
-                        </label>
-                    </div>
-
-                    <div class="form-group" style="margin-top:20px;">
-                        <label class="form-label" for="rfq-budget">Budget Range (optional)</label>
-                        <select class="form-input" id="rfq-budget">
-                            <option value="">Select range...</option>
-                            <option>Under $10,000</option>
-                            <option>$10,000 – $25,000</option>
-                            <option>$25,000 – $75,000</option>
-                            <option>$75,000 – $150,000</option>
-                            <option>$150,000+</option>
-                        </select>
-                    </div>
-
-                    <!-- HTML5 CANVAS SIGNATURE PAD (replaces DocuSign) -->
-                    <h4 class="form-section-head" style="margin-top:28px;">Authorization Signature</h4>
-                    <p style="color:var(--text-muted);font-size:.84rem;margin-bottom:12px;">By signing below you authorize F.R.E. Contractor LLC to contact you regarding this RFQ. This does not constitute a contract.</p>
-                    <div class="sig-pad-wrap">
-                        <canvas id="sig-canvas" width="700" height="140"></canvas>
-                        <div class="sig-pad-actions">
-                            <button type="button" id="sig-clear" class="btn btn-ghost" style="font-size:.78rem;padding:6px 12px;">Clear</button>
-                            <span id="sig-status" style="font-size:.78rem;color:var(--text-dim);">Sign above</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width:100%;margin-top:24px;font-size:1rem;">
-                        📤 Submit RFQ — Bid Within 24 Hours
-                    </button>
-
-                    <p style="color:var(--text-dim);font-size:.76rem;text-align:center;margin-top:12px;">
-                        Prefer to call? <a href="tel:+19294127546" style="color:var(--amber-brand);">(929) 412-7546</a> or <a href="https://wa.me/19294127546" style="color:var(--green-patina);">WhatsApp us</a>
-                    </p>
-                </form>
-
-                <div id="rfq-confirmed" style="display:none;text-align:center;padding:40px 20px;">
-                    <div style="font-size:3.5rem;margin-bottom:16px;">📋</div>
-                    <h3 style="color:var(--text-white);font-size:1.5rem;margin-bottom:8px;">RFQ Received!</h3>
-                    <p style="color:var(--text-muted);max-width:480px;margin:0 auto 20px;">Your Request for Quotation has been received and assigned to our commercial estimating team. You will receive a formal bid package via email and phone within <strong style="color:var(--amber-brand);">24 business hours</strong>.</p>
-                    <div style="background:rgba(29,154,118,.1);border:1px solid rgba(29,154,118,.3);border-radius:var(--radius-sm);padding:16px;margin-bottom:24px;">
-                        <p style="color:var(--green-patina);font-weight:700;">📞 Expect a call from (929) 412-7546</p>
-                        <p style="color:var(--text-muted);font-size:.86rem;">Our commercial team will contact you to verify scope and schedule any site visits needed.</p>
-                    </div>
-                    <a href="commercial.html" class="btn btn-outline">← Back to Commercial Services</a>
-                </div>
             </div>
         </div>
     </section>
