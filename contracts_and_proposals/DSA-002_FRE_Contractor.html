@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F.R.E. Contractor L.L.C. — Digital Services Suite | TodoBuild Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+        :root {
+            --bg-dark:       #020408;
+            --bg-card:       #0a0c10;
+            --accent-green:  #10B981;
+            --border-glass:  rgba(255,255,255,0.06);
+            --text-main:     #ffffff;
+            --text-muted:    #9ca3af;
+            --gold:          #c5a044;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.55;
+            padding: 48px 40px;
+        }
+
+        /* ─── SCREEN: US-LETTER PAGE CARD ───────────────────────────── */
+        .page {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            width: 8.5in;
+            min-height: 11in;
+            margin: 0 auto 48px;
+            padding: 0.9in 1in 0.85in;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-body { flex: 1; }
+
+        /* ─── HEADER: FULL (PAGE 1 OF EACH DOC) ─────────────────────── */
+        header.full-header {
+            border-bottom: 2px solid var(--accent-green);
+            padding-bottom: 18px;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .brand { font-weight: 800; font-size: 1.45rem; letter-spacing: 1px; }
+        .brand span { color: var(--accent-green); }
+        .doc-type { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-muted); text-align: right; }
+
+        /* ─── HEADER: SLIM CONTINUATION ─────────────────────────────── */
+        header.cont-header {
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cont-brand { font-weight: 800; font-size: 1rem; letter-spacing: 1px; color: var(--text-muted); }
+        .cont-brand span { color: var(--accent-green); }
+        .cont-meta { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); text-align: right; }
+
+        /* ─── CONTACT BLOCK ──────────────────────────────────────── */
+        .contact-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 20px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 14px;
+        }
+        .contact-line {
+            display: flex;
+            gap: 22px;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+        .contact-line strong { color: var(--text-main); }
+
+        /* ─── BADGE ──────────────────────────────────────────────── */
+        .badge {
+            display: inline-block;
+            background: rgba(16,185,129,0.08);
+            color: var(--accent-green);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+        h1 { font-size: 1.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-main); margin-bottom: 22px; line-height: 1.2; }
+        h2 { font-size: 1rem; font-weight: 800; margin: 22px 0 9px; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px; color: var(--accent-green); text-transform: uppercase; letter-spacing: 0.5px; }
+        p { font-size: 0.9rem; text-align: justify; }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 24px;
+            margin-bottom: 28px;
+            font-size: 0.85rem;
+        }
+        .meta-item b { display: block; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 2px; }
+
+        .clause { margin-bottom: 14px; }
+        .clause-title { font-weight: 800; margin-bottom: 4px; display: block; font-size: 0.88rem; color: var(--text-main); }
+
+        /* ─── INVESTMENT MATRIX ──────────────────────────────────────── */
+        .matrix-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85rem; background: rgba(255,255,255,0.015); border: 1px solid var(--border-glass); }
+        .matrix-table th { padding: 12px; background: rgba(16,185,129,0.1); border-bottom: 2px solid var(--accent-green); text-align: left; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .matrix-table td { padding: 12px; border-bottom: 1px solid var(--border-glass); }
+        .matrix-table tr.best-value { background: rgba(197,160,68,0.08); }
+        .matrix-table tr.best-value td { border-left: 3px solid var(--gold); }
+        .recommendation { color: var(--gold); font-weight: 800; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+
+        .milestone-item { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border-glass); font-size: 0.88rem; }
+        .milestone-label { font-weight: 600; }
+        .milestone-amount { font-weight: 800; color: var(--gold); font-family: 'JetBrains Mono', monospace; }
+
+        .task-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin: 15px 0; font-size: 0.82rem; color: var(--text-muted); }
+        .task-item { display: flex; gap: 8px; align-items: flex-start; }
+        .task-item::before { content: "●"; color: var(--accent-green); scale: 0.8; }
+
+        /* ─── SIGNATURE ──────────────────────────────────────────────── */
+        .signature-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            margin-top: 44px;
+        }
+        .sig-box { border-top: 1px solid var(--text-muted); padding-top: 10px; font-size: 0.82rem; }
+        .sig-label { font-weight: 800; text-transform: uppercase; font-size: 0.78rem; margin-bottom: 22px; display: block; }
+        .sig-line { border-bottom: 1px solid var(--text-muted); width: 180px; height: 24px; display: inline-block; margin-left: 8px; vertical-align: bottom; }
+
+        /* ─── FOOTER (EVERY PAGE) ────────────────────────────────────── */
+        footer.page-footer {
+            margin-top: 32px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-glass);
+            font-size: 0.66rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            letter-spacing: 1px;
+        }
+
+        /* ─── IMPORTANT CALLOUT ──────────────────────────────────────── */
+        .callout {
+            background: rgba(255,255,255,0.025);
+            border-left: 3px solid var(--accent-green);
+            padding: 12px 16px;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.87rem;
+            margin: 12px 0 14px;
+        }
+        .callout b { color: var(--accent-green); }
+
+        /* ─── PRINT BUTTON ───────────────────────────────────────────── */
+        .print-btn {
+            position: fixed; bottom: 36px; right: 36px;
+            background: var(--accent-green); color: #020408;
+            border: none; padding: 14px 28px; border-radius: 50px;
+            font-weight: 800; font-size: 0.85rem; cursor: pointer;
+            box-shadow: 0 0 24px rgba(16,185,129,0.35); z-index: 999;
+            transition: all 0.25s ease; letter-spacing: 1px;
+        }
+        .print-btn:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(16,185,129,0.5); }
+
+        /* ══════════════════════════════════════════════════════════════
+           PRINT ENGINE — Enterprise Multi-Page Architecture
+           ══════════════════════════════════════════════════════════════ */
+        @media print {
+            @page { size: letter; margin: 0.5in; }
+            body { background: white !important; color: #000000 !important; padding: 0 !important; }
+            .print-btn { display: none !important; }
+            .page { 
+                width: 100%; padding: 0 !important; margin: 0 0 0.5in 0 !important; 
+                box-shadow: none; border: none; background: white; 
+                color: #000000 !important; display: block; overflow: visible; 
+                page-break-after: always; min-height: 0;
+            }
+            .page:last-child { page-break-after: auto; }
+            .page * { color: #000000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            ul, li, p, span, div, b, strong, h1, h2, h3, td, th { color: #000000 !important; }
+            header.full-header { border-bottom: 2.5px solid #000 !important; margin-bottom: 20px; display: flex !important; justify-content: space-between !important; align-items: flex-end !important; }
+            header.cont-header { border-bottom: 1.5px solid #000 !important; margin-bottom: 20px; display: flex !important; justify-content: space-between !important; align-items: center !important; }
+            footer.page-footer { border-top: 1px solid #000 !important; color: #000 !important; margin-top: 20px; position: relative; bottom: 0; display: flex !important; justify-content: space-between !important; }
+            .brand span { color: #000 !important; font-weight: 900; }
+            .meta-grid, .task-list { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px 20px !important; }
+            .callout { border-left: 4px solid #000 !important; background: #f9f9f9 !important; }
+            .matrix-table { width: 100% !important; border: 1px solid #000 !important; border-collapse: collapse !important; }
+            .matrix-table th, .matrix-table td { border: 1px solid #000 !important; padding: 8px !important; }
+            .matrix-table tr.best-value { background: #fdfdf0 !important; }
+        }
+    </style>
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">⬇ PRINT CONTRACT SUITE</button>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 1 — MASTER DIGITAL SERVICES AGREEMENT (DSA-002)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="page">
+    <header class="full-header">
+        <div class="brand">TODO<span>BUILD</span></div>
+        <div class="doc-type">Institutional Framework<br>DSA-002 · F.R.E. CONTRACTOR</div>
+    </header>
+
+    <div class="contact-block">
+        <div class="contact-line">
+            <span><strong>600 Broadway, Ste 200 #3279</strong>, Albany, NY 12207</span>
+            <span>📞 <strong>(646) 580-3090</strong></span>
+            <span>✉ <strong>contracts@todobuild.us</strong></span>
+        </div>
+        <span style="font-size:0.65rem;">TodoBuild LLC d/b/a TodoBuild · FEIN 86-2888688</span>
+    </div>
+
+    <div class="page-body">
+        <span class="badge">TDB-DSA-002-FRE-CONTRACTOR</span>
+        <h1>Master Digital Services<br>Agreement</h1>
+
+        <div class="meta-grid">
+            <div class="meta-item"><b>Drafted Date:</b> April 7, 2026</div>
+            <div class="meta-item"><b>Effective Date:</b> [DATE]</div>
+            <div class="meta-item"><b>Client Entity:</b> F.R.E. CONTRACTOR L.L.C. (DOS ID: 6658255)</div>
+            <div class="meta-item"><b>Project Address:</b> 2760 Holland Avenue, Bronx, NY 10467</div>
+        </div>
+
+        <h2>1. Scope & Execution</h2>
+        <p class="clause">This Agreement establishes the legal framework for the deployment of Client's digital orchestration infrastructure. TodoBuild ("Agency") is authorized to engineer an **Odoo-Enterprise** environment as defined in the **O-6 Full Online ERP** specification on Page 2.</p>
+
+        <h2>2. Recurring SaaS Pass-Through</h2>
+        <p class="clause">Client acknowledges that the Odoo Platform and Cloud Hosting are third-party SaaS services. Agency will facilitate the initial setup; however, upon delivery (Milestone 3), Client is responsible for all recurring subscription, licensing, and hosting fees billed directly by the platform provider (Odoo S.A. or equivalent). TodoBuild LLC d/b/a TodoBuild assumes no responsibility for these third-party costs.</p>
+
+        <h2>3. Digital Handoff & Liability Release</h2>
+        <p class="clause">Upon the successful deployment of the O-6 environment to a live production state, Agency's primary development obligations are fulfilled. Agency is not responsible for platform uptime, data loss, third-party security breaches, or system failures originating from the Odoo infrastructure or Client's subsequent administrative modifications. Technical support post-handoff is governed by the separate Managed Service Registry on Page 3.</p>
+
+        <h2>3. Liability & Advisory Shield (v12 ORCH-001)</h2>
+        <div class="callout">
+            <b>IMPORTANT:</b> Client acknowledges that TodoBuild LLC d/b/a TodoBuild is a management and consulting firm. Orchestrator does not perform physical construction, home improvement work, or physical installations. All physical labor, demolition, and construction will be performed by independent, licensed execution partners ("Subcontractors"). Agency's total liability is capped at the total amount paid by Client.
+        </div>
+
+        <h2>4. Software & IP (v12 TECH-002 / ND-008)</h2>
+        <p class="clause">The software interfaces, 3D models (Titan OS), and backend dashboards are licensed on a subscription basis and remain the exclusive intellectual property of TodoBuild Technologies Inc. Unless a buyout is executed, Agency retains full ownership of all architectural renderings and system schemas.</p>
+    </div>
+
+    <footer class="page-footer">
+        <span>TDB-DSA-002 · F.R.E. Contractor L.L.C. · 2760 Holland Ave</span>
+        <span>CONFIDENTIAL · PAGE 1 OF 4</span>
+    </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 2 — INVESTMENT CHOICE MATRIX (UPSELL)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="page">
+    <header class="cont-header">
+        <div class="cont-brand">TODO<span>BUILD</span></div>
+        <div class="cont-meta">
+            <div class="cont-label">SELECTION MATRIX</div>
+            <div>DSA-002 · Digital Infrastructure Choice</div>
+        </div>
+    </header>
+
+    <div class="page-body">
+        <h1>Odoo Enterprise<br>Operational Suite (O-6)</h1>
+        
+        <p class="clause">F.R.E. Contractor L.L.C. has selected the **O-6 Full Online ERP** deployment path. This system integrates front-end commerce with back-end operational logic to ensure total mastery of the Bronx market territory.</p>
+
+        <table class="matrix-table">
+            <thead>
+                <tr>
+                    <th>Module / Feature</th>
+                    <th>O-6 Implementation Scope</th>
+                    <th>Operational Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight:600;">Website & E-Commerce</td>
+                    <td>Odoo Website + POS Sync</td>
+                    <td>Direct Sales & Product Catalog</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Online Bookings</td>
+                    <td>Odoo Appointments Engine</td>
+                    <td>Automated Scheduling & Routing</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">CRM & Lead Gen</td>
+                    <td>Enterprise CRM Pipeline</td>
+                    <td>100% Lead Retention & Tracking</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Finance & Billing</td>
+                    <td>Invoicing & Payments Hub</td>
+                    <td>Real-time Square/Stripe Integration</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Project Management</td>
+                    <td>Resource & Task Shield</td>
+                    <td>Field Service Visibility</td>
+                </tr>
+                <tr class="best-value">
+                    <td style="font-weight:700; color:var(--gold);">SETUP INVESTMENT</td>
+                    <td colspan="2"><span class="recommendation">CATALOG SKU: O-6-ERP</span><strong>$8,995.00 USD (ONE-TIME)</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Optional Institutional Upsell (T-4)</h2>
+        <div class="callout">
+            <p style="font-size: 0.85rem; margin-bottom: 5px;"><b>The Corporate Portal (T-4):</b> Add a custom-coded Titan Native Customer Dashboard on top of the Odoo architecture for a premium customer experience.</p>
+            <p style="font-size: 1rem; font-weight: 800; color: var(--accent-green);">UPSELL VALUE: +$10,000.00 USD</p>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <span>TDB-DSA-002 · Investment Choice Matrix · (646) 580-3090</span>
+        <span>CONFIDENTIAL · PAGE 2 OF 4</span>
+    </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 3 — MANAGED SERVICES & MILESTONES (SLA)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="page">
+    <header class="cont-header">
+        <div class="cont-brand">TODO<span>BUILD</span></div>
+        <div class="cont-meta">
+            <div class="cont-label">SLA • MILIESTONES</div>
+            <div>DSA-002 · Managed Services Registry</div>
+        </div>
+    </header>
+
+    <div class="page-body">
+        <h1>Monthly Managed Tasks &amp;<br>Implementation Schedule</h1>
+
+        <h2>Institutional Maintenance Tasks ($499/mo)</h2>
+        <p class="clause" style="margin-bottom:8px;">The following 12 critical managing tasks are performed monthly to maintain the integrity of the T-4 environment:</p>
+        <div class="task-list">
+            <div class="task-item">Uptime Guardian: 24/7 Monitoring</div>
+            <div class="task-item">SSL & Security Lifecycle Care</div>
+            <div class="task-item">Daily Off-site Automated Backups</div>
+            <div class="task-item">Square Catalog/Inventory Sync</div>
+            <div class="task-item">Lead-Pipeline Integrity Audit</div>
+            <div class="task-item">Monthly Traffic & Conversion PDF</div>
+            <div class="task-item">priority Search Engine Indexing</div>
+            <div class="task-item">2 Hours Priority Content Updates</div>
+            <div class="task-item">Portal Access & SSO Management</div>
+            <div class="task-item">GSAP Library/Motion Optimization</div>
+            <div class="task-item">Database Hygiene & Indexing</div>
+            <div class="task-item">4-Hour Technical Support Response</div>
+        </div>
+
+        <h2>Milestone Payment Projection (O-6 ERP)</h2>
+        <div class="milestone-item"><div class="milestone-label">Milestone 1 — Architecture & Discovery</div><div class="milestone-amount">$3,000.00</div></div>
+        <div class="milestone-item"><div class="milestone-label">Milestone 2 — Integration & E-Commerce Build</div><div class="milestone-amount">$3,000.00</div></div>
+        <div class="milestone-item"><div class="milestone-label">Milestone 3 — Beta Testing & Go-Live</div><div class="milestone-amount">$2,995.00</div></div>
+        <div class="milestone-item" style="border-top:2px solid var(--accent-green); margin-top:5px; border-bottom:none;">
+            <div class="milestone-label">Final Setup Investment</div>
+            <div class="milestone-amount" style="color:var(--accent-green); font-size:1.1rem;">$8,995.00</div>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <span>TDB-DSA-002 · Managed Service Registry · PAGE 3 OF 4</span>
+    </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 4 — TERMS & SIGNATURE BLOCK
+     ═══════════════════════════════════════════════════════════ -->
+<div class="page">
+    <header class="cont-header">
+        <div class="cont-brand">TODO<span>BUILD</span></div>
+        <div class="cont-meta">
+            <div class="cont-label">AUTHORIZATION</div>
+            <div>DSA-002 · Execution Sheet</div>
+        </div>
+    </header>
+
+    <div class="page-body">
+        <h2>Authorization & Approval</h2>
+        <p class="clause">By signing below, Client authorizes TodoBuild to commence execution on the selected Digital Infrastructure tier. This Agreement is subject to the terms of the Master Governance framework and operates under a 24-month price guarantee for recurring services.</p>
+
+        <div class="signature-block">
+            <div class="sig-box">
+                <span class="sig-label">TodoBuild LLC d/b/a TodoBuild</span>
+                Authorized Agent<br><br>
+                <b>Signature:</b><span class="sig-line"></span><br><br>
+                <b>Date:</b>&nbsp;&nbsp;____________________
+            </div>
+            <div class="sig-box">
+                <span class="sig-label">F.R.E. CONTRACTOR L.L.C.</span>
+                Authorized Representative<br><br>
+                <b>Signature:</b><span class="sig-line"></span><br><br>
+                <b>Date:</b>&nbsp;&nbsp;____________________
+            </div>
+        </div>
+
+        <div class="callout" style="font-size:0.75rem; border-color:#ef4444; margin-top:25px;">
+            <b>NOTICE OF CANCELLATION:</b> YOU, THE BUYER, MAY CANCEL THIS TRANSACTION AT ANY TIME PRIOR TO MIDNIGHT OF THE THIRD BUSINESS DAY AFTER THE DATE OF THIS TRANSACTION.
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <span>TDB-DSA-002 · authorization · PAGE 4 OF 4</span>
+    </footer>
+</div>
+
+</body>
+</html>

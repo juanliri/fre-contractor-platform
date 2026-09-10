@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Before & After Gallery | F.R.E. Contractor LLC</title>
+    <meta name="description" content="Browse F.R.E. Contractor's before and after project gallery. Interior painting, cabinet refinishing, popcorn ceiling, and commercial projects across NYC.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    
+    <style>
+        .filter-tabs { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:28px 0 36px; }
+        .filter-tab { padding:8px 20px; border-radius:var(--radius-full); border:1px solid var(--border-subtle); background:transparent; color:var(--text-muted); font-size:.84rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all .2s ease; }
+        .filter-tab:hover, .filter-tab.active { background:var(--amber-brand); border-color:var(--amber-brand); color:#fff; }
+        .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+        .gallery-card { border-radius:var(--radius-md); overflow:hidden; background:var(--bg-card); border:1px solid var(--border-subtle); transition:transform .3s ease, border-color .3s ease; cursor:pointer; }
+        .gallery-card:hover { transform:translateY(-6px); border-color:var(--border-accent); }
+        .gallery-img-area { height:200px; position:relative; overflow:hidden; }
+        .gallery-before-label,.gallery-after-label { position:absolute; top:10px; padding:3px 10px; border-radius:4px; font-size:.72rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
+        .gallery-before-label { left:10px; background:rgba(0,0,0,.7); color:#999; }
+        .gallery-after-label { right:10px; background:var(--amber-brand); color:#fff; }
+        .gallery-divider { width:3px; height:100%; background:#fff; position:absolute; left:50%; top:0; opacity:.4; }
+        .gallery-card-info { padding:16px; }
+        .gallery-card-title { font-size:.95rem; font-weight:800; color:var(--text-white); margin-bottom:4px; }
+        .gallery-card-meta { font-size:.78rem; color:var(--text-muted); display:flex; gap:12px; }
+        .gallery-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:.7rem; font-weight:700; background:rgba(245,130,32,.12); color:var(--amber-brand); border:1px solid rgba(245,130,32,.2); }
+        .gallery-card[data-hidden="true"] { display:none; }
+    </style>
+</head>
+<body>
+<div id="site-header"></div>
+<main class="page-wrapper">
+
+    <section class="page-hero">
+        <div class="glow-orb glow-orb-amber" style="width:350px;height:350px;top:-60px;right:0;"></div>
+        <div class="container">
+            <div class="page-hero-eyebrow reveal">📸 Portfolio</div>
+            <h1 class="page-hero-title reveal reveal-delay-1">Real Projects.<br><span class="gradient-text">Real Results.</span></h1>
+            <p class="page-hero-desc reveal reveal-delay-2">Browse our before & after gallery. Every project shown is a real F.R.E. Contractor job in NYC.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="filter-tabs reveal">
+                <button class="filter-tab active" data-filter="all">All Projects</button>
+                <button class="filter-tab" data-filter="interior">Interior Paint</button>
+                <button class="filter-tab" data-filter="cabinet">Cabinet Refinishing</button>
+                <button class="filter-tab" data-filter="ceiling">Popcorn Ceiling</button>
+                <button class="filter-tab" data-filter="commercial">Commercial</button>
+                <button class="filter-tab" data-filter="exterior">Exterior</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+
+                <!-- Interior -->
+                <div class="gallery-card reveal" data-category="interior">
+                    <div class="gallery-img-area" style="background:url('assets/images/compare-living-after.jpg') center/cover no-repeat;">
+                        <span class="gallery-after-label" style="background:var(--green-patina);">Completed</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Interior</div>
+                        <h3 class="gallery-card-title">3-Bedroom Apartment Modernization — Bronx</h3>
+                        <div class="gallery-card-meta"><span>3 days</span><span>Sherwin-Williams Emerald</span><span>1,200 sqft</span></div>
+                    </div>
+                </div>
+                <div class="gallery-card reveal reveal-delay-1" data-category="interior">
+                    <div class="gallery-img-area" style="background:url('assets/images/compare-living-before.jpg') center/cover no-repeat;">
+                        <span class="gallery-before-label">Before Prep</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Interior</div>
+                        <h3 class="gallery-card-title">Living Room & Hallway Restoration — Manhattan</h3>
+                        <div class="gallery-card-meta"><span>1 day</span><span>Benjamin Moore Regal</span><span>600 sqft</span></div>
+                    </div>
+                </div>
+
+                <!-- Cabinet -->
+                <div class="gallery-card reveal reveal-delay-2" data-category="cabinet">
+                    <div class="gallery-img-area" style="background:url('assets/images/gallery-cabinet.jpg') center/cover no-repeat;">
+                        <span class="gallery-after-label">Factory Finish</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Cabinet</div>
+                        <h3 class="gallery-card-title">Navy Shaker Cabinet Transformation — Bronx</h3>
+                        <div class="gallery-card-meta"><span>2 days</span><span>Fine Paints of Europe</span><span>24 cabinets</span></div>
+                    </div>
+                </div>
+                <div class="gallery-card reveal" data-category="cabinet">
+                    <div class="gallery-img-area" style="background:url('assets/images/gallery-cabinet.jpg') center/cover no-repeat;filter:hue-rotate(20deg) brightness(0.95);">
+                        <span class="gallery-after-label">Custom Color</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Cabinet</div>
+                        <h3 class="gallery-card-title">Kitchen Island & Pantry Refinishing — Yonkers</h3>
+                        <div class="gallery-card-meta"><span>2 days</span><span>Navy Blue Enamel</span><span>18 cabinets</span></div>
+                    </div>
+                </div>
+
+                <!-- Ceiling -->
+                <div class="gallery-card reveal reveal-delay-1" data-category="ceiling">
+                    <div class="gallery-img-area" style="background:url('assets/images/gallery-ceiling.jpg') center/cover no-repeat;">
+                        <span class="gallery-after-label">Level 5 Finish</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Ceiling</div>
+                        <h3 class="gallery-card-title">Popcorn Removal + Level 5 Skim — Bronx</h3>
+                        <div class="gallery-card-meta"><span>1 day</span><span>Flat White Ceiling</span><span>1,800 sqft</span></div>
+                    </div>
+                </div>
+
+                <!-- Commercial -->
+                <div class="gallery-card reveal reveal-delay-2" data-category="commercial">
+                    <div class="gallery-img-area" style="background:url('assets/images/gallery-commercial.jpg') center/cover no-repeat;">
+                        <span class="gallery-after-label">Commercial Fast-Track</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Commercial</div>
+                        <h3 class="gallery-card-title">Retail Storefront Buildout — NYC</h3>
+                        <div class="gallery-card-meta"><span>Weekend job</span><span>Brand Color Match</span><span>2,400 sqft</span></div>
+                    </div>
+                </div>
+                <div class="gallery-card reveal" data-category="commercial">
+                    <div class="gallery-img-area" style="background:url('assets/images/gallery-commercial.jpg') center/cover no-repeat;filter:contrast(1.05);">
+                        <span class="gallery-after-label">Institutional</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Commercial</div>
+                        <h3 class="gallery-card-title">Commercial Corridors & Common Areas — Bronx</h3>
+                        <div class="gallery-card-meta"><span>4 days</span><span>Epoxy & Scuff-X Coating</span><span>8,000 sqft</span></div>
+                    </div>
+                </div>
+
+                <!-- Exterior -->
+                <div class="gallery-card reveal reveal-delay-1" data-category="exterior">
+                    <div class="gallery-img-area" style="background:url('assets/images/gallery-exterior.jpg') center/cover no-repeat;">
+                        <span class="gallery-after-label">Restoration</span>
+                    </div>
+                    <div class="gallery-card-info">
+                        <div class="gallery-tag">Exterior</div>
+                        <h3 class="gallery-card-title">Historic Townhouse Facade & Trim — NYC</h3>
+                        <div class="gallery-card-meta"><span>3 days</span><span>Elastomeric Masonry</span><span>3,200 sqft</span></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="text-align:center;margin-top:40px;" class="reveal">
+                <p style="color:var(--text-muted);margin-bottom:16px;">More projects added weekly. Follow us on Instagram for the latest work.</p>
+                <a href="https://www.instagram.com/f.r.e.contractornyc/" target="_blank" class="btn btn-outline">📸 @f.r.e.contractornyc</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container cta-inner">
+            <div>
+                <h2 class="cta-title">Want Results Like These?</h2>
+                <p class="cta-desc">Get your free estimate today. Most projects can start within a week.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="estimate.html" class="btn btn-primary btn-lg">Get Free Estimate</a>
+                <a href="booking.html" class="btn btn-outline btn-lg">Book Appointment</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/shared.js"></script>
+<script src="js/app.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/chat-widget.js"></script>
+<script>
+// Gallery filter
+document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            const match = filter === 'all' || card.dataset.category === filter;
+            card.style.display = match ? '' : 'none';
+            if (match) { card.classList.remove('visible'); setTimeout(() => card.classList.add('visible'), 50); }
+        });
+    });
+});
+// Init all visible
+document.querySelectorAll('.gallery-card').forEach(c => setTimeout(() => c.classList.add('visible'), 100));
+</script>
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+{
+  "name": "F.R.E. Contractor LLC | Fast · Reliable · Efficient",
+  "short_name": "FRE Contractor",
+  "description": "NYC's premier multi-sector painting, finishing, and wholesale materials enterprise across all 5 boroughs.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#040D1A",
+  "theme_color": "#F58220",
+  "categories": ["business", "construction", "shopping", "utilities"],
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "📅 Book Estimate Visit",
+      "short_name": "Book Visit",
+      "description": "Schedule a free on-site laser assessment in NYC",
+      "url": "/booking.html",
+      "icons": [{ "src": "assets/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "🛒 Materials Store",
+      "short_name": "Store",
+      "description": "Wholesale LVP flooring and Benjamin Moore paint",
+      "url": "/store.html",
+      "icons": [{ "src": "assets/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "💰 Instant Cost Quoter",
+      "short_name": "Quoter",
+      "description": "Compute room painting costs in 60 seconds",
+      "url": "/estimate.html",
+      "icons": [{ "src": "assets/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "🏛️ Client Gateway",
+      "short_name": "Gateway",
+      "description": "Select Residential, Commercial, Gov or GC corridor",
+      "url": "/portal.html",
+      "icons": [{ "src": "assets/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "📋 GC Bid Desk",
+      "short_name": "Bid Desk",
+      "description": "Upload blueprints for 24-hr CSI Div 09 takeoffs",
+      "url": "/bid-portal.html",
+      "icons": [{ "src": "assets/logo.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commercial Proposal & 3-Tier Architecture Flyer | F.R.E. Contractor LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #040d1a;
+      --surface: #07172b;
+      --surface2: #0c233f;
+      --surface3: #112d50;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-accent: rgba(245, 130, 32, 0.4);
+      --amber: #f58220;
+      --amber-glow: rgba(245, 130, 32, 0.25);
+      --amber-dark: #b85d10;
+      --sky: #38bdf8;
+      --sky-glow: rgba(56, 189, 248, 0.2);
+      --green: #1d9a76;
+      --green-glow: rgba(29, 154, 118, 0.25);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      padding: 0 0 60px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Sticky Action Bar */
+    .top-actions {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(4, 13, 26, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+    .top-brand span { color: var(--amber); }
+    .btn-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--amber); color: #040d1a; border-color: var(--amber); }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+    .btn-secondary { background: rgba(255,255,255,0.06); color: var(--text); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+    .btn-wa { background: rgba(37, 211, 102, 0.15); border-color: rgba(37, 211, 102, 0.4); color: #25d366; }
+    .btn-wa:hover { background: rgba(37, 211, 102, 0.25); }
+
+    /* Main Flyer Container */
+    .flyer-container {
+      max-width: 1060px;
+      margin: 28px auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 35px 80px -15px rgba(0,0,0,0.9), 0 0 50px rgba(245, 130, 32, 0.08);
+      position: relative;
+    }
+
+    /* Architectural Blueprint Texture Background */
+    .flyer-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(ellipse 65% 55% at 15% 10%, rgba(11,37,69,0.7) 0%, transparent 70%),
+        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 36px 36px, 36px 36px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .flyer-inner {
+      position: relative;
+      z-index: 1;
+      padding: 44px 44px 50px;
+    }
+
+    /* Header Banner */
+    .flyer-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+      margin-bottom: 36px;
+    }
+    .badge-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .badge-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-amber { background: rgba(245, 130, 32, 0.16); color: var(--amber); border: 1px solid rgba(245, 130, 32, 0.4); }
+    .badge-sky { background: rgba(56, 189, 248, 0.16); color: var(--sky); border: 1px solid rgba(56, 189, 248, 0.4); }
+    .badge-green { background: rgba(29, 154, 118, 0.18); color: #34d399; border: 1px solid rgba(29, 154, 118, 0.4); }
+
+    .header-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .flyer-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.35rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .flyer-title .highlight {
+      background: linear-gradient(135deg, var(--amber) 0%, #fbbf24 60%, var(--green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .client-card-meta {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 18px;
+      text-align: right;
+      min-width: 220px;
+    }
+    .client-card-meta .label { font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; letter-spacing: 0.08em; }
+    .client-card-meta .val { font-size: 0.95rem; font-weight: 800; color: #fff; }
+    .client-card-meta .sub { font-size: 0.75rem; color: var(--sky); font-family: 'JetBrains Mono', monospace; }
+
+    .flyer-subtitle {
+      color: var(--text-sub);
+      font-size: 1.05rem;
+      margin-top: 14px;
+      max-width: 780px;
+      line-height: 1.6;
+    }
+
+    /* Executive Problem vs Solution Callout */
+    .exec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .exec-card {
+      border-radius: 14px;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+    }
+    .exec-card.old-way {
+      background: rgba(239, 68, 68, 0.04);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .exec-card.new-way {
+      background: rgba(29, 154, 118, 0.08);
+      border-color: rgba(29, 154, 118, 0.4);
+    }
+    .exec-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .exec-card.old-way .exec-tag { color: #f87171; }
+    .exec-card.new-way .exec-tag { color: #34d399; }
+    .exec-card h3 { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .exec-card p { font-size: 0.85rem; color: var(--text-sub); line-height: 1.5; }
+
+    /* ─── 3-TIER PRICING SECTION ─── */
+    .tier-section-head {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .tier-section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .tier-section-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 4px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 40px;
+    }
+
+    .price-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .price-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* VIP Middle Featured Card */
+    .price-card.featured-vip {
+      background: linear-gradient(180deg, rgba(14, 34, 60, 0.98) 0%, rgba(8, 22, 42, 0.99) 100%);
+      border: 2px solid var(--amber);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 32px rgba(245, 130, 32, 0.22);
+      transform: scale(1.02);
+      z-index: 2;
+    }
+    .price-card.featured-vip:hover {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .vip-ribbon {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #f58220, #fbbf24, #f58220);
+      color: #040d1a;
+      font-weight: 900;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4px 16px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(245, 130, 32, 0.45);
+    }
+
+    .card-tier-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .card-tier-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .price-block {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 16px 0;
+      margin-bottom: 20px;
+    }
+    .market-val {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .final-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .featured-vip .final-price { color: var(--amber); }
+    .price-terms {
+      font-size: 0.75rem;
+      color: var(--sky);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .maint-rate {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .maint-rate strong { color: #fff; }
+
+    .card-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 28px;
+    }
+    .card-features li {
+      font-size: 0.84rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    .card-features li strong { color: #fff; }
+    .check-icon {
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.9rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .featured-vip .check-icon { color: var(--amber); }
+
+    .card-action-btn {
+      width: 100%;
+      text-align: center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .btn-tier-default { background: rgba(255,255,255,0.06); color: #fff; }
+    .btn-tier-default:hover { background: rgba(255,255,255,0.12); }
+    .btn-tier-vip {
+      background: linear-gradient(135deg, var(--amber) 0%, #fbbf24 100%);
+      color: #040d1a;
+      border: none;
+      box-shadow: 0 6px 20px rgba(245, 130, 32, 0.4);
+    }
+    .btn-tier-vip:hover {
+      box-shadow: 0 8px 25px rgba(245, 130, 32, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FULL FEATURE MATRIX TABLE ─── */
+    .matrix-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface2);
+      margin-bottom: 36px;
+    }
+    table.compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      text-align: left;
+    }
+    table.compare-table th {
+      background: rgba(255,255,255,0.04);
+      padding: 14px 18px;
+      font-weight: 800;
+      color: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    table.compare-table th.th-vip {
+      background: rgba(245, 130, 32, 0.12);
+      color: var(--amber);
+      border-bottom: 2px solid var(--amber);
+    }
+    table.compare-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: var(--text-sub);
+    }
+    table.compare-table tr:last-child td { border-bottom: none; }
+    table.compare-table td.td-vip {
+      background: rgba(245, 130, 32, 0.04);
+      font-weight: 600;
+      color: #fff;
+    }
+    .status-check { color: #34d399; font-weight: 900; }
+    .status-cross { color: #64748b; }
+
+    /* ─── SAAS SAVINGS HIGHLIGHT BOX ─── */
+    .saas-box {
+      background: linear-gradient(135deg, rgba(29, 154, 118, 0.15) 0%, rgba(11, 37, 69, 0.4) 100%);
+      border: 1px solid rgba(29, 154, 118, 0.4);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .saas-content h4 { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .saas-content p { font-size: 0.85rem; color: var(--text-sub); line-height: 1.5; max-width: 650px; }
+    .saas-stat {
+      background: var(--surface);
+      border: 1px solid rgba(29, 154, 118, 0.5);
+      border-radius: 12px;
+      padding: 14px 22px;
+      text-align: center;
+      min-width: 190px;
+    }
+    .saas-stat .val { font-family: 'JetBrains Mono', monospace; font-size: 1.9rem; font-weight: 900; color: #34d399; }
+    .saas-stat .lbl { font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; }
+
+    /* ─── FOOTER & SIGN-OFF ─── */
+    .flyer-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .agency-col {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .agency-col strong { color: #fff; font-size: 0.95rem; }
+    .sign-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Print Formatting */
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 0 !important; }
+      .top-actions { display: none !important; }
+      .flyer-container {
+        border: none !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        background: #fff !important;
+      }
+      .flyer-container::before { display: none !important; }
+      .flyer-inner { padding: 15px !important; color: #000 !important; }
+      .flyer-title, .tier-section-title, .matrix-title, h3, h4 { color: #000 !important; }
+      .flyer-subtitle, p, td, li { color: #222 !important; }
+      .price-card {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        color: #000 !important;
+      }
+      .price-card.featured-vip {
+        border: 2px solid #b85d10 !important;
+        background: #fffdf9 !important;
+      }
+      .vip-ribbon { background: #b85d10 !important; color: #fff !important; }
+      .final-price { color: #000 !important; }
+      .featured-vip .final-price { color: #b85d10 !important; }
+      .table-wrap, table.compare-table { background: #fff !important; border: 1px solid #cbd5e1 !important; }
+      table.compare-table th { background: #f1f5f9 !important; color: #000 !important; }
+      table.compare-table th.th-vip { background: #fff7ed !important; color: #b85d10 !important; }
+      table.compare-table td.td-vip { background: #fffaf0 !important; color: #000 !important; }
+      .saas-box { background: #f0fdf4 !important; border: 1px solid #86efac !important; color: #000 !important; }
+      .saas-stat { background: #fff !important; border: 1px solid #86efac !important; }
+      .saas-stat .val { color: #166534 !important; }
+      .btn { display: none !important; }
+    }
+
+    @media (max-width: 860px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.featured-vip { transform: none; }
+      .exec-grid { grid-template-columns: 1fr; }
+      .flyer-inner { padding: 24px 20px; }
+      .flyer-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation & Action Bar -->
+  <div class="top-actions">
+    <div class="top-brand">
+      <span style="font-size:1.2rem;">🏛️</span>
+      <div>F.R.E. Contractor <span>· Enterprise Proposal</span></div>
+    </div>
+    <div class="btn-group">
+      <a href="index.html" target="_blank" class="btn btn-secondary">🌐 Open Live Prototype</a>
+      <button onclick="window.print()" class="btn btn-primary">🖨️ Print / Save as PDF</button>
+      <a href="https://wa.me/19294127546?text=Hi%20Frank,%20reviewing%20the%20F.R.E.%20Contractor%20Enterprise%20Proposal%20and%203-Tier%20Flyer" target="_blank" class="btn btn-wa">💬 WhatsApp Share</a>
+      <button onclick="copyFlyerLink()" id="btn-copy-link" class="btn btn-secondary">🔗 Copy Proposal Link</button>
+    </div>
+  </div>
+
+  <!-- Flyer Container Sheet -->
+  <div class="flyer-container">
+    <div class="flyer-inner">
+
+      <!-- Header Section -->
+      <header class="flyer-header">
+        <div class="badge-bar">
+          <span class="badge-pill badge-amber">★ VIP Client &amp; Strategic Partner Proposal</span>
+          <span class="badge-pill badge-sky">DOS ID: 6658255 · Active Since 2022</span>
+          <span class="badge-pill badge-green">19 Live Pages &amp; Zero-SaaS Architecture</span>
+        </div>
+
+        <div class="header-title-row">
+          <div>
+            <h1 class="flyer-title">
+              Multi-Sector Enterprise Platform<br>
+              <span class="highlight">&amp; Materials Quoting Suite</span>
+            </h1>
+            <p class="flyer-subtitle">
+              Comprehensive web architecture, 4-corridor client routing, wholesale flooring/paint e-commerce calculator, and instant contractor bid desk engineered for <strong>F.R.E. Contractor LLC</strong>.
+            </p>
+          </div>
+          <div class="client-card-meta">
+            <div class="label">Prepared For</div>
+            <div class="val">F.R.E. Contractor L.L.C.</div>
+            <div class="sub">2760 Holland Ave, Bronx NY</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Direct: (929) 412-7546</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Problem vs Solution Callout -->
+      <div class="exec-grid">
+        <div class="exec-card old-way">
+          <span class="exec-tag">❌ The Industry Default (Generic 3-Page Website)</span>
+          <h3>Static Brochure That Leaks Leads</h3>
+          <p>Treats luxury homeowners, commercial retail PMs, and NYCHA procurement inspectors identically. No instant pricing, no verified government registry, and requires $250+/month in rented third-party software.</p>
+        </div>
+        <div class="exec-card new-way">
+          <span class="exec-tag">✅ The F.R.E. Enterprise Solution (Built &amp; Deployed)</span>
+          <h3>Automated Multi-Sector Intelligence Gateway</h3>
+          <p>Instantly routes visitors to their dedicated corridor, computes room/material pricing in 60 seconds, showcases active NY DOS ID credentials, and accepts CSI Div 09 blueprint uploads with <strong>$0 in recurring SaaS rental fees</strong>.</p>
+        </div>
+      </div>
+
+      <!-- ─── 3-TIER PRICING CARDS ─── -->
+      <section>
+        <div class="tier-section-head">
+          <h2 class="tier-section-title">Select Your Platform Tier</h2>
+          <p class="tier-section-desc">Tier 2 represents the exact production suite built, visually verified, and live right now.</p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- TIER 1: FOUNDATION -->
+          <div class="price-card">
+            <div>
+              <div class="card-tier-name">Tier 1: Foundation</div>
+              <div class="card-tier-subtitle">Digital Business Card &amp; Portfolio</div>
+
+              <div class="price-block">
+                <div class="market-val">Standard Agency: $3,800</div>
+                <div class="final-price">$2,450</div>
+                <div class="price-terms">One-time setup &amp; launch</div>
+                <div class="maint-rate">Hosting &amp; Maintenance: <strong>$150/mo</strong></div>
+              </div>
+
+              <ul class="card-features">
+                <li><span class="check-icon">✓</span> <span><strong>5 Core Pages</strong> (Home, About, Services, Reviews, Contact)</span></li>
+                <li><span class="check-icon">✓</span> <span>Standard Lead Contact Form</span></li>
+                <li><span class="check-icon">✓</span> <span>Mobile-Responsive Modern Dark Layout</span></li>
+                <li><span class="check-icon">✓</span> <span>Google Maps &amp; Bronx HQ Embed</span></li>
+                <li><span class="check-icon">✓</span> <span>Basic Photo Gallery of Past Work</span></li>
+                <li><span class="check-icon">✓</span> <span>SSL Certificate &amp; Domain Connection</span></li>
+              </ul>
+            </div>
+
+            <button onclick="selectTier('Tier 1: Foundation', '$2,450')" class="card-action-btn btn-tier-default">Choose Tier 1</button>
+          </div>
+
+          <!-- TIER 2: VIP ENTERPRISE (FEATURED) -->
+          <div class="price-card featured-vip">
+            <div class="vip-ribbon">★ VIP FRIEND &amp; PARTNER CHOICE ★</div>
+
+            <div>
+              <div class="card-tier-name" style="color:var(--amber);">Tier 2: VIP Suite</div>
+              <div class="card-tier-subtitle">The Complete 19-Page System Built Today</div>
+
+              <div class="price-block">
+                <div class="market-val">Market Value: $11,500</div>
+                <div class="final-price">$4,950</div>
+                <div class="price-terms">Save $6,550 VIP Friend Discount · Split into $1,950 + $600/mo</div>
+                <div class="maint-rate">Managed Hosting &amp; Updates: <strong>$295/mo</strong></div>
+              </div>
+
+              <ul class="card-features">
+                <li><span class="check-icon">✓</span> <span><strong>Complete 19-Page Multi-Page Architecture</strong></span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Multi-Sector Enterprise Gateway:</strong> Entrance modal + top banner switcher for 4 corridors</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>7 Dedicated Specialized Subpages:</strong> Interior, Cabinets, Popcorn Ceilings, Facades, Retail, NYCHA, Gov</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Wholesale Materials Store:</strong> LVP flooring &amp; paint catalog with SqFt + 10% waste calculator</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Dual-Mode Pricing:</strong> Toggle "Material Only" vs "Turnkey Furnish &amp; Install" labor bundles</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Top-Banner Booking Engine:</strong> Illuminated green pulse dot + date/time picker calendar</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Gov &amp; NYCHA Verification Portal:</strong> DOS ID 6658255, $2M insurance, prevailing wage registry</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Commercial GC Bid Desk:</strong> CSI Div 09 blueprint intake with 24-hr binding takeoff pledge</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Interactive 2022–2026 Milestone Spine:</strong> Visual timeline with verified badge chips</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>$3,005/Yr Zero-SaaS Architecture:</strong> In-house code with no third-party monthly subscriptions</span></li>
+              </ul>
+            </div>
+
+            <button onclick="selectTier('Tier 2: VIP Enterprise Suite', '$4,950')" class="card-action-btn btn-tier-vip">Accept VIP Partner Tier 2 →</button>
+          </div>
+
+          <!-- TIER 3: AUTONOMOUS DOMINANCE -->
+          <div class="price-card">
+            <div>
+              <div class="card-tier-name">Tier 3: Dominance</div>
+              <div class="card-tier-subtitle">Full Automation &amp; Live Client Portal</div>
+
+              <div class="price-block">
+                <div class="market-val">Market Value: $18,500</div>
+                <div class="final-price">$9,500</div>
+                <div class="price-terms">Or $3,500 down + $1,100/mo x 6</div>
+                <div class="maint-rate">Dedicated Tech Ops Retainer: <strong>$495/mo</strong></div>
+              </div>
+
+              <ul class="card-features">
+                <li><span class="check-icon">✓</span> <span><strong>Everything in Tier 2 Included</strong></span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Live Square Checkout:</strong> Direct Apple Pay / Credit Card deposits for flooring orders</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Supabase Auth Client Portal:</strong> GCs login to download COIs, track bids &amp; review proposals</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Twilio Instant SMS Dispatch:</strong> Real-time text notifications sent to Frank's phone on every lead</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>5 NYC Borough Geo-SEO Landers:</strong> Manhattan, Brooklyn, Bronx, Queens, Staten Island landing pages</span></li>
+                <li><span class="check-icon">✓</span> <span><strong>Digital PDF Proposal Generator:</strong> Instant co-branded contracts with terms &amp; e-signatures</span></li>
+              </ul>
+            </div>
+
+            <button onclick="selectTier('Tier 3: Autonomous Dominance', '$9,500')" class="card-action-btn btn-tier-default">Choose Tier 3</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── FULL FEATURE MATRIX TABLE ─── -->
+      <section>
+        <h3 class="matrix-title">Detailed Architecture &amp; Capability Matrix</h3>
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width:40%;">Capability / System Component</th>
+                <th style="width:20%;">Tier 1: Foundation</th>
+                <th style="width:22%;" class="th-vip">★ Tier 2: VIP Suite</th>
+                <th style="width:18%;">Tier 3: Dominance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Total Standalone Pages</strong></td>
+                <td>5 Pages</td>
+                <td class="td-vip">19 Standalone Pages</td>
+                <td>25+ Pages (Inc. Geo Landers)</td>
+              </tr>
+              <tr>
+                <td><strong>Multi-Sector Profile Gateway</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> Entrance Modal + Banner</td>
+                <td><span class="status-check">✓</span> Advanced Dynamic Routing</td>
+              </tr>
+              <tr>
+                <td><strong>Dedicated Subpages (Interior, Cabinets, Popcorn, Facades, Retail, NYCHA)</strong></td>
+                <td><span class="status-cross">— (Generic sections)</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> 7 Dedicated Pages</td>
+                <td><span class="status-check">✓</span> 7 Dedicated Pages + Case Studies</td>
+              </tr>
+              <tr>
+                <td><strong>Wholesale Materials Store &amp; Cart Drawer</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> LVP Flooring &amp; Benjamin Moore</td>
+                <td><span class="status-check">✓</span> Live Square Merchant Processing</td>
+              </tr>
+              <tr>
+                <td><strong>SqFt Material &amp; Waste Contingency Calculator</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> Included (+10% Buffer)</td>
+                <td><span class="status-check">✓</span> Real-Time Inventory Sync</td>
+              </tr>
+              <tr>
+                <td><strong>Dual-Mode Quoting (Material Only vs Turnkey Labor)</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> Included</td>
+                <td><span class="status-check">✓</span> Automated PDF Invoicing</td>
+              </tr>
+              <tr>
+                <td><strong>Top-Banner Appointment Booking Engine</strong></td>
+                <td><span class="status-cross">— (Standard Form)</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> Pulse Dot + Date Picker</td>
+                <td><span class="status-check">✓</span> 2-Way Google Calendar Sync</td>
+              </tr>
+              <tr>
+                <td><strong>Government &amp; NYCHA Verification Hub</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> DOS ID 6658255 + $2M COI</td>
+                <td><span class="status-check">✓</span> Instant COI Download Link</td>
+              </tr>
+              <tr>
+                <td><strong>GC Subcontractor Bid Desk</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> Blueprint Upload &amp; Div 09</td>
+                <td><span class="status-check">✓</span> Logged-in Bid Status Portal</td>
+              </tr>
+              <tr>
+                <td><strong>Supabase Relational Database Schema</strong></td>
+                <td><span class="status-cross">— (Email only)</span></td>
+                <td class="td-vip"><span class="status-check">✓</span> Included</td>
+                <td><span class="status-check">✓</span> User Auth &amp; RLS Policies</td>
+              </tr>
+              <tr>
+                <td><strong>Twilio Instant SMS Lead Dispatch</strong></td>
+                <td><span class="status-cross">—</span></td>
+                <td><span class="status-cross">— (Available in Phase 2)</span></td>
+                <td style="color:#34d399;font-weight:700;"><span class="status-check">✓</span> Instant SMS to Frank</td>
+              </tr>
+              <tr>
+                <td><strong>Zero-SaaS Annual Software Savings</strong></td>
+                <td>$0</td>
+                <td class="td-vip"><strong style="color:var(--amber);">$3,005 / Year Saved</strong></td>
+                <td><strong>$3,005 / Year Saved</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── SAAS SAVINGS HIGHLIGHT BOX ─── -->
+      <div class="saas-box">
+        <div class="saas-content">
+          <h4>💡 The In-House Zero-SaaS Advantage</h4>
+          <p>
+            Standard agencies will build you a site that forces you to pay Shopify, Calendly, JotForm, and contractor bid software every month. We built all of these tools directly into your custom code, eliminating bloated subscription middlemen.
+          </p>
+        </div>
+        <div class="saas-stat">
+          <div class="val">$3,005</div>
+          <div class="lbl">Yearly Recurring Savings</div>
+        </div>
+      </div>
+
+      <!-- ─── FOOTER / SIGN-OFF ─── -->
+      <footer class="flyer-footer">
+        <div class="agency-col">
+          <strong>TodoBuild Technologies Inc.</strong><br>
+          Engineering the Modern Built Environment · Titan Engine Architecture<br>
+          <span style="font-size:0.75rem;color:var(--sky);">Confidential VIP Proposal · Valid for 30 Days</span>
+        </div>
+        <div class="sign-actions">
+          <button onclick="window.print()" class="btn btn-secondary">🖨️ Print Proposal</button>
+          <a href="https://wa.me/19294127546?text=Hi%20Frank,%20I'd%20like%20to%20confirm%20Tier%202%20VIP%20Suite%20for%20F.R.E.%20Contractor" class="btn btn-primary" style="background:var(--amber);color:#040d1a;">Confirm Tier 2 Agreement →</a>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    function copyFlyerLink() {
+      navigator.clipboard.writeText(window.location.href);
+      const btn = document.getElementById('btn-copy-link');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '✅ Link Copied!';
+      btn.style.background = 'rgba(29, 154, 118, 0.3)';
+      btn.style.color = '#34d399';
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 2500);
+    }
+
+    function selectTier(tierName, price) {
+      const confirmed = confirm(`You selected: ${tierName} (${price})\n\nWould you like to open WhatsApp or draft an acceptance agreement now?`);
+      if (confirmed) {
+        window.open(`https://wa.me/19294127546?text=Hello,%20I%20am%20confirming%20selection%20of%20${encodeURIComponent(tierName)}%20(${encodeURIComponent(price)})%20for%20F.R.E.%20Contractor%20LLC.`, '_blank');
+      }
+    }
+  </script>
+</body>
+</html>

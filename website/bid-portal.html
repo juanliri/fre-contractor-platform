@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Bid Portal | F.R.E. Contractor LLC — NYC GC Painting Sub</title>
+    <meta name="description" content="Submit a commercial painting RFQ to F.R.E. Contractor LLC. 24-hour formal bid response. COI ready. NYCHA, retail, office, multi-unit. NYC painting subcontractor.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+<div id="site-header"></div>
+<main class="page-wrapper">
+
+    <section class="page-hero hero-bg-blueprints">
+        <div class="glow-orb glow-orb-green" style="width:500px;height:500px;top:-150px;right:-80px;"></div>
+        <div class="container">
+            <div class="page-hero-eyebrow reveal">📋 Commercial Bid Portal</div>
+            <h1 class="page-hero-title reveal reveal-delay-1">Submit Your<br><span class="gradient-text">Commercial RFQ</span></h1>
+            <p class="page-hero-desc reveal reveal-delay-2">General contractors, property managers, developers, and facilities teams. Submit your project details and receive a formal bid package within 24 business hours.</p>
+            <div class="reveal reveal-delay-3" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;">
+                <div class="trust-badge"><span class="trust-check">✓</span> 24-hr bid guarantee</div>
+                <div class="trust-badge"><span class="trust-check">✓</span> COI same-day</div>
+                <div class="trust-badge"><span class="trust-check">✓</span> Prevailing wage capable</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container" style="max-width:800px;">
+
+            <!-- SLA PROMISE BANNER -->
+            <div class="sla-banner reveal">
+                <div class="sla-icon">🕐</div>
+                <div>
+                    <strong>24-Hour Bid Response SLA</strong>
+                    <p>Every RFQ submitted through this portal receives a formal, itemized bid package within one business day — guaranteed. No exceptions.</p>
+                </div>
+            </div>
+
+            <!-- RFQ FORM -->
+            <div class="form-card reveal reveal-delay-1" id="rfq-form-wrap">
+                <h2 style="font-size:1.4rem;font-weight:800;color:var(--text-white);margin-bottom:4px;">Project Request for Quotation</h2>
+                <p style="color:var(--text-muted);font-size:.86rem;margin-bottom:28px;">Complete all fields for the most accurate and fastest bid response.</p>
+                <form id="rfq-form" novalidate>
+
+                    <h4 class="form-section-head">Company & Contact</h4>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-company">Company / GC Name *</label>
+                            <input class="form-input" type="text" id="rfq-company" required placeholder="ABC General Contractors LLC">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-contact">Your Name *</label>
+                            <input class="form-input" type="text" id="rfq-contact" required placeholder="John Smith">
+                        </div>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-phone">Phone *</label>
+                            <input class="form-input" type="tel" id="rfq-phone" required placeholder="(212) 555-0100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-email">Email *</label>
+                            <input class="form-input" type="email" id="rfq-email" required placeholder="jsmith@abcgc.com">
+                        </div>
+                    </div>
+
+                    <h4 class="form-section-head" style="margin-top:28px;">Project Details</h4>
+                    <div class="form-group">
+                        <label class="form-label" for="rfq-address">Project Address *</label>
+                        <input class="form-input" type="text" id="rfq-address" required placeholder="123 Grand Ave, Bronx NY 10451">
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-type">Project Type *</label>
+                            <select class="form-input" id="rfq-type" required>
+                                <option value="">Select type...</option>
+                                <option>NYCHA / Public Housing</option>
+                                <option>Retail / Restaurant</option>
+                                <option>Office / Commercial Building</option>
+                                <option>School / Institution</option>
+                                <option>Multi-Family Residential</option>
+                                <option>New Construction</option>
+                                <option>Other Commercial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-sqft">Approx Square Footage</label>
+                            <input class="form-input" type="text" id="rfq-sqft" placeholder="e.g. 5,000 sqft">
+                        </div>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-start">Requested Start Date</label>
+                            <input class="form-input" type="date" id="rfq-start">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="rfq-end">Completion Deadline</label>
+                            <input class="form-input" type="date" id="rfq-end">
+                        </div>
+                    </div>
+
+                    <h4 class="form-section-head" style="margin-top:28px;">Scope of Work</h4>
+                    <div class="form-group">
+                        <label class="form-label" for="rfq-scope">Describe the Scope *</label>
+                        <textarea class="form-input form-textarea" id="rfq-scope" rows="5" required placeholder="Describe all areas to be painted, surfaces, special requirements, access considerations, occupied vs vacant, etc."></textarea>
+                    </div>
+
+                    <h4 class="form-section-head" style="margin-top:28px;">Requirements</h4>
+                    <div class="rfq-checks">
+                        <label class="rfq-check-item">
+                            <input type="checkbox" id="rfq-coi"> COI required (we provide same-day)
+                        </label>
+                        <label class="rfq-check-item">
+                            <input type="checkbox" id="rfq-pw"> Prevailing wage required
+                        </label>
+                        <label class="rfq-check-item">
+                            <input type="checkbox" id="rfq-night"> Night / weekend work only
+                        </label>
+                        <label class="rfq-check-item">
+                            <input type="checkbox" id="rfq-occupied"> Occupied building / tenant protocols
+                        </label>
+                    </div>
+
+                    <div class="form-group" style="margin-top:20px;">
+                        <label class="form-label" for="rfq-budget">Budget Range (optional)</label>
+                        <select class="form-input" id="rfq-budget">
+                            <option value="">Select range...</option>
+                            <option>Under $10,000</option>
+                            <option>$10,000 – $25,000</option>
+                            <option>$25,000 – $75,000</option>
+                            <option>$75,000 – $150,000</option>
+                            <option>$150,000+</option>
+                        </select>
+                    </div>
+
+                    <!-- HTML5 CANVAS SIGNATURE PAD (replaces DocuSign) -->
+                    <h4 class="form-section-head" style="margin-top:28px;">Authorization Signature</h4>
+                    <p style="color:var(--text-muted);font-size:.84rem;margin-bottom:12px;">By signing below you authorize F.R.E. Contractor LLC to contact you regarding this RFQ. This does not constitute a contract.</p>
+                    <div class="sig-pad-wrap">
+                        <canvas id="sig-canvas" width="700" height="140"></canvas>
+                        <div class="sig-pad-actions">
+                            <button type="button" id="sig-clear" class="btn btn-ghost" style="font-size:.78rem;padding:6px 12px;">Clear</button>
+                            <span id="sig-status" style="font-size:.78rem;color:var(--text-dim);">Sign above</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width:100%;margin-top:24px;font-size:1rem;">
+                        📤 Submit RFQ — Bid Within 24 Hours
+                    </button>
+
+                    <p style="color:var(--text-dim);font-size:.76rem;text-align:center;margin-top:12px;">
+                        Prefer to call? <a href="tel:+19294127546" style="color:var(--amber-brand);">(929) 412-7546</a> or <a href="https://wa.me/19294127546" style="color:var(--green-patina);">WhatsApp us</a>
+                    </p>
+                </form>
+
+                <div id="rfq-confirmed" style="display:none;text-align:center;padding:40px 20px;">
+                    <div style="font-size:3.5rem;margin-bottom:16px;">📋</div>
+                    <h3 style="color:var(--text-white);font-size:1.5rem;margin-bottom:8px;">RFQ Received!</h3>
+                    <p style="color:var(--text-muted);max-width:480px;margin:0 auto 20px;">Your Request for Quotation has been received and assigned to our commercial estimating team. You will receive a formal bid package via email and phone within <strong style="color:var(--amber-brand);">24 business hours</strong>.</p>
+                    <div style="background:rgba(29,154,118,.1);border:1px solid rgba(29,154,118,.3);border-radius:var(--radius-sm);padding:16px;margin-bottom:24px;">
+                        <p style="color:var(--green-patina);font-weight:700;">📞 Expect a call from (929) 412-7546</p>
+                        <p style="color:var(--text-muted);font-size:.86rem;">Our commercial team will contact you to verify scope and schedule any site visits needed.</p>
+                    </div>
+                    <a href="commercial.html" class="btn btn-outline">← Back to Commercial Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/shared.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/chat-widget.js"></script>
+<script>
+// ── SIGNATURE PAD ─────────────────────────────────────────────────
+const canvas = document.getElementById('sig-canvas');
+const ctx = canvas.getContext('2d');
+ctx.strokeStyle = '#F58220';
+ctx.lineWidth = 2;
+ctx.lineCap = 'round';
+ctx.lineJoin = 'round';
+let drawing = false, hasSig = false;
+
+const getPos = (e) => {
+    const r = canvas.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return { x: (s.clientX - r.left) * (canvas.width / r.width), y: (s.clientY - r.top) * (canvas.height / r.height) };
+};
+canvas.addEventListener('mousedown',  (e) => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+canvas.addEventListener('mousemove',  (e) => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSig = true; document.getElementById('sig-status').textContent = 'Signed ✓'; });
+canvas.addEventListener('mouseup',    () => { drawing = false; });
+canvas.addEventListener('mouseleave', () => { drawing = false; });
+canvas.addEventListener('touchstart', (e) => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
+canvas.addEventListener('touchmove',  (e) => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSig = true; document.getElementById('sig-status').textContent = 'Signed ✓'; }, { passive: false });
+canvas.addEventListener('touchend',   () => { drawing = false; });
+
+document.getElementById('sig-clear').addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasSig = false;
+    document.getElementById('sig-status').textContent = 'Sign above';
+});
+
+document.getElementById('rfq-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Submitting...'; btn.disabled = true;
+
+    const data = {
+        company: document.getElementById('rfq-company').value,
+        contact: document.getElementById('rfq-contact').value,
+        phone: document.getElementById('rfq-phone').value,
+        email: document.getElementById('rfq-email').value,
+        address: document.getElementById('rfq-address').value,
+        project_type: document.getElementById('rfq-type').value,
+        sqft: document.getElementById('rfq-sqft').value,
+        scope: document.getElementById('rfq-scope').value,
+        budget: document.getElementById('rfq-budget').value,
+        coi_required: document.getElementById('rfq-coi').checked,
+        prevailing_wage: document.getElementById('rfq-pw').checked,
+        signature_data: hasSig ? canvas.toDataURL() : null,
+        source: 'bid_portal'
+    };
+
+    try { if (window.FRE_DB) await window.FRE_DB.saveCommercialRFQ(data); } catch(err) {}
+
+    document.getElementById('rfq-form').style.display = 'none';
+    document.getElementById('rfq-confirmed').style.display = 'block';
+});
+</script>
+</body>
+</html>
+

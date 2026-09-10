@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Business Blueprint | TodoBuild Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────── */
+:root{
+  --bg:#020509;--card:#080d13;--card2:#0b1018;
+  --g:#10B981;--gd:rgba(16,185,129,.09);--gb:rgba(16,185,129,.22);
+  --blue:#3B82F6;--orange:#F59E0B;--red:#EF4444;--gold:#c5a044;
+  --br:rgba(255,255,255,.07);--br2:rgba(255,255,255,.11);
+  --muted:#9ca3af;--dim:#6b7280;--wh:#fff;
+  --radius:14px;--rad-sm:10px;--rad-xs:7px;
+}
+
+/* ── RESET & BASE ─────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--wh);
+  font-family:'Outfit',sans-serif;line-height:1.6;
+  min-height:100vh;
+}
+
+/* ── LAYOUT SHELL ─────────────────────────── */
+.shell{
+  width:100%;max-width:680px;margin:0 auto;
+  padding:24px 16px 100px;
+}
+@media(min-width:600px){.shell{padding:40px 24px 100px;}}
+
+/* ── TOPBAR ───────────────────────────────── */
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:28px;
+}
+.brand{font-size:1.2rem;font-weight:900;letter-spacing:1.5px;}
+.brand b{color:var(--g);}
+.topbar-tag{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--dim);text-align:right;line-height:1.6;}
+
+/* ── PROGRESS ─────────────────────────────── */
+.prog-wrap{margin-bottom:20px;}
+.prog-meta{
+  display:flex;justify-content:space-between;
+  font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--muted);margin-bottom:7px;
+}
+.prog-track{height:4px;background:var(--br);border-radius:99px;overflow:hidden;}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--g),#34d399);
+  border-radius:99px;
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+}
+.section-pills{display:flex;gap:5px;flex-wrap:nowrap;margin-top:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;}
+.section-pills::-webkit-scrollbar{display:none;}
+.pill{
+  font-size:.55rem;text-transform:uppercase;letter-spacing:1.5px;
+  padding:3px 9px;border-radius:50px;border:1px solid var(--br);
+  color:var(--dim);transition:all .3s;white-space:nowrap;
+}
+.pill.done{background:var(--gd);border-color:var(--gb);color:var(--g);}
+.pill.active{background:rgba(255,255,255,.07);border-color:var(--br2);color:var(--wh);}
+
+/* ── QUIZ CARD ────────────────────────────── */
+.card{
+  background:var(--card);border:1px solid var(--br);
+  border-radius:var(--radius);padding:26px 20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--g),transparent 70%);
+}
+@media(min-width:600px){.card{padding:36px 36px;}}
+
+/* ── Q HEAD ───────────────────────────────── */
+.q-meta{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.q-step-badge{
+  background:var(--gd);border:1px solid var(--gb);color:var(--g);
+  font-size:.58rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:50px;flex-shrink:0;
+}
+.q-section-name{font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);}
+.q-text{font-size:1.05rem;font-weight:800;line-height:1.35;margin-bottom:6px;color:var(--wh);}
+.q-hint{font-size:.8rem;color:var(--muted);margin-bottom:18px;line-height:1.6;}
+@media(min-width:600px){.q-text{font-size:1.2rem;}}
+
+/* ── OPTIONS ──────────────────────────────── */
+.opts{display:flex;flex-direction:column;gap:9px;}
+.opt{
+  background:var(--card2);border:1.5px solid var(--br);
+  border-radius:var(--rad-sm);padding:13px 15px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  transition:all .2s;text-align:left;width:100%;
+  -webkit-appearance:none;appearance:none;color:var(--wh);
+}
+.opt:active{transform:scale(.99);}
+.opt:hover{border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.03);}
+.opt.sel{border-color:var(--g);background:var(--gd);}
+.opt-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--br);display:flex;align-items:center;
+  justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.opt.sel .opt-icon{background:var(--gd);}
+.opt-body{flex:1;min-width:0;}
+.opt-label{font-size:.88rem;font-weight:700;color:var(--wh);margin-bottom:2px;line-height:1.3;}
+.opt-sub{font-size:.73rem;color:var(--muted);line-height:1.45;}
+.opt-check{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--br2);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;transition:all .2s;margin-top:2px;
+}
+.opt.sel .opt-check{background:var(--g);border-color:var(--g);color:#020408;}
+
+/* ── MULTI NOTE ───────────────────────────── */
+.multi-note{
+  font-size:.62rem;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--muted);margin-bottom:10px;
+}
+
+/* ── NAV ──────────────────────────────────── */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:22px;gap:10px;
+}
+.btn{
+  font-family:'Outfit',sans-serif;font-weight:800;
+  border:none;border-radius:50px;cursor:pointer;
+  transition:all .22s;letter-spacing:.5px;
+  font-size:.82rem;padding:11px 22px;
+}
+.btn-back{background:var(--br);color:var(--muted);border:1px solid var(--br2);}
+.btn-back:hover{background:var(--br2);color:var(--wh);}
+.btn-next{
+  background:var(--g);color:#020408;
+  box-shadow:0 0 22px rgba(16,185,129,.28);
+  padding:13px 26px;font-size:.88rem;
+}
+.btn-next:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(16,185,129,.42);}
+.q-ct{font-size:.7rem;color:var(--dim);}
+
+/* ─── FAB PRINT ───────────────────────────── */
+.fab{
+  position:fixed;bottom:22px;right:16px;z-index:999;
+  background:var(--g);color:#020408;border:none;
+  padding:13px 22px;border-radius:50px;
+  font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;
+  cursor:pointer;letter-spacing:.5px;
+  box-shadow:0 0 28px rgba(16,185,129,.38);
+  transition:all .25s;
+}
+.fab:hover{transform:translateY(-3px);}
+
+/* ══════════════════════════════════════════════
+   RESULTS
+══════════════════════════════════════════════ */
+#results{display:none;}
+
+/* ── HERO ─────────────────────────────────── */
+.r-hero{
+  background:var(--card);border:1px solid var(--gb);
+  border-radius:var(--radius);padding:26px 20px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.r-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--g),#34d399 60%,transparent);}
+@media(min-width:600px){.r-hero{padding:36px 36px;}}
+
+.r-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--gd);border:1px solid var(--gb);color:var(--g);
+  padding:4px 14px;border-radius:50px;
+  font-size:.6rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.r-eyebrow::before{content:"●";font-size:.45rem;}
+.r-tier{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:900;text-transform:uppercase;line-height:1.1;margin-bottom:8px;}
+.r-tier span{color:var(--g);}
+.r-desc{font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:22px;}
+
+/* price blocks row */
+.price-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+@media(min-width:500px){.price-row{grid-template-columns:repeat(4,1fr);}}
+.p-block{background:var(--card2);border:1px solid var(--br);border-radius:var(--rad-sm);padding:13px 14px;}
+.p-lbl{font-size:.55rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin-bottom:4px;line-height:1.4;}
+.p-val{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--g);}
+.p-val.gold{color:var(--gold);}
+.p-val.orange{color:var(--orange);}
+.p-note{font-size:.63rem;color:var(--muted);margin-top:2px;}
+
+/* score bars */
+.score-wrap{margin-top:14px;}
+.sc-row{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-bottom:4px;}
+.sc-track{height:5px;background:var(--br);border-radius:99px;overflow:hidden;margin-bottom:9px;}
+.sc-fill{height:100%;border-radius:99px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+
+/* ── SECTIONS ─────────────────────────────── */
+.r-sec{
+  background:var(--card);border:1px solid var(--br);
+  border-radius:var(--radius);padding:22px 20px;margin-bottom:12px;
+}
+@media(min-width:600px){.r-sec{padding:24px 28px;}}
+.r-sec-title{
+  font-size:.62rem;font-weight:900;text-transform:uppercase;
+  letter-spacing:2px;color:var(--g);
+  border-bottom:1px solid var(--br);padding-bottom:8px;margin-bottom:14px;
+}
+
+/* included list */
+.inc-grid{display:grid;grid-template-columns:1fr;gap:6px 18px;margin-top:8px;}
+@media(min-width:480px){.inc-grid{grid-template-columns:1fr 1fr;}}
+.inc-item{display:flex;gap:8px;align-items:flex-start;font-size:.78rem;color:var(--muted);}
+.inc-item::before{content:"✓";color:var(--g);font-weight:900;flex-shrink:0;}
+.inc-item.no::before{content:"✗";color:var(--red);}
+
+/* row table */
+.r-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  padding:9px 0;border-bottom:1px solid var(--br);font-size:.83rem;flex-wrap:wrap;}
+.r-row:last-child{border-bottom:none;}
+.r-key{color:var(--muted);flex:1;min-width:140px;}
+.r-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.8rem;text-align:right;}
+.r-val.g{color:var(--g);}
+.r-val.gold{color:var(--gold);}
+.r-val.orange{color:var(--orange);}
+
+/* milestone rows */
+.ms-wrap{border:1px solid var(--br);border-radius:var(--rad-sm);overflow:hidden;}
+.ms-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 15px;border-bottom:1px solid var(--br);font-size:.83rem;gap:10px;
+}
+.ms-row:last-child{border-bottom:none;}
+.ms-row.tot{background:var(--gd);border-top:2px solid var(--g);font-weight:800;}
+.ms-n{color:var(--muted);}
+.ms-n strong{color:var(--wh);}
+.ms-v{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);flex-shrink:0;}
+.ms-row.tot .ms-v{color:var(--g);font-size:.95rem;}
+
+/* ── PATH CARDS ───────────────────────────── */
+.path-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px;}
+@media(min-width:480px){.path-grid{grid-template-columns:1fr 1fr;}}
+.path-card{
+  background:var(--card2);border:1px solid var(--br);
+  border-radius:var(--rad-sm);padding:15px;position:relative;overflow:hidden;
+}
+.path-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.path-card.p1::before{background:var(--g);}
+.path-card.p2::before{background:var(--blue);}
+.path-card.p3::before{background:var(--gold);}
+.path-card.p4::before{background:var(--orange);}
+.path-flag{font-size:.58rem;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px;}
+.path-flag.g{color:var(--g);}
+.path-flag.b{color:var(--blue);}
+.path-flag.gold{color:var(--gold);}
+.path-flag.o{color:var(--orange);}
+.path-title{font-size:.88rem;font-weight:800;margin-bottom:6px;color:var(--wh);}
+.path-body{font-size:.75rem;color:var(--muted);line-height:1.6;}
+.path-quote{
+  background:rgba(255,255,255,.028);border-left:3px solid var(--g);
+  padding:9px 13px;margin-top:10px;border-radius:0 6px 6px 0;
+  font-size:.76rem;font-style:italic;color:var(--wh);line-height:1.6;
+}
+.path-quote.gold{border-color:var(--gold);}
+
+/* ── NEXT LEVEL CARD ──────────────────────── */
+.next-card{
+  border-radius:var(--radius);padding:20px;margin-bottom:12px;
+  position:relative;overflow:hidden;
+}
+.next-card.gold-c{
+  background:rgba(197,160,68,.07);border:1px solid rgba(197,160,68,.2);
+}
+.next-card.green-c{
+  background:var(--gd);border:1px solid var(--gb);
+}
+.next-eyebrow{font-size:.58rem;font-weight:900;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+.next-eyebrow.gold{color:var(--gold);}
+.next-eyebrow.g{color:var(--g);}
+.next-title{font-size:.98rem;font-weight:800;margin-bottom:7px;color:var(--wh);}
+.next-body{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:10px;}
+.next-price{font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:700;}
+.next-price.gold{color:var(--gold);}
+.next-price.g{color:var(--g);}
+
+/* ── CLOSING CALLOUT ──────────────────────── */
+.close-box{
+  background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(16,185,129,.04));
+  border:1px solid var(--gb);border-radius:var(--radius);
+  padding:20px;margin-bottom:14px;
+}
+.close-box-icon{font-size:1.4rem;margin-bottom:10px;}
+.close-box-title{font-size:1rem;font-weight:900;margin-bottom:8px;}
+.close-box-body{font-size:.82rem;color:var(--muted);line-height:1.7;}
+.close-box-body b{color:var(--wh);}
+
+/* ── ACTION ROW ───────────────────────────── */
+.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.btn-save{background:var(--g);color:#020408;box-shadow:0 0 22px rgba(16,185,129,.32);}
+.btn-redo{background:var(--br);color:var(--muted);border:1px solid var(--br2);}
+
+/* ── ANIMATIONS ───────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{animation:fadeUp .32s ease both;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-4px);}40%,80%{transform:translateX(4px);}}
+.shake{animation:shake .4s ease;}
+
+/* ── PRINT ────────────────────────────────── */
+@media print{
+  @page{size:letter;margin:.5in;}
+  body{background:#fff!important;color:#000!important;}
+  .fab,.nav,.btn-redo,.btn-save,.topbar,.prog-wrap{display:none!important;}
+  .shell{max-width:100%!important;padding:0!important;}
+  .r-hero,.r-sec,.path-card,.next-card,.close-box{
+    background:#fff!important;color:#000!important;
+    border:1px solid #ccc!important;box-shadow:none!important;
+    break-inside:avoid;margin-bottom:14px;
+  }
+  .r-tier,.p-val,.ms-v,.next-price{color:#000!important;}
+  .path-grid,.inc-grid,.price-row{display:grid!important;}
+  .inc-grid{grid-template-columns:1fr 1fr!important;}
+  .price-row{grid-template-columns:repeat(2,1fr)!important;}
+}
+</style>
+</head>
+<body>
+
+<button class="fab" id="fabBtn" onclick="window.print()">⬇ Save My Plan</button>
+
+<div class="shell">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand">TODO<b>BUILD</b></div>
+    <div class="topbar-tag">Your Business<br>Blueprint Tool</div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="prog-wrap" id="progWrap">
+    <div class="prog-meta">
+      <span id="sectLbl">Step 1 of 6</span>
+      <span id="qCt">1 of 32</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:3%"></div></div>
+    <div class="section-pills">
+      <div class="pill active" id="tab0">Your Business</div>
+      <div class="pill" id="tab1">Online Presence</div>
+      <div class="pill" id="tab2">How You Operate</div>
+      <div class="pill" id="tab3">What You Need</div>
+      <div class="pill" id="tab4">Investment</div>
+      <div class="pill" id="tab5">Your Vision</div>
+    </div>
+  </div>
+
+  <!-- QUIZ CARD -->
+  <div class="card fade-up" id="quizCard">
+    <div class="q-meta">
+      <div class="q-step-badge" id="qBadge">Step 1</div>
+      <div class="q-section-name" id="qSecName">Your Business</div>
+    </div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-hint" id="qHint"></div>
+    <div id="qBody"></div>
+    <div class="nav">
+      <button class="btn btn-back" id="btnBack" onclick="prevQ()">← Back</button>
+      <div class="q-ct" id="qCtBot"></div>
+      <button class="btn btn-next" id="btnNext" onclick="nextQ()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- CAPTURE WALL -->
+  <div class="card fade-up" id="captureCard" style="display:none; text-align:center;">
+    <div style="font-size:3rem; margin-bottom:10px;">🔒</div>
+    <div class="q-text" style="font-size:1.5rem; color:var(--g);">Analysis Complete</div>
+    <div class="q-hint" style="margin-bottom:24px; font-size:.9rem;">We've calculated the exact architecture your business needs. Enter your details below to unlock your blueprint, see real pricing, and have a copy emailed to your inbox.</div>
+    <div style="display:flex; flex-direction:column; gap:14px; text-align:left;">
+      <input type="text" id="capName" placeholder="Your Name" style="width:100%; padding:14px; border-radius:8px; border:1px solid var(--br); background:var(--bg); color:var(--wh); font-family:inherit; font-size:.9rem; outline:none;">
+      <input type="email" id="capEmail" placeholder="Email Address (Required)" style="width:100%; padding:14px; border-radius:8px; border:1px solid var(--br); background:var(--bg); color:var(--wh); font-family:inherit; font-size:.9rem; outline:none;">
+      <input type="tel" id="capPhone" placeholder="Mobile Number (Optional)" style="width:100%; padding:14px; border-radius:8px; border:1px solid var(--br); background:var(--bg); color:var(--wh); font-family:inherit; font-size:.9rem; outline:none;">
+      <button class="btn btn-next" style="width:100%; padding:15px; font-size:1rem; margin-top:8px;" onclick="submitCapture()">Unlock My Blueprint →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS TARGET -->
+  <div id="results"></div>
+
+</div><!-- /shell -->
+
+<script>
+// ══════════════════════════════════════════════
+// SECTION LABELS — CLIENT VOICE
+// ══════════════════════════════════════════════
+const SECS=['Your Business','Online Presence','How You Operate','What You Need','Your Investment','Your Vision'];
+
+// ══════════════════════════════════════════════
+// QUESTIONS — CLIENT VOICE
+// ══════════════════════════════════════════════
+const QS=[
+  // ── YOUR BUSINESS ────────────────────────
+  {sec:0,text:"What kind of work does your company do?",
+   hint:"This shapes everything — the right system is built around how you actually work.",
+   type:'single',key:'bizType',
+   opts:[
+    {i:'🔨',l:'General Contractor',s:'Renovations, full builds, multi-trade projects',sc:{tier:3,cx:2}},
+    {i:'🏗️',l:'Specialty Trade (Plumbing / Electric / HVAC)',s:'Licensed single-trade operation',sc:{tier:2,cx:1}},
+    {i:'🌿',l:'Landscaping / Outdoor Services',s:'Maintenance, installs, hardscaping, exteriors',sc:{tier:2,cx:1}},
+    {i:'🏠',l:'Property Management / Real Estate',s:'Managing units, maintenance, leasing',sc:{tier:4,cx:3}},
+    {i:'🏢',l:'Commercial Services (B2B)',s:'Serving businesses and commercial accounts',sc:{tier:4,cx:3}},
+    {i:'⚙️',l:'Other Field Service Business',s:'Mixed services, consulting, field work',sc:{tier:2,cx:1}},
+  ]},
+  {sec:0,text:"How long have you been in business?",
+   hint:"Your stage determines which tools deliver the fastest return for you.",
+   type:'single',key:'bizAge',
+   opts:[
+    {i:'🌱',l:'Just Starting Out (0–1 year)',s:'Building the right foundation from day one',sc:{tier:1}},
+    {i:'📈',l:'Growing (1–3 years)',s:'Picking up momentum, ready to get serious',sc:{tier:2}},
+    {i:'🏆',l:'Established (3–7 years)',s:'Proven business, time to professionalize',sc:{tier:3}},
+    {i:'⭐',l:'Veteran (7+ years)',s:'Running strong, ready to modernize and scale',sc:{tier:4}},
+  ]},
+  {sec:0,text:"Roughly how much does your business bring in per year?",
+   hint:"No judgment here — this helps us match your investment to your actual scale.",
+   type:'single',key:'revenue',
+   opts:[
+    {i:'💵',l:'Under $50,000/yr',s:'Getting started, building the book',sc:{tier:0,budget:0}},
+    {i:'💵',l:'$50,000 – $150,000/yr',s:'Growing steadily, lean and focused',sc:{tier:1,budget:1}},
+    {i:'💵',l:'$150,000 – $500,000/yr',s:'Real overhead, real opportunity',sc:{tier:2,budget:2}},
+    {i:'💵',l:'$500,000 – $1M/yr',s:'Scaling fast — systems are now the bottleneck',sc:{tier:3,budget:3}},
+    {i:'💵',l:'$1M+ per year',s:'Enterprise-level revenue needs matching infrastructure',sc:{tier:5,budget:5}},
+  ]},
+  {sec:0,text:"How many people are on your team right now?",
+   hint:"Includes you, employees, regular subcontractors, and part-time staff.",
+   type:'single',key:'teamSize',
+   opts:[
+    {i:'👤',l:'Solo — just me',s:'I do it all myself',sc:{tier:1,users:1}},
+    {i:'👥',l:'2–3 people',s:'Small crew, close-knit team',sc:{tier:2,users:2}},
+    {i:'👷',l:'4–6 people',s:'Real crew, needs real coordination',sc:{tier:3,users:3}},
+    {i:'🏗️',l:'7–15 people',s:'Multiple foremen or field teams',sc:{tier:4,users:4}},
+    {i:'🏢',l:'16+ people',s:'Full organization, multiple layers',sc:{tier:5,users:5}},
+  ]},
+  {sec:0,text:"Who makes the final call on business investments?",
+   hint:"Just helps us know who this plan is being built for.",
+   type:'single',key:'dm',
+   opts:[
+    {i:'🤝',l:'Me — I decide everything',s:'Owner-operator, solo decision-maker',sc:{tier:0}},
+    {i:'📋',l:'Me and a partner or manager',s:'Small leadership team signs off together',sc:{tier:1}},
+    {i:'🏢',l:'Department heads or finance team',s:'Formal approval process',sc:{tier:3}},
+  ]},
+
+  // ── ONLINE PRESENCE ──────────────────────
+  {sec:1,text:"What does your online presence look like today?",
+   hint:"Your starting point determines how fast we can get you to where you need to be.",
+   type:'single',key:'hasWebsite',
+   opts:[
+    {i:'✅',l:'I have a professional website I\'m happy with',s:'Custom-built, looks great, clients compliment it',sc:{tier:0}},
+    {i:'⚠️',l:'I have a website but it\'s outdated or generic',s:'Wix, Squarespace, or something that needs a serious upgrade',sc:{tier:2}},
+    {i:'📄',l:'Just a Facebook page or Google business profile',s:'Not a real website — need to fix that',sc:{tier:3}},
+    {i:'❌',l:'Nothing online at all',s:'Starting from zero — which is actually a clean slate',sc:{tier:3}},
+  ]},
+  {sec:1,text:"What do you need your online presence to do for your business?",
+   hint:"Check everything that matters to you — we'll build around your priorities.",
+   type:'multi',key:'webNeeds',
+   opts:[
+    {i:'📸',l:'Show my work — photos and past projects'},
+    {i:'📞',l:'Make it easy for clients to reach me'},
+    {i:'📅',l:'Let clients book appointments online',s:'No phone tag, no back-and-forth'},
+    {i:'💳',l:'Collect deposits or payments online'},
+    {i:'🛒',l:'Sell products or materials directly'},
+    {i:'⭐',l:'Display reviews to build trust'},
+    {i:'📍',l:'Show up when people Google contractors near me'},
+   ],
+   scoreMap:{'📅':{tier:2},'💳':{tier:2},'🛒':{tier:3}}},
+  {sec:1,text:"What tools are you using to run your business today?",
+   hint:"Knowing your current setup tells us what gaps to close and what to keep.",
+   type:'multi',key:'curTools',
+   opts:[
+    {i:'📊',l:'QuickBooks or accounting software'},
+    {i:'📋',l:'Google Sheets or Excel spreadsheets'},
+    {i:'📱',l:'Square POS or Stripe'},
+    {i:'💬',l:'WhatsApp or text messages for client communication'},
+    {i:'🗓️',l:'Calendar apps like Google Calendar or Calendly'},
+    {i:'❌',l:'Nothing — pen, paper, and memory'},
+   ]},
+  {sec:1,text:"Do you have a professional email with your business name in it?",
+   hint:"Example: info@frecontractor.com — this is the first impression before anyone sees your work.",
+   type:'single',key:'brandEmail',
+   opts:[
+    {i:'✅',l:'Yes — I have a branded business email',s:'Clients see my brand, not Gmail',sc:{tier:0}},
+    {i:'📧',l:'Not yet — I use Gmail or Yahoo',s:'Ready to fix this',sc:{tier:1}},
+  ]},
+  {sec:1,text:"How important is it that everything carries YOUR brand — logo, colors, name?",
+   hint:"Some businesses want a tool that works. Others want every touchpoint to scream their brand.",
+   type:'single',key:'brandImp',
+   opts:[
+    {i:'🎯',l:'Critical — every client touchpoint should be MY brand',s:'My name should be on everything, not a platform\'s',sc:{tier:4}},
+    {i:'👍',l:'Important, but I can work with existing templates',s:'Branding matters but I\'m flexible',sc:{tier:2}},
+    {i:'🔧',l:'Not my priority right now — just needs to function',s:'I\'ll brand it later, function first',sc:{tier:0}},
+  ]},
+
+  // ── HOW YOU OPERATE ──────────────────────
+  {sec:2,text:"How many jobs or active projects are you juggling per month?",
+   hint:"This is the number that determines how much your current process is actually costing you.",
+   type:'single',key:'jobVol',
+   opts:[
+    {i:'📝',l:'1–5 jobs per month',s:'Manageable, things feel under control',sc:{tier:1}},
+    {i:'📋',l:'6–15 jobs per month',s:'Getting harder to track — some things slip through',sc:{tier:2}},
+    {i:'📂',l:'16–30 jobs per month',s:'Spreadsheets are breaking down — need a real system',sc:{tier:3}},
+    {i:'🗂️',l:'30+ jobs per month',s:'High volume — disorganization is costing real money',sc:{tier:5}},
+  ]},
+  {sec:2,text:"How are you currently sending quotes and collecting payments?",
+   hint:"Your billing process is often where the most money is being left on the table.",
+   type:'single',key:'billing',
+   opts:[
+    {i:'📱',l:'Text or WhatsApp — photos of notes or verbal agreements',s:'It works, but it looks unprofessional',sc:{tier:3}},
+    {i:'📧',l:'PDF or Google Doc emailed to the client',s:'Better, but not automated or trackable',sc:{tier:2}},
+    {i:'📊',l:'Square, Wave, or a dedicated invoicing app',s:'Digital, but disconnected from my job tracking',sc:{tier:1}},
+    {i:'⚙️',l:'A full accounting or ERP system',s:'Already have something — looking to upgrade',sc:{tier:0}},
+  ]},
+  {sec:2,text:"Do you have a system that tracks every lead from first contact to signed contract?",
+   hint:"This is called a CRM — and most contractors who don't have one are losing thousands per year without knowing it.",
+   type:'single',key:'crm',
+   opts:[
+    {i:'✅',l:'Yes — I track every lead from contact to close',s:'I know my numbers, nothing falls through',sc:{tier:0}},
+    {i:'🧠',l:'Sort of — I keep it in my head or a notebook',s:'I remember most of them, but definitely lose some',sc:{tier:3}},
+    {i:'❌',l:'No — leads come in and I just hope I remember',s:'I know I\'m losing money here',sc:{tier:4}},
+  ]},
+  {sec:2,text:"Do your crew members, foremen, or office staff need to log into your system?",
+   hint:"Multi-user access changes the platform plan — let's get this right from the start.",
+   type:'single',key:'multiUser',
+   opts:[
+    {i:'👤',l:'No — just me, I\'m the only one who needs access',s:'Solo admin',sc:{tier:0,users:1}},
+    {i:'👥',l:'1–2 other people need access',s:'Office manager or business partner',sc:{tier:1,users:2}},
+    {i:'👷',l:'3–5 people need access',s:'Field crew leads and office combined',sc:{tier:2,users:4}},
+    {i:'🏗️',l:'6 or more people need their own logins',s:'Full team across departments',sc:{tier:4,users:6}},
+  ]},
+  {sec:2,text:"Do you manage subcontractors or coordinate multiple field crews?",
+   hint:"Dispatching, job assignment, real-time updates from the field — this requires a specific setup.",
+   type:'single',key:'crews',
+   opts:[
+    {i:'✅',l:'Yes — I dispatch and coordinate multiple crews regularly',s:'Scheduling is complex and costs time',sc:{tier:3}},
+    {i:'🤝',l:'Sometimes — I bring in subs for specific jobs',s:'Not constant, but it happens',sc:{tier:1}},
+    {i:'❌',l:'No — it\'s just me or one helper on every job',s:'No dispatch coordination needed',sc:{tier:0}},
+  ]},
+  {sec:2,text:"How do you keep track of materials and supply orders?",
+   hint:"Proper inventory tracking typically saves $5,000–$15,000 per year in waste and over-ordering.",
+   type:'single',key:'inv',
+   opts:[
+    {i:'🧠',l:'It\'s in my head — I just know what we need',s:'Works until it doesn\'t',sc:{tier:2}},
+    {i:'📊',l:'A spreadsheet I update manually',s:'Takes time but I track it',sc:{tier:2}},
+    {i:'⚙️',l:'I already have a system handling this',s:'Inventory is under control',sc:{tier:0}},
+    {i:'❌',l:'I don\'t really track materials formally',s:'Not relevant to my service type',sc:{tier:0}},
+  ]},
+
+  // ── WHAT YOU NEED ─────────────────────────
+  {sec:3,text:"Which of these would immediately impact your business if you had them?",
+   hint:"Be honest — pick the ones that would make a real difference in the next 30 days.",
+   type:'multi',key:'techNeeds',
+   opts:[
+    {i:'🌐',l:'A professional website that looks better than my competitors'},
+    {i:'📞',l:'A CRM so I never lose track of a lead again'},
+    {i:'📅',l:'Online booking so clients can schedule without calling me'},
+    {i:'💰',l:'Digital invoicing and online payment collection'},
+    {i:'📋',l:'A system to track every job from start to finish'},
+    {i:'📦',l:'Inventory and material order tracking'},
+    {i:'📊',l:'Monthly reports showing my revenue, margins, and growth'},
+    {i:'👤',l:'A portal where my clients can log in and see their projects'},
+   ],
+   scoreMap:{'📞':{tier:2},'📅':{tier:2},'💰':{tier:2},'📋':{tier:3},'📦':{tier:3},'📊':{tier:4},'👤':{tier:5}}},
+  {sec:3,text:"Would you want your clients to log into a system with YOUR company's name and logo on it?",
+   hint:"A branded client portal means your clients see F.R.E. Contractor — not Odoo, not any other platform.",
+   type:'single',key:'portal',
+   opts:[
+    {i:'🏛️',l:'Yes — I want clients logging into MY branded system',s:'My company name and identity, full experience',sc:{tier:5}},
+    {i:'📧',l:'No — email and phone communication works fine for me',s:'No portal needed right now',sc:{tier:0}},
+    {i:'🤔',l:'That\'s something I\'d want eventually, not day one',s:'Yes in the future, not my immediate priority',sc:{tier:2}},
+  ]},
+  {sec:3,text:"When a client books a job online, should payment happen automatically — without you doing anything?",
+   hint:"Full automation means deposits collected, confirmations sent, calendar updated — all while you're on the job site.",
+   type:'single',key:'autopay',
+   opts:[
+    {i:'⚡',l:'Yes — fully automated, zero manual steps',s:'Client books, system handles everything',sc:{tier:4}},
+    {i:'✅',l:'Yes, but I want to review and approve before charging',s:'Semi-automated works for me',sc:{tier:2}},
+    {i:'❌',l:'I handle payments personally — I call and collect',s:'No automation needed',sc:{tier:0}},
+  ]},
+  {sec:3,text:"How important is ranking on Google when someone searches for contractors in your area?",
+   hint:"When a homeowner in the Bronx Googles \"contractor near me\" — does your name appear?",
+   type:'single',key:'seo',
+   opts:[
+    {i:'🎯',l:'Critical — Google leads are my main source of new business',s:'Every position I move up = more revenue',sc:{tier:3}},
+    {i:'👍',l:'Very important — I want to be found and I\'m not ranking well',s:'Currently invisible online',sc:{tier:2}},
+    {i:'🤝',l:'Moderate — most of my work comes through referrals',s:'Word of mouth, but want backup',sc:{tier:1}},
+    {i:'➡️',l:'Low priority — I have more work than I can handle right now',s:'Not my current bottleneck',sc:{tier:0}},
+  ]},
+  {sec:3,text:"Will you be operating in multiple areas, boroughs, or territories?",
+   hint:"Bronx, Manhattan, Westchester, Long Island — multi-territory setups need specific architecture.",
+   type:'single',key:'multiLoc',
+   opts:[
+    {i:'🗺️',l:'Yes — I serve or plan to serve multiple territories',s:'I need tracking across locations',sc:{tier:4}},
+    {i:'📍',l:'One area for now — focused and local',s:'Single-territory operation',sc:{tier:0}},
+  ]},
+  {sec:3,text:"Do you need your system to work in both English and Spanish?",
+   hint:"Serving Spanish-speaking clients or staff in the Bronx and NYC metro area.",
+   type:'single',key:'bi',
+   opts:[
+    {i:'🌐',l:'Yes — English and Spanish both required',s:'My clients or crew communicate in Spanish',sc:{tier:2}},
+    {i:'🇺🇸',l:'English only is fine',s:'No bilingual requirement',sc:{tier:0}},
+  ]},
+
+  // ── YOUR INVESTMENT ───────────────────────
+  {sec:4,text:"What's a realistic investment for getting this built right now?",
+   hint:"There's a winning path at every level — this just helps us show you the right one.",
+   type:'single',key:'setupBdg',
+   opts:[
+    {i:'💵',l:'Under $1,500',s:'Entry position — get online fast',sc:{tier:0,budget:0}},
+    {i:'💵',l:'$1,500 – $3,000',s:'Foundation build — real presence, real tools',sc:{tier:1,budget:1}},
+    {i:'💵',l:'$3,000 – $5,000',s:'Growth system — CRM, bookings, invoicing',sc:{tier:2,budget:2}},
+    {i:'💵',l:'$5,000 – $8,995',s:'Full ERP suite — complete business operations',sc:{tier:4,budget:4}},
+    {i:'💵',l:'$9,000 – $15,000',s:'Institutional grade — no corners cut',sc:{tier:5,budget:5}},
+    {i:'💵',l:'$15,000+',s:'Elite — full custom platform, my brand, my system',sc:{tier:6,budget:6}},
+  ]},
+  {sec:4,text:"What monthly budget makes sense for ongoing management and support?",
+   hint:"This keeps your system updated, monitored, backed up, and optimized every month.",
+   type:'single',key:'moBdg',
+   opts:[
+    {i:'💵',l:'Under $200/mo',s:'Bare minimum — basic hosting only',sc:{budget:0}},
+    {i:'💵',l:'$200 – $350/mo',s:'Core management — essentials covered',sc:{budget:1}},
+    {i:'💵',l:'$350 – $499/mo',s:'Full managed service — all tasks included',sc:{budget:2}},
+    {i:'💵',l:'$500 – $700/mo',s:'Premium — everything plus priority response',sc:{budget:3}},
+    {i:'💵',l:'$700+/mo',s:'Elite — full team on my account dedicated',sc:{budget:4}},
+  ]},
+  {sec:4,text:"Would you rather pay month-to-month, or pay annually and keep more money?",
+   hint:"Paying annually saves you $1,000 per year and locks your rate for 24 months.",
+   type:'single',key:'payStyle',
+   opts:[
+    {i:'📅',l:'Month-to-month — I want flexibility',s:'$499/mo, cancel with 30 days notice',sc:{budget:0}},
+    {i:'⭐',l:'Annual — I\'ll take the $1,000 savings',s:'$4,988/yr — two months free, locked for 24 months',sc:{budget:2}},
+    {i:'🤔',l:'I\'ll decide that after I see what I\'m getting',s:'Decide payment style after review',sc:{budget:0}},
+  ]},
+  {sec:4,text:"How fast do you need to be operational?",
+   hint:"We have paths that get you live in weeks and paths that take 90 days to do it right.",
+   type:'single',key:'timeline',
+   opts:[
+    {i:'⚡',l:'As fast as possible — I need something live in 2–3 weeks',s:'Rapid deployment, starter build',sc:{tier:1}},
+    {i:'📅',l:'30–60 days — good pace, full quality',s:'Standard timeline, no shortcuts',sc:{tier:3}},
+    {i:'🗓️',l:'60–90 days is fine — I want it done right',s:'Full build, everything built properly',sc:{tier:4}},
+    {i:'🔮',l:'I\'m planning ahead — 3–6 months from now',s:'No rush, getting it perfect',sc:{tier:4}},
+  ]},
+  {sec:4,text:"Are you open to starting at one level now and growing into more as revenue increases?",
+   hint:"The most successful businesses start smart — not necessarily all-in on day one.",
+   type:'single',key:'phaseIn',
+   opts:[
+    {i:'✅',l:'Yes — start where I am, grow into it as it pays for itself',s:'Smart scaling makes sense'},
+    {i:'🎯',l:'No — I want the complete system from day one',s:'All-in, no half measures'},
+    {i:'🤔',l:'Show me both paths and I\'ll decide',s:'Open to it, need to see the numbers'},
+  ]},
+
+  // ── YOUR VISION ───────────────────────────
+  {sec:5,text:"What's the one thing you most want to fix or improve in the next 12 months?",
+   hint:"Your answer here shapes everything we prioritize in your plan.",
+   type:'single',key:'goal',
+   opts:[
+    {i:'💰',l:'Win more contracts and grow revenue',s:'More leads, better closing rate',sc:{tier:3}},
+    {i:'⚙️',l:'Stop the chaos — get organized so nothing falls through',s:'Systems that actually work',sc:{tier:3}},
+    {i:'👷',l:'Build my team and stop doing everything myself',s:'Systems that support growth',sc:{tier:4}},
+    {i:'🏆',l:'Look like the most professional contractor in my market',s:'Presentation and credibility',sc:{tier:4}},
+    {i:'💵',l:'Get paid faster — cut down unpaid invoices',s:'Cash flow is the real problem',sc:{tier:3}},
+    {i:'🌐',l:'Expand into new areas or types of work',s:'Controlled geographic or service expansion',sc:{tier:5}},
+  ]},
+  {sec:5,text:"Where do you realistically see your business in 3 years?",
+   hint:"The infrastructure you build today needs to support that future, not just today.",
+   type:'single',key:'vision',
+   opts:[
+    {i:'🌱',l:'Same size, but running smoother and more profitably',s:'Optimize, not necessarily grow',sc:{tier:2}},
+    {i:'📈',l:'2–3x revenue with a stronger team',s:'Real, planned growth ahead',sc:{tier:4}},
+    {i:'🏗️',l:'Full company — multiple crews, multiple territories',s:'Building something real',sc:{tier:5}},
+    {i:'🏢',l:'Multiple brands, franchise model, or major expansion',s:'Institutional-level ambition',sc:{tier:6}},
+  ]},
+  {sec:5,text:"How comfortable are you with technology and software?",
+   hint:"No shame either way — this determines how hands-off we engineer your system.",
+   type:'single',key:'techComfort',
+   opts:[
+    {i:'📱',l:'Very — I pick up new apps quickly',s:'Comfortable, no hand-holding needed',sc:{cx:-1}},
+    {i:'💻',l:'Moderate — I can learn with some guidance',s:'Not a tech person, but not afraid of it',sc:{cx:0}},
+    {i:'📞',l:'Low — I\'d rather call someone when something comes up',s:'Need a team I can reach',sc:{cx:2,tier:2}},
+    {i:'✋',l:'I want your team to handle everything — just give me the reports',s:'Completely hands-off',sc:{cx:3,tier:3}},
+  ]},
+  {sec:5,text:"How important is it that your platform is kept up-to-date, monitored, and managed for you monthly?",
+   hint:"Fully managed means you focus on running the business — we handle everything behind the scenes.",
+   type:'single',key:'mgdImp',
+   opts:[
+    {i:'🏆',l:'Essential — I never want to think about the tech side',s:'That\'s exactly what I\'m paying for',sc:{tier:4}},
+    {i:'✅',l:'Very important — keep it running and send me updates',s:'Hands-off but I want visibility',sc:{tier:3}},
+    {i:'🔧',l:'I can manage it myself once it\'s set up',s:'Just build it, I\'ll run it',sc:{tier:1}},
+  ]},
+  {sec:5,text:"When you look back a year from now, what would make you say this was the best decision you made for your business?",
+   hint:"Your definition of success is what we engineer toward.",
+   type:'single',key:'success',
+   opts:[
+    {i:'💰',l:'More revenue coming in with less effort on my end'},
+    {i:'⚙️',l:'My team operates without me having to manage every detail'},
+    {i:'🏆',l:'Every client thinks I run one of the best operations in the city'},
+    {i:'📊',l:'I always know exactly where my money is and where it\'s going'},
+    {i:'😌',l:'I can step away and the business keeps running without me'},
+  ]},
+];
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let cQ=0;
+const ans={};
+
+// ══════════════════════════════════════════════
+// SCORING
+// ══════════════════════════════════════════════
+function score(){
+  let tier=0,budget=0,cx=0,users=1;
+  QS.forEach(q=>{
+    const a=ans[q.key];
+    if(!a)return;
+    if(q.type==='single'){
+      const o=q.opts.find(x=>x.l===a);
+      if(o&&o.sc){
+        if(o.sc.tier!==undefined)tier+=o.sc.tier;
+        if(o.sc.budget!==undefined)budget+=o.sc.budget;
+        if(o.sc.cx!==undefined)cx+=o.sc.cx;
+        if(o.sc.users!==undefined)users=Math.max(users,o.sc.users);
+      }
+    }else if(q.type==='multi'&&Array.isArray(a)){
+      a.forEach(l=>{
+        const o=q.opts.find(x=>x.l===l);
+        if(o&&q.scoreMap){
+          const m=q.scoreMap[o.i];
+          if(m&&m.tier!==undefined)tier+=m.tier;
+        }
+      });
+    }
+  });
+  return{tier,budget,cx,users};
+}
+
+function tierIdx(sc){
+  const bdg=ans.setupBdg||'';
+  if(bdg==='Under $1,500')return 0;
+  if(bdg==='$1,500 – $3,000')return Math.min(sc.tier,2);
+  if(bdg==='$3,000 – $5,000')return Math.min(sc.tier,3);
+  if(sc.tier<=5)return 1;
+  if(sc.tier<=10)return 2;
+  if(sc.tier<=16)return 3;
+  if(sc.tier<=22)return 4;
+  if(sc.tier<=30)return 5;
+  return 6;
+}
+
+// ══════════════════════════════════════════════
+// TIER DATA — 100% CLIENT VOICE
+// ══════════════════════════════════════════════
+const TIERS=[
+  {id:0,code:'O-1',name:'Starter Web Presence',
+   headline:'Your business goes online — professionally.',
+   desc:'A clean, custom-branded website that immediately separates you from every competitor still using a Facebook page. Clients find you, call you, contact you. Clean. Fast. Yours.',
+   setup:1500,mo:199,annualSetup:null,
+   inc:['Custom website — 5 pages, your branding','Service area map + contact form','Mobile-optimized for every device','Google Business Profile setup','SSL certificate + your domain','Contact form straight to your email'],
+   excl:['Lead tracking or CRM','Online booking system','Invoicing or payments','Job management'],
+   msLabel:'Starter',msAmt:[[' Build & Launch',1500]],managed:'Core 6 tasks'},
+  {id:1,code:'O-2',name:'Digital Foundation',
+   headline:'Stop losing leads. Start booking automatically.',
+   desc:'Your website plus an automated booking system plus lead capture — the minimum a service contractor needs to compete in 2026. Clients schedule estimates without ever calling you. Every lead logged.',
+   setup:2500,mo:299,annualSetup:null,
+   inc:['Custom website — 8 pages','Clients book appointments online — automatically','Lead capture → instant notifications to you','Google Reviews integration','Square payment link','Local SEO foundation','Branded email setup'],
+   excl:['Full CRM pipeline','Project management','Invoicing system'],
+   msLabel:'Foundation',msAmt:[['Discovery & Build',1500],['Integration & Launch',1000]],managed:'8 core tasks'},
+  {id:2,code:'O-3',name:'Growth Command',
+   headline:'Your entire client flow — automated from first call to paid invoice.',
+   desc:'CRM, online bookings, quotes that go out in seconds, invoices that get paid instantly. Built for a contractor ready to run a real operation — not a side hustle.',
+   setup:4500,mo:399,annualSetup:null,
+   inc:['Custom website — 10 pages','Odoo CRM — every lead tracked and followed up','Online booking + automated scheduling','Quote & invoice generation in seconds','Square + Stripe payment processing','Email marketing (basic)','Local SEO + Google priority indexing','Monthly performance report sent to you'],
+   excl:['Field service dispatching module','Advanced project management','Client portal'],
+   msLabel:'Growth',msAmt:[['Architecture & Discovery',1500],['Build & Integration',1500],['Launch & Handoff',1500]],managed:'10 core tasks'},
+  {id:3,code:'O-4',name:'Operations Command',
+   headline:'From estimates to crews to cash — one system that runs it all.',
+   desc:'Project management, job tracking, crew coordination, invoicing, and CRM — unified. For a contractor managing multiple jobs and a real crew who needs to stop chasing information.',
+   setup:6500,mo:449,annualSetup:null,
+   inc:['Custom website — 12 pages','Complete CRM pipeline — nothing falls through','Project & task management for every job','Field service scheduling + crew assignments','Invoicing + payment collection hub','Team access — up to 3 people','Inventory basics','Google + Square bridge','Monthly analytics report'],
+   excl:['Custom-branded client portal','Advanced inventory','Multi-territory'],
+   msLabel:'Operations',msAmt:[['Architecture & Discovery',2000],['Integration & E-Commerce',2500],['Go-Live & Handoff',2000]],managed:'10 core tasks'},
+  {id:4,code:'O-5',name:'Professional Operator',
+   headline:'The system that matches your ambition.',
+   desc:'Advanced reporting, multi-user team access, full field operations — built for an established operation already doing serious volume and planning to do more.',
+   setup:7500,mo:499,annualSetup:4988,
+   inc:['Custom website — 15 pages','Enterprise CRM pipeline','Advanced project management','Multi-crew field service operations','Full invoicing + accounts receivable','Square + Stripe + QuickBooks sync','Team access — up to 5 people','Inventory + materials tracking','Advanced analytics dashboard','Priority SEO management monthly'],
+   excl:['Custom-branded client portal'],
+   msLabel:'Professional',msAmt:[['Architecture & Discovery',2500],['Integration & Field Service',2500],['Beta & Go-Live',2500]],managed:'Full 12-task managed service'},
+  {id:5,code:'O-6',name:'Full Online ERP',
+   headline:'Your entire business — engineered, automated, and running.',
+   desc:'The complete system. Website, CRM, invoicing, projects, e-commerce, field service, inventory — all fully operational and fully managed. This is what serious contractors in the Bronx build on when they\'re done messing around with band-aid solutions.',
+   setup:8995,mo:499,annualSetup:4988,
+   inc:['Custom website + e-commerce product catalog','Enterprise CRM — every lead tracked and closed','Full project & task management across all jobs','Field service + multi-crew scheduling','Invoicing, deposits & payment hub','Square POS + Stripe integration','Team access — up to 5 people','Inventory + vendor management','Full analytics + monthly PDF report sent to you','Priority Google Indexing + SEO every month','24-month price guarantee on your managed rate'],
+   excl:['Custom-branded Titan client portal (available as your next phase)'],
+   msLabel:'Full ERP',msAmt:[['Architecture & Discovery',3000],['Integration & E-Commerce',3000],['Beta Testing & Go-Live',2995]],managed:'Full 12-task managed service'},
+  {id:6,code:'T-4',name:'Titan Corporate Portal',
+   headline:'Your clients log into YOUR world. Not Odoo\'s. Yours.',
+   desc:'Everything in the Full ERP — PLUS a fully custom-built client portal under your brand. Your clients log into F.R.E. Contractor\'s portal. They track their projects, approve work, pay deposits, and message your team — and they never see another company\'s name.',
+   setup:18995,mo:599,annualSetup:6988,
+   inc:['Every feature of the Full O-6 ERP','Custom Titan client portal — your name, logo, colors','Clients track jobs and approve work inside your system','AI-powered search and recommendations','3D motion design (60fps premium experience)','Dedicated account manager — direct line','Quarterly strategic review sessions','Multi-location and territory management','Enterprise SLA — 4-hour guaranteed response'],
+   excl:[],
+   msLabel:'Elite',msAmt:[['Architecture & Discovery',5000],['Titan Portal Build',6000],['ERP Integration & Beta',4500],['Go-Live & Handoff',3495]],managed:'Elite 12-task + dedicated manager'},
+];
+
+const MS_TBL=[
+  [[' Build & Launch',1500]],
+  [['Discovery & Build',1500],['Integration & Launch',1000]],
+  [['Architecture & Discovery',1500],['Build & Integration',1500],['Launch & Handoff',1500]],
+  [['Architecture & Discovery',2000],['Integration & E-Commerce',2500],['Go-Live & Handoff',2000]],
+  [['Architecture & Discovery',2500],['Integration & Field Service',2500],['Beta & Go-Live',2500]],
+  [['Architecture & Discovery',3000],['Integration & E-Commerce',3000],['Beta Testing & Go-Live',2995]],
+  [['Architecture & Discovery',5000],['Titan Portal Build',6000],['ERP Integration & Beta',4500],['Go-Live & Handoff',3495]],
+];
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ(){
+  const q=QS[cQ];
+  const total=QS.length;
+  const pct=Math.round(((cQ+1)/total)*100);
+
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('sectLbl').textContent=`Step ${q.sec+1} of 6 — ${SECS[q.sec]}`;
+  document.getElementById('qCt').textContent=`${cQ+1} of ${total}`;
+  document.getElementById('qBadge').textContent=`Step ${cQ+1}`;
+  document.getElementById('qSecName').textContent=SECS[q.sec];
+  document.getElementById('qText').textContent=q.text;
+  document.getElementById('qHint').textContent=q.hint;
+  document.getElementById('qCtBot').textContent=`${cQ+1} / ${total}`;
+
+  for(let i=0;i<6;i++){
+    const t=document.getElementById('tab'+i);
+    t.className='pill';
+    if(i<q.sec)t.classList.add('done');
+    else if(i===q.sec)t.classList.add('active');
+  }
+  document.getElementById('btnBack').style.display=cQ===0?'none':'inline-block';
+
+  const body=document.getElementById('qBody');
+  body.innerHTML='';
+
+  if(q.type==='single'){
+    const w=document.createElement('div');w.className='opts';
+    const cur=ans[q.key];
+    q.opts.forEach(o=>{
+      const b=document.createElement('button');
+      b.className='opt'+(cur===o.l?' sel':'');
+      b.innerHTML=`<div class="opt-icon">${o.i}</div>
+        <div class="opt-body">
+          <div class="opt-label">${o.l}</div>
+          ${o.s?`<div class="opt-sub">${o.s}</div>`:''}
+        </div>
+        <div class="opt-check">${cur===o.l?'✓':''}</div>`;
+      b.onclick=()=>{
+        ans[q.key]=o.l;
+        renderQ();
+        setTimeout(()=>{if(cQ<QS.length-1)nextQ();else showCapture();},380);
+      };
+      w.appendChild(b);
+    });
+    body.appendChild(w);
+  }else if(q.type==='multi'){
+    const note=document.createElement('div');
+    note.className='multi-note';note.textContent='Select everything that applies to you';
+    body.appendChild(note);
+    const w=document.createElement('div');w.className='opts';
+    const cur=ans[q.key]||[];
+    q.opts.forEach(o=>{
+      const b=document.createElement('button');
+      b.className='opt'+(cur.includes(o.l)?' sel':'');
+      b.innerHTML=`<div class="opt-icon">${o.i}</div>
+        <div class="opt-body">
+          <div class="opt-label">${o.l}</div>
+          ${o.s?`<div class="opt-sub">${o.s}</div>`:''}
+        </div>
+        <div class="opt-check">${cur.includes(o.l)?'✓':''}</div>`;
+      b.onclick=()=>{
+        let c=ans[q.key]||[];
+        c=c.includes(o.l)?c.filter(x=>x!==o.l):[...c,o.l];
+        ans[q.key]=c;renderQ();
+      };
+      w.appendChild(b);
+    });
+    body.appendChild(w);
+  }
+
+  const btnNext=document.getElementById('btnNext');
+  btnNext.textContent=cQ<QS.length-1?'Continue →':'Unlock My Plan →';
+
+  const card=document.getElementById('quizCard');
+  card.classList.remove('fade-up');
+  void card.offsetWidth;
+  card.classList.add('fade-up');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextQ(){
+  const q=QS[cQ];
+  if(!ans[q.key]||(Array.isArray(ans[q.key])&&ans[q.key].length===0)){
+    if(q.type==='multi')ans[q.key]=[];
+    else{
+      const card=document.getElementById('quizCard');
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+      return;
+    }
+  }
+  if(cQ<QS.length-1){cQ++;renderQ();}
+  else showCapture();
+}
+function prevQ(){if(cQ>0){cQ--;renderQ();}}
+
+// ══════════════════════════════════════════════
+// BUILD RESULTS — 100% CLIENT VOICE + 48 LAWS
+// ══════════════════════════════════════════════
+function showCapture(){
+  document.getElementById('quizCard').style.display='none';
+  document.getElementById('progWrap').style.display='none';
+  const c = document.getElementById('captureCard');
+  c.style.display='block';
+  c.classList.remove('fade-up');
+  void c.offsetWidth;
+  c.classList.add('fade-up');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitCapture(){
+  const n=document.getElementById('capName').value.trim();
+  const e=document.getElementById('capEmail').value.trim();
+  const c=document.getElementById('captureCard');
+  if(!n || !e){
+    c.classList.remove('shake');
+    void c.offsetWidth;
+    c.classList.add('shake');
+    // Highlight inputs
+    if(!n) document.getElementById('capName').style.borderColor='var(--orange)';
+    if(!e) document.getElementById('capEmail').style.borderColor='var(--orange)';
+    setTimeout(()=>{
+      document.getElementById('capName').style.borderColor='var(--br)';
+      document.getElementById('capEmail').style.borderColor='var(--br)';
+    },1500);
+    return;
+  }
+  c.style.display='none';
+  showResults();
+}
+
+function showResults(){
+  const sc=score();
+  const idx=tierIdx(sc);
+  const t=TIERS[Math.min(idx,TIERS.length-1)];
+  const ms=MS_TBL[Math.min(idx,MS_TBL.length-1)];
+  const annual=ans.payStyle==='Annual — I\'ll take the $1,000 savings';
+  const phaseIn=ans.phaseIn==='Yes — start where I am, grow into it as it pays for itself';
+
+  // Odoo user cost
+  let odooMo=0,odooLbl='Included (Odoo Community — $0)';
+  const mu=ans.multiUser||'';
+  if(t.code==='O-09' || t.code==='O-10' || t.code==='T-09' || t.code==='T-10'){
+    if(mu.includes('1–2')){odooMo=62;odooLbl='~$62/mo (Odoo Ent. 2 users)';}
+    else if(mu.includes('3–5')){odooMo=93;odooLbl='~$93/mo (Odoo Ent. 3–5 users)';}
+    else if(mu.includes('6 or more')){odooMo=155;odooLbl='~$155/mo (Odoo Ent. 6+ users)';}
+  }
+
+  const mgrMo=annual&&t.annualSetup?Math.round(t.annualSetup/12):t.mo;
+  const totalMo=mgrMo+odooMo;
+  const totalAnnual=annual&&t.annualSetup?(t.annualSetup+(odooMo*12)):((t.mo+odooMo)*12);
+
+  // Law 27 — personalized success context
+  const goalMap={
+    'Win more contracts and grow revenue':'Every lead you\'ve been losing is now tracked, followed up, and closed.',
+    'Stop the chaos — get organized so nothing falls through':'The system runs your operations so you can focus on running your business.',
+    'Build my team and stop doing everything myself':'Your infrastructure now supports a real team — without you being the bottleneck.',
+    'Look like the most professional contractor in my market':'Every client who interacts with your business sees a top-tier operation.',
+    'Get paid faster — cut down unpaid invoices':'Invoices go out automatically. Deposits collected online. Cash flow fixed.',
+    'Expand into new areas or types of work':'Built to scale across territories, services, and team size without rebuilding.',
+  };
+  const goalMsg=goalMap[ans.goal]||'Your business runs better, earns more, and operates without you having to touch every detail.';
+
+  document.getElementById('quizCard').style.display='none';
+  document.getElementById('progWrap').style.display='none';
+  const fab=document.getElementById('fabBtn');
+  fab.textContent='⬇ Save Your Blueprint';
+
+  const r=document.getElementById('results');
+  r.style.display='block';
+
+  // Law 33 — identify their thumbscrew (specific pain from their answers)
+  const billingPain=ans.billing&&ans.billing.includes('Text or WhatsApp');
+  const leadPain=ans.crm&&ans.crm.includes('No — leads come in');
+  const noSite=ans.hasWebsite&&(ans.hasWebsite.includes('Nothing'))||false;
+  let painLine='';
+  if(leadPain) painLine='<p style="color:var(--red);font-size:.78rem;margin-top:6px;">⚠ Based on your answers, you\'re currently losing track of leads regularly — this is likely your biggest revenue leak and the first thing this system fixes.</p>';
+  else if(billingPain) painLine='<p style="color:var(--orange);font-size:.78rem;margin-top:6px;">⚠ Sending quotes by text or WhatsApp is costing you contracts — clients read unprofessional billing as a sign of an unprofessional job. This system changes that immediately.</p>';
+
+  r.innerHTML=`
+
+  <!-- HERO -->
+  <div class="r-hero fade-up">
+    <div class="r-eyebrow">Your Personalized Business Plan — Ready</div>
+    <div class="r-tier">${t.code} — <span>${t.name}</span></div>
+    <div class="r-desc">${t.headline}<br><br>${t.desc}</div>
+    ${painLine}
+
+    <div class="price-row">
+      <div class="p-block">
+        <div class="p-lbl">Your Setup Investment</div>
+        <div class="p-val gold">$${t.setup.toLocaleString()}</div>
+        <div class="p-note">Paid in ${ms.length} phase${ms.length>1?'s':''}</div>
+      </div>
+      <div class="p-block">
+        <div class="p-lbl">Monthly Management</div>
+        <div class="p-val">${annual&&t.annualSetup?'~$'+Math.round(t.annualSetup/12)+'/mo':'$'+t.mo+'/mo'}</div>
+        <div class="p-note">${annual&&t.annualSetup?'Paid annually — you save $1,000':'Flexible monthly billing'}</div>
+      </div>
+      <div class="p-block">
+        <div class="p-lbl">Platform Fee</div>
+        <div class="p-val ${odooMo>0?'orange':''}">${odooMo>0?'$'+odooMo:'$0'}</div>
+        <div class="p-note">${odooMo>0?'Direct to Odoo':'Included (Community)'}</div>
+      </div>
+      <div class="p-block">
+        <div class="p-lbl">After Year 1</div>
+        <div class="p-val gold" style="font-size:1.1rem;">$${totalMo}/mo</div>
+        <div class="p-note">Total operating expense</div>
+      </div>
+    </div>
+
+    <div class="score-wrap">
+      <div class="sc-row"><span>How well this plan fits your business</span><span>${Math.min(98,70+idx*4)}%</span></div>
+      <div class="sc-track"><div class="sc-fill" style="width:${Math.min(98,70+idx*4)}%;background:linear-gradient(90deg,var(--g),#34d399);"></div></div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU GET -->
+  <div class="r-sec fade-up">
+    <div class="r-sec-title">What You Get From Day One</div>
+    <div class="inc-grid">
+      ${t.inc.map(x=>`<div class="inc-item">${x}</div>`).join('')}
+      ${t.excl.map(x=>`<div class="inc-item no">${x}</div>`).join('')}
+    </div>
+  </div>
+
+  <!-- PAYMENT PLAN -->
+  <div class="r-sec fade-up">
+    <div class="r-sec-title">Your Payment Plan — How This Gets Built</div>
+    <div class="ms-wrap">
+      ${ms.map((m,i)=>`<div class="ms-row">
+        <div class="ms-n"><strong>Phase ${i+1}</strong> — ${m[0]}</div>
+        <div class="ms-v">$${m[1].toLocaleString()}</div>
+      </div>`).join('')}
+      <div class="ms-row tot">
+        <div class="ms-n"><strong>Your Total Setup</strong></div>
+        <div class="ms-v">$${t.setup.toLocaleString()}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTHLY COSTS -->
+  <div class="r-sec fade-up">
+    <div class="r-sec-title">Your Monthly & Annual Operating Costs</div>
+    <div class="r-row"><div class="r-key">TodoBuild Managed Services</div><div class="r-val g">$${t.mo}/mo</div></div>
+    <div class="r-row"><div class="r-key">Odoo Platform</div><div class="r-val ${odooMo>0?'orange':'g'}">${odooLbl}</div></div>
+    <div class="r-row"><div class="r-key">Hosting, Backups, Infrastructure</div><div class="r-val g">Included — no extra charge</div></div>
+    ${annual&&t.annualSetup?`<div class="r-row"><div class="r-key">Annual Pre-Pay Option</div><div class="r-val g">$${t.annualSetup.toLocaleString()}/yr — you keep $1,000</div></div>`:''}
+    <div class="r-row" style="border-top:2px solid var(--g);"><div class="r-key" style="color:var(--wh);font-weight:800;">Everything Combined (Monthly)</div><div class="r-val gold">$${totalMo}/mo</div></div>
+    <div class="r-row"><div class="r-key">Everything Combined (Per Year)</div><div class="r-val gold">$${totalAnnual.toLocaleString()}/yr</div></div>
+    <div class="r-row"><div class="r-key">What's Managed Monthly</div><div class="r-val">${t.managed}</div></div>
+  </div>
+
+  <!-- 3 PATHS — LAW 31: CONTROL THE OPTIONS -->
+  <div class="r-sec fade-up">
+    <div class="r-sec-title">Three Ways Successful Businesses Choose to Start</div>
+    <div class="path-grid">
+      <div class="path-card p1">
+        <div class="path-flag g">🏆 The Direct Path</div>
+        <div class="path-title">Full ${t.code} — Own Your Market</div>
+        <div class="path-body">Your entire system built and live in ${ms.length*30} days. ${ms.length} phases, one objective: you operating at the level your business deserves. The most successful contractors don't start small — they start right.</div>
+        <div class="path-quote">"The investment you make today returns itself in the first contract it helps you close."</div>
+      </div>
+      <div class="path-card p2">
+        <div class="path-flag b">🧠 The Builder's Path</div>
+        <div class="path-title">Start at Phase 1 → Grow Into ${t.code}</div>
+        <div class="path-body">Start with your foundation today — website, bookings, and your brand online. Lock your ${t.code} price in the agreement right now. Every dollar you invest moves toward the full system. Nothing wasted.</div>
+        <div class="path-quote">"The smartest move is not always the biggest move — it's the strategic one."</div>
+      </div>
+      <div class="path-card p3">
+        <div class="path-flag gold">⭐ The Investor's Path</div>
+        <div class="path-title">Annual Pre-Pay — Keep Your $1,000</div>
+        <div class="path-body">${annual&&t.annualSetup?`You already said you\'d take the savings. $${t.annualSetup.toLocaleString()}/yr vs $${t.mo*12}/yr — that\'s $1,000 staying in your pocket and your rate locked for 24 months. No surprises.`:`Pay annually instead of monthly. $${t.annualSetup||t.mo*10}/yr locks your rate for 24 months and saves you what amounts to two free months of service every year.`}</div>
+        <div class="path-quote">"Every resource you conserve today becomes advantage tomorrow."</div>
+      </div>
+      <div class="path-card p4">
+        <div class="path-flag o">🔒 Priority Reservation</div>
+        <div class="path-title">Hold Your Build Slot — $500 Today</div>
+        <div class="path-body">Build slots for ${new Date().toLocaleString('default',{month:'long'})} are limited. A $500 priority deposit holds your position and applies directly to Phase 1 — it's not extra, it's just early. Slots are released if not confirmed within 72 hours.</div>
+        <div class="path-quote path-quote" style="border-color:var(--orange);">"Position is won by those who act while others deliberate."</div>
+      </div>
+    </div>
+  </div>
+
+  ${idx<6?`
+  <!-- NEXT LEVEL — LAW 6: COURT ATTENTION -->
+  <div class="next-card gold-c fade-up">
+    <div class="next-eyebrow gold">🚀 Your Next Phase — When You're Ready</div>
+    <div class="next-title">${TIERS[Math.min(idx+1,6)].code}: ${TIERS[Math.min(idx+1,6)].name}</div>
+    <div class="next-body">${TIERS[Math.min(idx+1,6)].headline}<br><br>${TIERS[Math.min(idx+1,6)].desc.split('.')[0]}. <strong>Every dollar you invest today applies toward this upgrade.</strong> No rebuild. No restart. Just growth.</div>
+    <div class="next-price gold">Upgrade Delta: +$${(TIERS[Math.min(idx+1,6)].setup-t.setup).toLocaleString()} when you're ready</div>
+  </div>`:``}
+
+  ${idx<5?`
+  <!-- T-4 VISION — LAW 37: COMPELLING SPECTACLE -->
+  <div class="next-card green-c fade-up">
+    <div class="next-eyebrow g">🏛️ The Standard the Top 1% of Contractors Operate At</div>
+    <div class="next-title">Titan T-4 — Your Own Branded Client Portal</div>
+    <div class="next-body">Imagine your clients logging into <strong>F.R.E. Contractor's portal</strong> — your logo, your colors, your name. They track their project, approve work, pay deposits, and communicate with your team — all inside your brand's platform. Not a third-party app. Yours.<br><br>This is the level that makes competitors want to know your secret.</div>
+    <div class="next-price g">T-4 Available as Your Ultimate Upgrade — +$10,000</div>
+  </div>`:``}
+
+  <!-- CLOSING — LAW 27: MAKE THEM BELIEVE -->
+  <div class="close-box fade-up">
+    <div class="close-box-icon">🎯</div>
+    <div class="close-box-title">This plan was built around your specific answers.</div>
+    <div class="close-box-body">${goalMsg}<br><br>The businesses that dominate their local market don't have better crews than you. <b>They have better systems.</b> This is yours — built specifically for how F.R.E. Contractor operates, priced for where you are today, and designed to grow with you for the next decade.<br><br><strong>The right time to build is always right now.</strong></div>
+  </div>
+
+  <div class="action-row fade-up">
+    <button class="btn btn-redo" onclick="reset()" style="width:100%; border-radius:12px; padding:16px;">↺ Retake The Blueprint Assessment</button>
+  </div>`;
+}
+
+function reset(){
+  Object.keys(ans).forEach(k=>delete ans[k]);
+  cQ=0;
+  document.getElementById('quizCard').style.display='block';
+  document.getElementById('progWrap').style.display='block';
+  document.getElementById('captureCard').style.display='none';
+  document.getElementById('capName').value='';
+  document.getElementById('capEmail').value='';
+  document.getElementById('capPhone').value='';
+  const fab=document.getElementById('fabBtn');
+  fab.textContent='⬇ Save My Plan';
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+renderQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "comment": "F.R.E. Contractor L.L.C. - Strapi Content Type Schema Definition",
+  "contentTypes": [
+    {
+      "collectionName": "leads",
+      "info": {
+        "singularName": "lead",
+        "pluralName": "leads",
+        "displayName": "Customer Leads",
+        "description": "Inbound customer leads and project requests"
+      },
+      "attributes": {
+        "fullName": { "type": "string", "required": true },
+        "email": { "type": "email", "required": true },
+        "phone": { "type": "string", "required": true },
+        "serviceType": { "type": "enumeration", "enum": ["Interior Painting", "Cabinet Refinishing", "Popcorn Ceiling Removal", "Commercial Finish", "Stucco / Masonry", "Other"], "required": true },
+        "borough": { "type": "enumeration", "enum": ["Bronx", "Manhattan", "Brooklyn", "Queens", "Staten Island", "Westchester / NJ"] },
+        "message": { "type": "text" },
+        "status": { "type": "enumeration", "enum": ["New", "Contacted", "Estimated", "Contracted", "Completed", "Archived"], "default": "New" }
+      }
+    },
+    {
+      "collectionName": "projects",
+      "info": {
+        "singularName": "project",
+        "pluralName": "projects",
+        "displayName": "Portfolio Projects",
+        "description": "Showcase portfolio with before/after photos"
+      },
+      "attributes": {
+        "title": { "type": "string", "required": true },
+        "category": { "type": "enumeration", "enum": ["Residential", "Cabinet Refinishing", "Commercial Retail", "NYCHA Municipal"], "required": true },
+        "location": { "type": "string" },
+        "completionDate": { "type": "date" },
+        "beforeImage": { "type": "media", "multiple": false, "required": false },
+        "afterImage": { "type": "media", "multiple": false, "required": true },
+        "description": { "type": "richtext" }
+      }
+    }
+  ]
+}

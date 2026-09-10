@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Instant Estimate | F.R.E. Contractor LLC — Bronx NYC</title>
+    <meta name="description" content="Get an instant painting estimate for your Bronx or NYC home or business. 4-step calculator for interior painting, cabinet refinishing, popcorn ceiling removal, and commercial projects.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+<div id="site-header"></div>
+<main class="page-wrapper">
+
+    <section class="page-hero">
+        <div class="glow-orb glow-orb-amber" style="width:400px;height:400px;top:-80px;right:-40px;"></div>
+        <div class="container">
+            <div class="page-hero-eyebrow reveal">💰 Free Estimate</div>
+            <h1 class="page-hero-title reveal reveal-delay-1">Instant Price<br><span class="gradient-text">Estimate</span></h1>
+            <p class="page-hero-desc reveal reveal-delay-2">Get a real price range in 60 seconds. No email required — just answer 4 quick questions about your project.</p>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container" style="max-width:860px;">
+            <div class="estimator-card reveal">
+                <!-- STEP INDICATORS -->
+                <div class="est-steps">
+                    <div class="est-step active" data-step="1"><span class="est-step-num">1</span><span class="est-step-label">Project Type</span></div>
+                    <div class="est-step-line"></div>
+                    <div class="est-step" data-step="2"><span class="est-step-num">2</span><span class="est-step-label">Scope</span></div>
+                    <div class="est-step-line"></div>
+                    <div class="est-step" data-step="3"><span class="est-step-num">3</span><span class="est-step-label">Prep Level</span></div>
+                    <div class="est-step-line"></div>
+                    <div class="est-step" data-step="4"><span class="est-step-num">4</span><span class="est-step-label">Your Estimate</span></div>
+                </div>
+
+                <!-- STEP 1: PROJECT TYPE -->
+                <div class="est-panel" id="est-step-1">
+                    <h2 class="est-panel-title">What type of project?</h2>
+                    <div class="est-type-grid">
+                        <button class="est-type-btn" data-type="interior" onclick="EST.selectType(this)">
+                            <span class="est-type-icon">🖌️</span>
+                            <strong>Interior Painting</strong>
+                            <span>Rooms, ceilings, trim</span>
+                        </button>
+                        <button class="est-type-btn" data-type="cabinet" onclick="EST.selectType(this)">
+                            <span class="est-type-icon">🗄️</span>
+                            <strong>Cabinet Refinishing</strong>
+                            <span>Kitchen transformation</span>
+                        </button>
+                        <button class="est-type-btn" data-type="popcorn" onclick="EST.selectType(this)">
+                            <span class="est-type-icon">⬆️</span>
+                            <strong>Popcorn Ceiling</strong>
+                            <span>Removal + skim coat</span>
+                        </button>
+                        <button class="est-type-btn" data-type="commercial" onclick="EST.selectType(this)">
+                            <span class="est-type-icon">🏢</span>
+                            <strong>Commercial Project</strong>
+                            <span>Business / GC bid</span>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary est-next" onclick="EST.next()" disabled id="step1-next">Next Step →</button>
+                </div>
+
+                <!-- STEP 2: SCOPE -->
+                <div class="est-panel hidden" id="est-step-2">
+                    <h2 class="est-panel-title">Tell us the scope</h2>
+                    <div id="scope-interior">
+                        <div class="form-group">
+                            <label class="form-label">Number of rooms / areas</label>
+                            <div class="range-with-value">
+                                <input type="range" min="1" max="12" value="2" id="rooms-slider" oninput="EST.updateScope()">
+                                <span class="range-value" id="rooms-val">2 rooms</span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:20px;">
+                            <label class="form-label">Include ceilings?</label>
+                            <div class="toggle-row">
+                                <button class="toggle-opt" data-val="no" onclick="EST.toggleOpt(this, 'ceiling')">No — walls only</button>
+                                <button class="toggle-opt active" data-val="yes" onclick="EST.toggleOpt(this, 'ceiling')">Yes — walls + ceilings</button>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:20px;">
+                            <label class="form-label">Include trim, doors & baseboards?</label>
+                            <div class="toggle-row">
+                                <button class="toggle-opt active" data-val="no" onclick="EST.toggleOpt(this, 'trim')">No</button>
+                                <button class="toggle-opt" data-val="yes" onclick="EST.toggleOpt(this, 'trim')">Yes (+$150–$250/room)</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scope-cabinet" style="display:none">
+                        <div class="form-group">
+                            <label class="form-label">Number of cabinet doors</label>
+                            <div class="range-with-value">
+                                <input type="range" min="6" max="40" value="20" id="cabinet-slider" oninput="EST.updateScope()">
+                                <span class="range-value" id="cabinet-val">20 doors</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scope-popcorn" style="display:none">
+                        <div class="form-group">
+                            <label class="form-label">Approximate square footage of ceiling</label>
+                            <div class="range-with-value">
+                                <input type="range" min="100" max="3000" step="100" value="800" id="sqft-slider" oninput="EST.updateScope()">
+                                <span class="range-value" id="sqft-val">800 sqft</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scope-commercial" style="display:none">
+                        <div class="form-group">
+                            <label class="form-label">Approximate square footage</label>
+                            <div class="range-with-value">
+                                <input type="range" min="500" max="50000" step="500" value="5000" id="comm-slider" oninput="EST.updateScope()">
+                                <span class="range-value" id="comm-val">5,000 sqft</span>
+                            </div>
+                        </div>
+                        <p style="color:var(--text-muted);font-size:.84rem;margin-top:12px;">Commercial projects receive a formal bid package — this estimate is a rough range only.</p>
+                    </div>
+                    <div class="est-nav">
+                        <button class="btn btn-ghost" onclick="EST.prev()">← Back</button>
+                        <button class="btn btn-primary" onclick="EST.next()">Next Step →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: PREP LEVEL -->
+                <div class="est-panel hidden" id="est-step-3">
+                    <h2 class="est-panel-title">What's the current condition?</h2>
+                    <div class="prep-grid">
+                        <button class="prep-btn" data-level="light" onclick="EST.selectPrep(this)">
+                            <span class="prep-icon">✨</span>
+                            <strong>Light Prep</strong>
+                            <span>Fresh walls, minor scuffs. Ready to paint.</span>
+                            <small>Base price</small>
+                        </button>
+                        <button class="prep-btn active" data-level="moderate" onclick="EST.selectPrep(this)">
+                            <span class="prep-icon">🔧</span>
+                            <strong>Moderate Prep</strong>
+                            <span>Some holes, old paint, needs patching and sanding.</span>
+                            <small>+10–15%</small>
+                        </button>
+                        <button class="prep-btn" data-level="heavy" onclick="EST.selectPrep(this)">
+                            <span class="prep-icon">🏗️</span>
+                            <strong>Heavy Prep</strong>
+                            <span>Peeling paint, water damage, extensive repairs needed.</span>
+                            <small>+20–30%</small>
+                        </button>
+                    </div>
+                    <div class="est-nav">
+                        <button class="btn btn-ghost" onclick="EST.prev()">← Back</button>
+                        <button class="btn btn-primary" onclick="EST.next()">See My Estimate →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: ESTIMATE RESULT + LEAD CAPTURE -->
+                <div class="est-panel hidden" id="est-step-4">
+                    <h2 class="est-panel-title">Your Estimate Range</h2>
+                    <div class="estimate-result-banner">
+                        <div class="est-range">
+                            <span class="est-low" id="est-low">$0</span>
+                            <span class="est-dash">—</span>
+                            <span class="est-high" id="est-high">$0</span>
+                        </div>
+                        <p class="est-disclaimer">Estimate range based on your inputs. Exact pricing requires on-site assessment.</p>
+                    </div>
+                    <div class="estimate-unlock">
+                        <h3>Get Your Full Itemized Breakdown</h3>
+                        <p>Enter your name and phone to receive the complete line-item estimate — including materials, labor, and timeline.</p>
+                        <form id="lead-form-est" novalidate>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="el-name">Your Name *</label>
+                                    <input class="form-input" type="text" id="el-name" required placeholder="Maria Rodriguez">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="el-phone">Phone *</label>
+                                    <input class="form-input" type="tel" id="el-phone" required placeholder="(929) 555-0100">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="el-zip">ZIP Code / Borough</label>
+                                <input class="form-input" type="text" id="el-zip" placeholder="10467 / Bronx">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%;">📋 Get Full Breakdown + Schedule Free Visit</button>
+                        </form>
+                    </div>
+                    <div id="est-confirmed" style="display:none;text-align:center;padding:24px 0;">
+                        <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
+                        <h3 style="color:var(--text-white);margin-bottom:8px;">Perfect! We'll Follow Up Shortly.</h3>
+                        <p style="color:var(--text-muted);margin-bottom:20px;">Expect a call from (929) 412-7546 within 2 hours to confirm details and schedule your free on-site estimate.</p>
+                        <a href="booking.html" class="btn btn-outline">Or Book Online Now →</a>
+                    </div>
+                    <div style="margin-top:24px;">
+                        <button class="btn btn-ghost" onclick="EST.restart()" style="font-size:.8rem;">← Start Over</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TRUST SIGNALS BELOW ESTIMATOR -->
+            <div class="est-trust-row reveal">
+                <div class="est-trust-item">✅ No obligation estimate</div>
+                <div class="est-trust-item">✅ We never share your info</div>
+                <div class="est-trust-item">✅ 2-hour response guarantee</div>
+                <div class="est-trust-item">✅ Free on-site visit included</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/shared.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/chat-widget.js"></script>
+<script>
+const EST = {
+    step: 1,
+    data: { type: null, rooms: 2, cabinets: 20, sqft: 800, commSqft: 5000, ceiling: 'yes', trim: 'no', prep: 'moderate' },
+
+    PRICING: {
+        interior: { base: 450, ceiling: 150, trim: 200 },
+        cabinet:  { perDoor: 60 },
+        popcorn:  { perSqft: 3.5 },
+        commercial: { perSqft: 1.8 },
+    },
+    PREP_MULT: { light: 1, moderate: 1.15, heavy: 1.25 },
+
+    selectType(btn) {
+        document.querySelectorAll('.est-type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.data.type = btn.dataset.type;
+        document.getElementById('step1-next').disabled = false;
+    },
+
+    selectPrep(btn) {
+        document.querySelectorAll('.prep-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.data.prep = btn.dataset.level;
+    },
+
+    toggleOpt(btn, key) {
+        const parent = btn.closest('.toggle-row');
+        parent.querySelectorAll('.toggle-opt').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.data[key] = btn.dataset.val;
+    },
+
+    updateScope() {
+        const rv = document.getElementById('rooms-slider');
+        const cv = document.getElementById('cabinet-slider');
+        const sv = document.getElementById('sqft-slider');
+        const cov = document.getElementById('comm-slider');
+        if (rv) { this.data.rooms = +rv.value; document.getElementById('rooms-val').textContent = rv.value + ' rooms'; }
+        if (cv) { this.data.cabinets = +cv.value; document.getElementById('cabinet-val').textContent = cv.value + ' doors'; }
+        if (sv) { this.data.sqft = +sv.value; document.getElementById('sqft-val').textContent = sv.value.toLocaleString() + ' sqft'; }
+        if (cov) { this.data.commSqft = +cov.value; document.getElementById('comm-val').textContent = (+cov.value).toLocaleString() + ' sqft'; }
+    },
+
+    calcEstimate() {
+        const p = this.PRICING;
+        const mult = this.PREP_MULT[this.data.prep] || 1;
+        let low = 0, high = 0;
+        if (this.data.type === 'interior') {
+            const base = this.data.rooms * p.interior.base;
+            const ceilAdd = this.data.ceiling === 'yes' ? this.data.rooms * p.interior.ceiling : 0;
+            const trimAdd = this.data.trim === 'yes' ? this.data.rooms * p.interior.trim : 0;
+            low  = Math.round((base + ceilAdd + trimAdd) * mult * 0.85);
+            high = Math.round((base + ceilAdd + trimAdd) * mult * 1.2);
+        } else if (this.data.type === 'cabinet') {
+            low  = Math.round(this.data.cabinets * p.cabinet.perDoor * 0.9 * mult);
+            high = Math.round(this.data.cabinets * p.cabinet.perDoor * 1.2 * mult);
+        } else if (this.data.type === 'popcorn') {
+            low  = Math.round(this.data.sqft * 2.5 * mult);
+            high = Math.round(this.data.sqft * 4.5 * mult);
+        } else if (this.data.type === 'commercial') {
+            low  = Math.round(this.data.commSqft * 1.2 * mult);
+            high = Math.round(this.data.commSqft * 2.5 * mult);
+        }
+        return { low, high };
+    },
+
+    showScopeFor(type) {
+        ['interior','cabinet','popcorn','commercial'].forEach(t => {
+            const el = document.getElementById('scope-' + t);
+            if (el) el.style.display = t === type ? '' : 'none';
+        });
+    },
+
+    next() {
+        if (this.step === 1 && !this.data.type) return;
+        if (this.step === 1) this.showScopeFor(this.data.type);
+        if (this.step === 3) {
+            const { low, high } = this.calcEstimate();
+            document.getElementById('est-low').textContent = '$' + low.toLocaleString();
+            document.getElementById('est-high').textContent = '$' + high.toLocaleString();
+            window.__CURRENT_ESTIMATE__ = { low, high, ...this.data };
+        }
+        this.goTo(this.step + 1);
+    },
+
+    prev() { this.goTo(this.step - 1); },
+
+    goTo(n) {
+        document.querySelector('.est-panel:not(.hidden)')?.classList.add('hidden');
+        document.getElementById('est-step-' + n)?.classList.remove('hidden');
+        document.querySelectorAll('.est-step').forEach(s => {
+            const sn = +s.dataset.step;
+            s.classList.toggle('active', sn === n);
+            s.classList.toggle('done', sn < n);
+        });
+        this.step = n;
+    },
+
+    restart() {
+        this.data = { type: null, rooms: 2, cabinets: 20, sqft: 800, commSqft: 5000, ceiling: 'yes', trim: 'no', prep: 'moderate' };
+        this.goTo(1);
+        document.querySelectorAll('.est-type-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('step1-next').disabled = true;
+        document.getElementById('est-confirmed').style.display = 'none';
+        document.getElementById('lead-form-est').style.display = '';
+    }
+};
+
+document.getElementById('lead-form-est').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Saving...'; btn.disabled = true;
+    const est = window.__CURRENT_ESTIMATE__ || {};
+    const data = {
+        name: document.getElementById('el-name').value,
+        phone: document.getElementById('el-phone').value,
+        zip: document.getElementById('el-zip').value,
+        service_type: est.type || 'unknown',
+        estimate_low: est.low || 0,
+        estimate_high: est.high || 0,
+        source: 'estimator_page'
+    };
+    try { if (window.FRE_DB) await window.FRE_DB.saveLead(data); } catch(err) {}
+    e.target.style.display = 'none';
+    document.getElementById('est-confirmed').style.display = 'block';
+});
+</script>
+</body>
+</html>
+

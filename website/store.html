@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials Store & Project Quoter | F.R.E. Contractor LLC — Bronx NY</title>
+    <meta name="description" content="Buy contractor-grade flooring and premium architectural paints direct at wholesale prices. LVP, hardwood, Benjamin Moore paint supplies with turnkey installation options.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="page-wrapper">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero section-texture-blueprint hero-bg-store">
+        <div class="glow-orb glow-orb-amber" style="width:400px;height:400px;top:-80px;right:-40px;"></div>
+        <div class="glow-orb glow-orb-green" style="width:300px;height:300px;bottom:-60px;left:0;"></div>
+        <div class="container">
+            <div class="page-hero-eyebrow reveal">🛒 Contractor Materials Supply</div>
+            <h1 class="page-hero-title reveal reveal-delay-1">Wholesale Flooring &<br><span class="gradient-text">Architectural Paints</span></h1>
+            <p class="page-hero-desc reveal reveal-delay-2">Buy contractor-grade materials direct at wholesale pricing for DIY delivery — or bundle with licensed F.R.E. installation for complete turnkey peace of mind.</p>
+        </div>
+    </section>
+
+    <!-- MATERIAL CALCULATOR SECTION -->
+    <section class="section" id="material-calculator" style="padding-top:0;">
+        <div class="container" style="max-width:960px;">
+            <div class="store-calc-box reveal">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap;gap:16px;">
+                    <div>
+                        <div class="section-eyebrow">Smart Estimator</div>
+                        <h2 style="font-size:1.6rem;font-weight:900;color:#fff;margin-top:4px;">Material & Coverage Calculator</h2>
+                        <p style="font-size:0.88rem;color:var(--text-muted);">Input your room dimensions to calculate exact boxes, gallons, and total pricing including 10% cut waste.</p>
+                    </div>
+                    <div class="toggle-group" id="mode-toggle">
+                        <button type="button" class="toggle-btn active" data-mode="supply" onclick="STORE.setMode('supply')">📦 Materials Only</button>
+                        <button type="button" class="toggle-btn" data-mode="bundle" onclick="STORE.setMode('bundle')">🔨 Furnish & Install</button>
+                    </div>
+                </div>
+
+                <div class="form-grid" style="margin-bottom:20px;">
+                    <div class="form-group">
+                        <label class="form-label">Select Product</label>
+                        <select class="form-control" id="calc-product" onchange="STORE.recalc()">
+                            <option value="lvp" data-price="2.85" data-sqft="24" data-unit="box" data-unitname="Boxes">Luxury Vinyl Plank (LVP) — $2.85/sqft (24 sqft/box)</option>
+                            <option value="hardwood" data-price="5.40" data-sqft="22" data-unit="box" data-unitname="Boxes">Engineered White Oak Hardwood — $5.40/sqft (22 sqft/box)</option>
+                            <option value="paint_regal" data-price="68.00" data-sqft="400" data-unit="gal" data-unitname="Gallons">Benjamin Moore Regal Select — $68.00/gal (400 sqft/gal)</option>
+                            <option value="paint_scuffx" data-price="84.00" data-sqft="400" data-unit="gal" data-unitname="Gallons">Benjamin Moore Scuff-X Commercial — $84.00/gal (400 sqft/gal)</option>
+                            <option value="carpet_tile" data-price="2.20" data-sqft="48" data-unit="box" data-unitname="Boxes">Commercial Heavy Carpet Tile — $2.20/sqft (48 sqft/box)</option>
+                        </select>
+                    </div>
+                    <div class="form-grid" style="gap:12px;">
+                        <div class="form-group">
+                            <label class="form-label">Length (Feet)</label>
+                            <input type="number" class="form-control" id="calc-length" value="20" min="1" max="500" oninput="STORE.recalc()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Width (Feet)</label>
+                            <input type="number" class="form-control" id="calc-width" value="15" min="1" max="500" oninput="STORE.recalc()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CALCULATION RESULTS CARD -->
+                <div style="background:rgba(4,16,30,0.85);border:1px solid rgba(245,130,32,0.3);border-radius:var(--r-md);padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;align-items:center;">
+                    <div>
+                        <span style="font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;font-weight:700;letter-spacing:1px;">Room Area (+10% Waste)</span>
+                        <div style="font-size:1.5rem;font-weight:900;color:#fff;margin-top:2px;" id="res-sqft">330 sqft</div>
+                        <span style="font-size:0.75rem;color:var(--green-light);" id="res-base">300 net sqft + 30 sqft waste</span>
+                    </div>
+                    <div>
+                        <span style="font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;font-weight:700;letter-spacing:1px;">Units Required</span>
+                        <div style="font-size:1.5rem;font-weight:900;color:var(--amber);" id="res-units">14 Boxes</div>
+                        <span style="font-size:0.75rem;color:var(--text-muted);" id="res-pack">24 sqft / box</span>
+                    </div>
+                    <div>
+                        <span style="font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;font-weight:700;letter-spacing:1px;" id="res-price-label">Estimated Total</span>
+                        <div style="font-size:1.6rem;font-weight:900;color:var(--green-light);" id="res-total">$957.60</div>
+                        <span style="font-size:0.75rem;color:var(--text-dim);" id="res-mode-hint">Materials supply pricing</span>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary" style="width:100%;text-align:center;padding:12px 16px;" onclick="STORE.orderCurrent()" id="btn-calc-action">Add To Material Cart →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATALOG GRID -->
+    <section class="section section-texture-amber">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">Stock Inventory</div>
+                <h2 class="section-title">Contractor <span class="gradient-text">Catalog</span></h2>
+                <p class="section-desc">Commercial-grade flooring, architectural coatings, and professional finishing sundries in stock for NYC delivery.</p>
+            </div>
+
+            <div class="store-grid">
+                <!-- PRODUCT 1: LVP -->
+                <div class="store-card reveal">
+                    <div class="store-card-img" style="background-image:url('assets/images/store-flooring-lvp.jpg');">
+                        <span class="store-card-badge">100% Waterproof</span>
+                    </div>
+                    <div class="store-card-body">
+                        <h3 class="store-card-title">Luxury Vinyl Plank (LVP) — Natural Oak</h3>
+                        <p class="store-card-desc">Commercial 20mil wear layer with rigid stone-polymer core (SPC). Scratch and dent resistant. 24 sqft per box.</p>
+                        <div class="store-card-footer">
+                            <div class="store-price">$2.85 <small>/ sqft ($68.40/box)</small></div>
+                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('lvp', 'LVP Flooring — Natural Oak', 2.85, 24)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 2: HARDWOOD -->
+                <div class="store-card reveal reveal-delay-1">
+                    <div class="store-card-img" style="background-image:url('assets/images/store-flooring-lvp.jpg');filter:hue-rotate(15deg) contrast(1.05);">
+                        <span class="store-card-badge">Engineered Timber</span>
+                    </div>
+                    <div class="store-card-body">
+                        <h3 class="store-card-title">Engineered White Oak Flooring</h3>
+                        <p class="store-card-desc">5/8" thickness with wire-brushed UV matte finish. Multi-ply Baltic birch core for NYC climate stability. 22 sqft per box.</p>
+                        <div class="store-card-footer">
+                            <div class="store-price">$5.40 <small>/ sqft ($118.80/box)</small></div>
+                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('hardwood', 'Engineered White Oak', 5.40, 22)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 3: BENJAMIN MOORE REGAL -->
+                <div class="store-card reveal reveal-delay-2">
+                    <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');">
+                        <span class="store-card-badge">Architectural Grade</span>
+                    </div>
+                    <div class="store-card-body">
+                        <h3 class="store-card-title">Benjamin Moore Regal® Select Interior</h3>
+                        <p class="store-card-desc">100% acrylic interior paint and primer in one. Extraordinary washability, smooth flow, and zero VOC formula. Covers 400 sqft.</p>
+                        <div class="store-card-footer">
+                            <div class="store-price">$68.00 <small>/ gallon</small></div>
+                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('paint_regal', 'BM Regal Select Interior', 68.00, 400)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 4: SCUFF-X -->
+                <div class="store-card reveal">
+                    <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');filter:brightness(0.92);">
+                        <span class="store-card-badge">High-Traffic Spec</span>
+                    </div>
+                    <div class="store-card-body">
+                        <h3 class="store-card-title">Benjamin Moore Ultra Spec® SCUFF-X®</h3>
+                        <p class="store-card-desc">Revolutionary single-component coating engineered for high-traffic corridors, schools, retail, and commercial buildouts.</p>
+                        <div class="store-card-footer">
+                            <div class="store-price">$84.00 <small>/ gallon</small></div>
+                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('paint_scuffx', 'BM Scuff-X Commercial', 84.00, 400)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 5: CARPET TILES -->
+                <div class="store-card reveal reveal-delay-1">
+                    <div class="store-card-img" style="background-image:url('assets/images/gallery-commercial.jpg');">
+                        <span class="store-card-badge">Commercial Heavy</span>
+                    </div>
+                    <div class="store-card-body">
+                        <h3 class="store-card-title">Modular Commercial Carpet Tiles</h3>
+                        <p class="store-card-desc">24" x 24" solution-dyed modular tiles with bitumen backing. Heavy commercial wear rating for NYCHA, schools, and offices.</p>
+                        <div class="store-card-footer">
+                            <div class="store-price">$2.20 <small>/ sqft ($105.60/box)</small></div>
+                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('carpet_tile', 'Commercial Carpet Tiles', 2.20, 48)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 6: PRO SUNDRIES KIT -->
+                <div class="store-card reveal reveal-delay-2">
+                    <div class="store-card-img" style="background-image:url('assets/images/store-paint-supplies.jpg');filter:hue-rotate(40deg);">
+                        <span class="store-card-badge">Contractor Kit</span>
+                    </div>
+                    <div class="store-card-body">
+                        <h3 class="store-card-title">Pro Finishing Sundries Package</h3>
+                        <p class="store-card-desc">Purdy microfiber rollers, heavy-duty 9x12 canvas drop cloths, 3M ScotchBlue multi-surface tape, and angle sash trim brush.</p>
+                        <div class="store-card-footer">
+                            <div class="store-price">$55.00 <small>/ kit</small></div>
+                            <button class="btn btn-outline" style="padding:6px 14px;font-size:0.80rem;" onclick="STORE.quickAdd('sundries', 'Pro Sundries Package', 55.00, 1)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOPPING CART / QUOTE MODAL -->
+    <div class="modal-backdrop" id="modal-cart">
+        <div class="modal-box" style="max-width:580px;">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="cart-title">🛒 Materials Order & Quote</h3>
+                    <p class="modal-subtitle">Review your selected items and choose delivery or installation.</p>
+                </div>
+                <button class="modal-close-btn" onclick="STORE.closeCart()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items" style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;max-height:240px;overflow-y:auto;">
+                    <!-- Injected dynamically -->
+                </div>
+                <div style="border-top:1px solid var(--border);padding-top:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-weight:700;color:var(--text-sub);">Estimated Subtotal:</span>
+                    <span style="font-size:1.4rem;font-weight:900;color:var(--green-light);" id="cart-total">$0.00</span>
+                </div>
+
+                <form id="form-cart-checkout">
+                    <div class="form-grid" style="gap:12px;margin-bottom:14px;">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="cart-name" required placeholder="Carlos Mendez">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="cart-phone" required placeholder="(929) 555-0100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">NYC Delivery / Project Address *</label>
+                        <input type="text" class="form-control" id="cart-address" required placeholder="2760 Holland Ave, Bronx NY 10467">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fulfillment Option</label>
+                        <select class="form-control" id="cart-fulfillment">
+                            <option value="delivery">📦 Delivery Only (Drop-off to job site)</option>
+                            <option value="bundle">🔨 Bundle with F.R.E. Labor (Turnkey Furnish & Install)</option>
+                            <option value="pickup">🏢 Contractor Warehouse Pickup (Bronx, NY)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;" id="btn-submit-cart">Submit Material Order / Quote →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/animations.js"></script>
+
+<script>
+const STORE = {
+    mode: 'supply', // 'supply' or 'bundle'
+    cart: [],
+
+    setMode(mode) {
+        this.mode = mode;
+        document.querySelectorAll('#mode-toggle .toggle-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === mode);
+        });
+        const hint = document.getElementById('res-mode-hint');
+        const actionBtn = document.getElementById('btn-calc-action');
+        if (mode === 'bundle') {
+            hint.textContent = "Includes materials + professional F.R.E. installation";
+            actionBtn.textContent = "Request Furnish & Install Quote →";
+        } else {
+            hint.textContent = "Materials supply pricing";
+            actionBtn.textContent = "Add To Material Cart →";
+        }
+        this.recalc();
+    },
+
+    recalc() {
+        const select = document.getElementById('calc-product');
+        const opt = select.options[select.selectedIndex];
+        const price = parseFloat(opt.dataset.price);
+        const sqftPerUnit = parseFloat(opt.dataset.sqft);
+        const unitName = opt.dataset.unitname;
+
+        const length = parseFloat(document.getElementById('calc-length').value) || 0;
+        const width = parseFloat(document.getElementById('calc-width').value) || 0;
+        const netSqft = length * width;
+        const totalSqft = Math.round(netSqft * 1.10); // 10% waste
+
+        document.getElementById('res-sqft').textContent = totalSqft.toLocaleString() + ' sqft';
+        document.getElementById('res-base').textContent = `${netSqft.toLocaleString()} net sqft + ${Math.round(netSqft * 0.10)} sqft waste`;
+
+        let units = Math.ceil(totalSqft / sqftPerUnit);
+        if (units < 1 && totalSqft > 0) units = 1;
+        document.getElementById('res-units').textContent = `${units} ${unitName}`;
+        document.getElementById('res-pack').textContent = `${sqftPerUnit} sqft / ${opt.dataset.unit}`;
+
+        let materialCost = 0;
+        if (opt.value.startsWith('paint')) {
+            materialCost = units * price;
+        } else {
+            materialCost = units * sqftPerUnit * price;
+        }
+
+        // Bundle labor multiplier estimate: approx $2.20/sqft for flooring, $1.50/sqft for paint labor
+        let laborCost = 0;
+        if (this.mode === 'bundle') {
+            laborCost = opt.value.startsWith('paint') ? (totalSqft * 1.50) : (totalSqft * 2.20);
+        }
+
+        const totalCost = materialCost + laborCost;
+        document.getElementById('res-total').textContent = '$' + totalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    },
+
+    orderCurrent() {
+        const select = document.getElementById('calc-product');
+        const opt = select.options[select.selectedIndex];
+        const title = opt.textContent.split('—')[0].trim();
+        const units = parseInt(document.getElementById('res-units').textContent) || 1;
+        const totalCost = parseFloat(document.getElementById('res-total').textContent.replace(/[$,]/g, '')) || 0;
+
+        this.cart.push({
+            id: opt.value,
+            title: title + (this.mode === 'bundle' ? ' (Furnish & Install)' : ' (Supply Only)'),
+            qty: units,
+            total: totalCost
+        });
+        this.openCart();
+    },
+
+    quickAdd(id, title, unitPrice, packSqft) {
+        this.cart.push({
+            id: id,
+            title: title + ' (1 Pack/Unit)',
+            qty: 1,
+            total: unitPrice * (packSqft > 1 && !id.startsWith('paint') ? packSqft : 1)
+        });
+        this.openCart();
+    },
+
+    openCart() {
+        const container = document.getElementById('cart-items');
+        container.innerHTML = '';
+        let subtotal = 0;
+
+        if (this.cart.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);font-size:0.88rem;text-align:center;padding:16px;">Your cart is currently empty.</p>';
+        } else {
+            this.cart.forEach((item, index) => {
+                subtotal += item.total;
+                const row = document.createElement('div');
+                row.style.cssText = "display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--border);";
+                row.innerHTML = `
+                    <div>
+                        <strong style="color:#fff;font-size:0.90rem;display:block;">${item.title}</strong>
+                        <span style="color:var(--text-dim);font-size:0.75rem;">Qty: ${item.qty}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span style="font-weight:800;color:var(--green-light);">$${item.total.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span>
+                        <button type="button" style="background:none;border:none;color:#EF4444;cursor:pointer;font-weight:800;" onclick="STORE.removeItem(${index})">✕</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        document.getElementById('cart-total').textContent = '$' + subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('modal-cart').classList.add('open');
+    },
+
+    removeItem(idx) {
+        this.cart.splice(idx, 1);
+        this.openCart();
+    },
+
+    closeCart() {
+        document.getElementById('modal-cart').classList.remove('open');
+    }
+};
+
+document.getElementById('form-cart-checkout').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btn-submit-cart');
+    btn.disabled = true;
+    btn.textContent = "Processing Order...";
+
+    const payload = {
+        name: document.getElementById('cart-name').value,
+        phone: document.getElementById('cart-phone').value,
+        address: document.getElementById('cart-address').value,
+        fulfillment: document.getElementById('cart-fulfillment').value,
+        items: STORE.cart,
+        total: parseFloat(document.getElementById('cart-total').textContent.replace(/[$,]/g, '')) || 0,
+        source: 'materials_store'
+    };
+
+    try {
+        if (window.FRE_DB && window.FRE_DB.saveLead) {
+            await window.FRE_DB.saveLead({
+                name: payload.name,
+                phone: payload.phone,
+                service_type: 'materials_' + payload.fulfillment,
+                notes: `Address: ${payload.address} | Total: $${payload.total} | Items: ${JSON.stringify(payload.items)}`,
+                source: 'store_checkout'
+            });
+        }
+    } catch(err) {}
+
+    STORE.cart = [];
+    STORE.closeCart();
+    alert("✅ Thank you! Your material quote / order has been received. An F.R.E. representative will call you within 2 hours to confirm availability and schedule delivery.");
+    btn.disabled = false;
+    btn.textContent = "Submit Material Order / Quote →";
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    STORE.recalc();
+});
+</script>
+</body>
+</html>

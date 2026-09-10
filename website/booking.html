@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment | F.R.E. Contractor LLC — Bronx NY</title>
+    <meta name="description" content="Schedule a free on-site painting estimate with F.R.E. Contractor LLC. Online booking for Bronx and NYC. Same-week availability for most projects.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+
+<style>
+        .booking-layout { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+        .calendar-wrap { background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:28px; }
+        .cal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+        .cal-nav-btn { background:rgba(255,255,255,.06); border:1px solid var(--border-subtle); color:var(--text-muted); width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:.9rem; transition:all .15s; }
+        .cal-nav-btn:hover { background:var(--amber-brand); border-color:var(--amber-brand); color:#fff; }
+        .cal-month-title { font-weight:800; color:var(--text-white); font-size:1rem; }
+        .cal-weekdays { display:grid; grid-template-columns:repeat(7,1fr); text-align:center; margin-bottom:8px; }
+        .cal-weekday { font-size:.72rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; padding:4px 0; }
+        .cal-days { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+        .cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:.85rem; font-weight:600; cursor:pointer; border:1px solid transparent; transition:all .15s; color:var(--text-muted); }
+        .cal-day:hover:not(.disabled):not(.empty) { background:rgba(245,130,32,.1); border-color:rgba(245,130,32,.3); color:var(--amber-brand); }
+        .cal-day.selected { background:var(--amber-brand); color:#fff; border-color:var(--amber-brand); }
+        .cal-day.today { border-color:var(--green-patina); color:var(--green-patina); }
+        .cal-day.disabled { opacity:.25; cursor:default; pointer-events:none; }
+        .cal-day.empty { cursor:default; }
+        .time-slots { margin-top:20px; }
+        .time-slots h4 { font-size:.84rem; font-weight:800; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+        .slot-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+        .time-slot { padding:10px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:transparent; color:var(--text-muted); font-size:.8rem; font-weight:700; cursor:pointer; font-family:inherit; text-align:center; transition:all .15s; }
+        .time-slot:hover { border-color:var(--amber-brand); color:var(--amber-brand); }
+        .time-slot.selected { background:var(--amber-brand); border-color:var(--amber-brand); color:#fff; }
+        .booking-info-col { display:flex; flex-direction:column; gap:20px; }
+        @media(max-width:768px) { .booking-layout { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+<div id="site-header"></div>
+<main class="page-wrapper">
+
+    <section class="page-hero hero-bg-craftsman">
+        <div class="glow-orb glow-orb-green" style="width:400px;height:400px;top:-80px;right:-40px;"></div>
+        <div class="container">
+            <div class="page-hero-eyebrow reveal">📅 Book Appointment</div>
+            <h1 class="page-hero-title reveal reveal-delay-1">Schedule Your<br><span class="gradient-text">Free Estimate Visit</span></h1>
+            <p class="page-hero-desc reveal reveal-delay-2">Pick a date and time that works for you. We'll come to your location, assess the project, and provide a detailed written quote — no obligation.</p>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container" style="max-width:1000px;">
+            <div class="booking-layout">
+
+                <!-- CALENDAR -->
+                <div class="reveal">
+                    <div class="calendar-wrap">
+                        <div class="cal-header">
+                            <button class="cal-nav-btn" id="cal-prev">‹</button>
+                            <span class="cal-month-title" id="cal-month-title">Loading...</span>
+                            <button class="cal-nav-btn" id="cal-next">›</button>
+                        </div>
+                        <div class="cal-weekdays">
+                            <div class="cal-weekday">Sun</div>
+                            <div class="cal-weekday">Mon</div>
+                            <div class="cal-weekday">Tue</div>
+                            <div class="cal-weekday">Wed</div>
+                            <div class="cal-weekday">Thu</div>
+                            <div class="cal-weekday">Fri</div>
+                            <div class="cal-weekday">Sat</div>
+                        </div>
+                        <div class="cal-days" id="cal-days"></div>
+                        <div class="time-slots" id="time-slots" style="display:none;">
+                            <h4>Available Times</h4>
+                            <div class="slot-grid">
+                                <button class="time-slot" data-time="8:00 AM">8:00 AM</button>
+                                <button class="time-slot" data-time="10:00 AM">10:00 AM</button>
+                                <button class="time-slot" data-time="12:00 PM">12:00 PM</button>
+                                <button class="time-slot" data-time="2:00 PM">2:00 PM</button>
+                                <button class="time-slot" data-time="4:00 PM">4:00 PM</button>
+                                <button class="time-slot" data-time="6:00 PM">6:00 PM</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOKING FORM -->
+                <div class="booking-info-col reveal reveal-right reveal-delay-1">
+                    <div class="form-card" id="booking-form-wrap">
+                        <div id="selected-slot-display" style="display:none;background:rgba(245,130,32,.1);border:1px solid rgba(245,130,32,.3);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:20px;">
+                            <p style="color:var(--amber-brand);font-weight:700;font-size:.88rem;">📅 Selected: <span id="slot-display-text"></span></p>
+                        </div>
+                        <h3 style="font-size:1.3rem;font-weight:800;color:var(--text-white);margin-bottom:18px;">Your Contact Info</h3>
+                        <form id="booking-form" novalidate>
+                            <div class="form-group">
+                                <label class="form-label" for="bk-name">Full Name *</label>
+                                <input class="form-input" type="text" id="bk-name" required placeholder="Maria Rodriguez">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="bk-phone">Phone *</label>
+                                <input class="form-input" type="tel" id="bk-phone" required placeholder="(929) 555-0100">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="bk-address">Property Address *</label>
+                                <input class="form-input" type="text" id="bk-address" required placeholder="123 Holland Ave, Bronx NY 10467">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="bk-service">Service Needed</label>
+                                <select class="form-input" id="bk-service">
+                                    <option value="">Select service...</option>
+                                    <option>Interior Painting</option>
+                                    <option>Cabinet Refinishing</option>
+                                    <option>Popcorn Ceiling Removal & Skim</option>
+                                    <option>Exterior Facade Painting</option>
+                                    <option>Hardwood & LVP Flooring Installation</option>
+                                    <option>Materials Supply & Installation Bundle</option>
+                                    <option>Commercial / Retail Rollout</option>
+                                    <option>Multiple Services</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="bk-notes">Additional Notes</label>
+                                <textarea class="form-input form-textarea" id="bk-notes" rows="3" placeholder="Anything we should know before arriving..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%;">Confirm Booking →</button>
+                        </form>
+                        <div id="booking-confirmed" style="display:none;text-align:center;padding:32px 16px;">
+                            <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+                            <h3 style="color:var(--text-white);margin-bottom:8px;">Appointment Booked!</h3>
+                            <div id="booking-summary" style="background:rgba(29,154,118,.1);border:1px solid rgba(29,154,118,.3);border-radius:var(--radius-sm);padding:16px;margin:16px 0;text-align:left;"></div>
+                            <p style="color:var(--text-muted);font-size:.88rem;">We'll confirm via call or WhatsApp from (929) 412-7546. See you then!</p>
+                        </div>
+                    </div>
+
+                    <!-- WHAT TO EXPECT -->
+                    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:20px;">
+                        <h4 style="color:var(--text-white);font-weight:800;margin-bottom:14px;">What to Expect</h4>
+                        <div class="process-timeline" style="padding-left:36px;">
+                            <div class="timeline-step" style="padding-bottom:16px;">
+                                <div class="timeline-dot">1</div>
+                                <p class="timeline-step-desc">We arrive at your scheduled time (±30 min window)</p>
+                            </div>
+                            <div class="timeline-step" style="padding-bottom:16px;">
+                                <div class="timeline-dot">2</div>
+                                <p class="timeline-step-desc">Walk through each area with you and take measurements</p>
+                            </div>
+                            <div class="timeline-step" style="padding-bottom:16px;">
+                                <div class="timeline-dot">3</div>
+                                <p class="timeline-step-desc">Discuss colors, materials, and timeline preferences</p>
+                            </div>
+                            <div class="timeline-step" style="padding-bottom:0;">
+                                <div class="timeline-dot">4</div>
+                                <p class="timeline-step-desc">Receive written quote same day — usually within 2 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/shared.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/chat-widget.js"></script>
+<script>
+// ── CUSTOM CALENDAR (No Calendly needed) ─────────────────────────
+const CAL = {
+    current: new Date(),
+    selectedDate: null,
+    selectedTime: null,
+
+    init() {
+        this.render();
+        document.getElementById('cal-prev').onclick = () => { this.current.setMonth(this.current.getMonth() - 1); this.render(); };
+        document.getElementById('cal-next').onclick = () => { this.current.setMonth(this.current.getMonth() + 1); this.render(); };
+        document.querySelectorAll('.time-slot').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.time-slot').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                this.selectedTime = btn.dataset.time;
+                this.updateDisplay();
+            });
+        });
+    },
+
+    render() {
+        const year = this.current.getFullYear();
+        const month = this.current.getMonth();
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        document.getElementById('cal-month-title').textContent = months[month] + ' ' + year;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+
+        const grid = document.getElementById('cal-days');
+        grid.innerHTML = '';
+
+        // Empty cells
+        for (let i = 0; i < firstDay; i++) {
+            const d = document.createElement('div');
+            d.className = 'cal-day empty';
+            grid.appendChild(d);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dayEl = document.createElement('button');
+            dayEl.className = 'cal-day';
+            dayEl.textContent = d;
+
+            const thisDate = new Date(year, month, d);
+            const isSunday = thisDate.getDay() === 0;
+            const isPast = thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const isSelected = this.selectedDate && thisDate.toDateString() === this.selectedDate.toDateString();
+            const isToday = thisDate.toDateString() === today.toDateString();
+
+            if (isSunday || isPast) { dayEl.classList.add('disabled'); dayEl.disabled = true; }
+            else if (isSelected) { dayEl.classList.add('selected'); }
+            else if (isToday) { dayEl.classList.add('today'); }
+
+            dayEl.addEventListener('click', () => {
+                this.selectedDate = new Date(year, month, d);
+                document.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
+                dayEl.classList.add('selected');
+                document.getElementById('time-slots').style.display = '';
+                this.selectedTime = null;
+                document.querySelectorAll('.time-slot').forEach(b => b.classList.remove('selected'));
+                this.updateDisplay();
+            });
+
+            grid.appendChild(dayEl);
+        }
+    },
+
+    updateDisplay() {
+        if (!this.selectedDate) return;
+        const opts = { weekday:'long', month:'long', day:'numeric' };
+        const dateStr = this.selectedDate.toLocaleDateString('en-US', opts);
+        const timeStr = this.selectedTime || '(select time above)';
+        document.getElementById('slot-display-text').textContent = `${dateStr} at ${timeStr}`;
+        document.getElementById('selected-slot-display').style.display = '';
+    }
+};
+
+CAL.init();
+
+document.getElementById('booking-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!CAL.selectedDate || !CAL.selectedTime) {
+        alert('Please select a date and time from the calendar.');
+        return;
+    }
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Booking...'; btn.disabled = true;
+
+    const data = {
+        name: document.getElementById('bk-name').value,
+        phone: document.getElementById('bk-phone').value,
+        address: document.getElementById('bk-address').value,
+        service: document.getElementById('bk-service').value,
+        notes: document.getElementById('bk-notes').value,
+        date: CAL.selectedDate.toISOString().split('T')[0],
+        time: CAL.selectedTime,
+        source: 'booking_page'
+    };
+
+    try { if (window.FRE_DB) await window.FRE_DB.saveBooking(data); } catch(err) {}
+
+    const opts = { weekday:'long', month:'long', day:'numeric' };
+    document.getElementById('booking-summary').innerHTML = `
+        <p><strong style="color:var(--text-white);">📅 Date:</strong> <span style="color:var(--text-muted);">${CAL.selectedDate.toLocaleDateString('en-US', opts)}</span></p>
+        <p><strong style="color:var(--text-white);">🕐 Time:</strong> <span style="color:var(--text-muted);">${CAL.selectedTime}</span></p>
+        <p><strong style="color:var(--text-white);">📍 Address:</strong> <span style="color:var(--text-muted);">${data.address}</span></p>
+        <p><strong style="color:var(--text-white);">🔧 Service:</strong> <span style="color:var(--text-muted);">${data.service || 'TBD'}</span></p>
+    `;
+    document.getElementById('booking-form').style.display = 'none';
+    document.getElementById('booking-confirmed').style.display = 'block';
+});
+</script>
+</body>
+</html>
+
