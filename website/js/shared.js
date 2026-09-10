@@ -407,7 +407,7 @@ const SHARED = {
                     <input type="email" id="gate-vip-email" class="gate-newsletter-input" placeholder="Enter work or personal email..." aria-label="Enter email for voucher" required>
                     <button type="button" id="btn-gate-claim-vip" class="gate-newsletter-btn">Claim $250 Perk ➔</button>
                 </div>
-                <div id="gate-vip-success" class="gate-newsletter-success">
+                <div id="gate-vip-success" class="gate-newsletter-success" style="display:none;">
                     <span>🎉 Privilege Activated! Promo Code <strong>FRE250-VIP</strong> applied to your session.</span>
                 </div>
             </div>
@@ -653,6 +653,13 @@ const SHARED = {
             }
         });
 
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && gate.style.display === 'flex') {
+                closeGate();
+            }
+        });
+
         // Record corridor selection on option click
         gate.querySelectorAll('.corridor-gate-option').forEach(option => {
             option.addEventListener('click', () => {
@@ -703,16 +710,7 @@ const SHARED = {
             });
         }
 
-        // First-time visitor automatic launch on index/homepage
-        const path = window.location.pathname.split('/').pop() || 'index.html';
-        const isHomePage = path === 'index.html' || path === '' || path === '/';
-        const alreadyChosen = localStorage.getItem('fre_corridor_chosen');
-
-        if (isHomePage && !alreadyChosen) {
-            setTimeout(() => {
-                openGate();
-            }, 300);
-        }
+        // Corridor gateway only opens on explicit user click (no auto-popup)
     },
 
     fixAssetPaths() {
