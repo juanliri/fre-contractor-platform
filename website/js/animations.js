@@ -10,7 +10,7 @@ const ANIM = {
     trailX: 0, trailY: 0,
 
     init() {
-        this.initCursor();
+        // Native cursor preferred for clean contractor UX
         this.initScrollReveal();
         this.initCounters();
         this.initParallax();
@@ -19,45 +19,9 @@ const ANIM = {
         this.initBrushDividers();
     },
 
-    // ── CUSTOM PAINT CURSOR ────────────────────────────────────────
+    // ── CUSTOM PAINT CURSOR (DISABLED) ──────────────────────────────
     initCursor() {
-        if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 992) return;
-
-        this.cursor = document.createElement('div');
-        this.cursor.className = 'custom-cursor';
-        this.trail = document.createElement('div');
-        this.trail.className = 'custom-cursor-trail';
-        document.body.append(this.cursor, this.trail);
-
-        document.addEventListener('mousemove', (e) => {
-            this.cursorX = e.clientX;
-            this.cursorY = e.clientY;
-            this.cursor.style.left = this.cursorX + 'px';
-            this.cursor.style.top  = this.cursorY + 'px';
-        }, { passive: true });
-
-        // Smooth trail via rAF
-        const animTrail = () => {
-            this.trailX += (this.cursorX - this.trailX) * 0.14;
-            this.trailY += (this.cursorY - this.trailY) * 0.14;
-            this.trail.style.left = this.trailX + 'px';
-            this.trail.style.top  = this.trailY + 'px';
-            requestAnimationFrame(animTrail);
-        };
-        requestAnimationFrame(animTrail);
-
-        // Hover effect on interactive elements
-        const hoverEls = 'a, button, .btn, .tilt-card, .service-card, .filter-tab';
-        document.querySelectorAll(hoverEls).forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                this.cursor.classList.add('cursor-hover');
-                this.trail.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                this.cursor.classList.remove('cursor-hover');
-                this.trail.classList.remove('cursor-hover');
-            });
-        });
+        return;
     },
 
     // ── SCROLL REVEAL ─────────────────────────────────────────────
