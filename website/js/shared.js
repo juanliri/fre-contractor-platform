@@ -770,6 +770,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', () => SHARED.applyLanguage(btn.dataset.lang));
     });
+
+    // ── Inject Mobile Call Bar on every page ──
+    if (!document.querySelector('.mobile-call-bar')) {
+        const callBar = document.createElement('div');
+        callBar.className = 'mobile-call-bar';
+        callBar.innerHTML = `
+            <div class="mob-call-left">
+                <svg width="16" height="16" fill="#22c55e" viewBox="0 0 18 18"><path d="M14.707 12.707l-2-2a1 1 0 00-1.414 0l-1.086 1.086a9.08 9.08 0 01-3.586-3.586l1.086-1.086a1 1 0 000-1.414l-2-2a1 1 0 00-1.414 0L2.586 5.414C2.211 5.789 2 6.285 2 6.808c0 4.965 4.227 8.99 9.192 8.99.523 0 1.019-.211 1.394-.586l1.707-1.707a1 1 0 000-1.414z"/></svg>
+                <div>
+                    <div class="mob-call-name">F.R.E. Contractor LLC</div>
+                    <div class="mob-call-phone">(929) 412-7546</div>
+                </div>
+            </div>
+            <div class="mob-call-btn-group">
+                <a href="tel:+19294127546" class="mob-call-btn mob-call-btn-green">📞 Call</a>
+                <a href="booking.html" class="mob-call-btn mob-call-btn-amber">📅 Book</a>
+            </div>
+        `;
+        document.body.appendChild(callBar);
+    }
 });
 
 window.SHARED = SHARED;

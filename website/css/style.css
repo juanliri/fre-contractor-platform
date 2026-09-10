@@ -3560,3 +3560,198 @@ body.drawer-open .mobile-call-bar {
     gap: 10px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE OVERRIDES — COMPREHENSIVE FIX (all pages)
+   Target: phones ≤ 768px and tablets ≤ 960px
+   Issues fixed from screenshots:
+   1. Top banner — too many buttons, cramped on mobile
+   2. Hero — text overflow, image hidden, CTA not centered
+   3. Stats grid — 5 cards stacking full-width (too tall)
+   4. Nav — mobile-menu-btn not showing, overlap issues
+   5. Footer — not collapsing correctly
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── TOP BANNER MOBILE ─── */
+@media (max-width: 768px) {
+  .top-banner { padding: 6px 0; font-size: 0.72rem; }
+  .top-banner .container { flex-direction: column; align-items: flex-start; gap: 4px; padding: 0 14px; }
+  .top-banner-links { gap: 10px; }
+  /* Hide corridor/install pills from banner on small phones — they have drawer nav */
+  .top-banner-corridor-btn,
+  .top-banner-install-btn { display: none !important; }
+}
+
+/* ─── NAV HEADER MOBILE ─── */
+@media (max-width: 1024px) {
+  .nav-menu { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  .nav-actions .btn:not(.btn-primary) { display: none; }
+  /* Shrink CTA button on tablet */
+  .nav-actions .btn-primary { padding: 8px 14px; font-size: 0.8rem; }
+  .brand-main-title { font-size: 0.96rem; }
+  .brand-tagline { font-size: 0.55rem; }
+  .brand-logo-img { height: 38px; }
+}
+
+/* ─── HERO SECTION MOBILE ─── */
+@media (max-width: 768px) {
+  .hero { padding: 60px 0 50px; }
+
+  /* Stack hero content above, hide image card below on very small phones */
+  .hero-inner,
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 8vw, 2.6rem);
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .hero-eyebrow { font-size: 0.7rem; margin-bottom: 14px; }
+  .hero-desc, .hero-subtitle { font-size: 0.92rem; margin-bottom: 22px; max-width: 100%; }
+
+  .hero-actions {
+    justify-content: center;
+    gap: 10px;
+  }
+  .hero-actions .btn { width: 100%; justify-content: center; padding: 13px 20px; }
+  .hero-actions .btn-outline { display: none; } /* simplify: one CTA on mobile */
+
+  .hero-trust {
+    justify-content: center;
+    gap: 8px;
+  }
+  .trust-badge { font-size: 0.74rem; }
+
+  /* Hero visual card — scale down and center */
+  .hero-visual { display: none; } /* Hide complex card stack on mobile — too cramped */
+}
+
+/* ─── STATS GRID MOBILE — 2x3 grid instead of 5 stacked full-width ─── */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+  /* Make the last odd stat (24hr) full width */
+  .stat-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .stat-card { padding: 18px 14px; }
+  .counter-number, .stat-number { font-size: 2rem; }
+  .counter-label, .stat-label { font-size: 0.68rem; }
+}
+
+/* ─── PORTAL GATEWAY CARDS MOBILE ─── */
+@media (max-width: 768px) {
+  .portal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .portal-card { padding: 24px 20px; }
+  .portal-title { font-size: 1.2rem; }
+  .portal-btn-group { flex-direction: column; }
+  .portal-btn-group .btn { width: 100%; justify-content: center; }
+}
+
+/* ─── SERVICES GRID MOBILE ─── */
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+  .service-card { padding: 22px 18px; }
+}
+
+/* ─── STORE GRID MOBILE ─── */
+@media (max-width: 768px) {
+  .store-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .store-category-bar { gap: 6px; }
+  .store-cat-pill { font-size: 0.76rem; padding: 6px 12px; }
+}
+
+/* ─── BID PORTAL LAYOUT FIX (full width cramped form) ─── */
+@media (max-width: 768px) {
+  /* Center and max-width the form */
+  .bid-form-wrapper,
+  .bid-portal-form,
+  form.bid-form { max-width: 100% !important; padding: 0 4px; }
+
+  /* Any multi-col form grid goes 1 col */
+  .form-row,
+  .form-grid-2 { grid-template-columns: 1fr !important; }
+}
+
+/* ─── TRUST STRIP MOBILE ─── */
+@media (max-width: 600px) {
+  .trust-logos { gap: 8px; }
+  .trust-logo-item { font-size: 0.74rem; padding: 5px 12px; }
+}
+
+/* ─── SECTION SPACING MOBILE ─── */
+@media (max-width: 768px) {
+  .section { padding: 48px 0 !important; }
+  :root { --section-y: 48px; }
+  .section-title { font-size: clamp(1.5rem, 6vw, 2.2rem) !important; }
+  .section-subtitle, .section-desc { font-size: 0.88rem !important; }
+  .container { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ─── CORRIDOR GATE MODAL MOBILE ─── */
+@media (max-width: 540px) {
+  .corridor-gate-container { padding: 18px 14px !important; border-radius: 16px !important; }
+  .corridor-gate-grid { grid-template-columns: 1fr !important; gap: 10px; }
+  .corridor-gate-thumb { height: 100px !important; }
+  .corridor-gate-name { font-size: 0.92rem; }
+  .gate-newsletter-banner { flex-direction: column !important; }
+  .gate-newsletter-left { min-width: unset !important; }
+  .gate-newsletter-form { min-width: unset !important; max-width: 100% !important; }
+}
+
+/* ─── FOOTER MOBILE ─── */
+@media (max-width: 768px) {
+  .site-footer .container { flex-direction: column !important; gap: 28px !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  .footer-col-brand { grid-column: 1 / -1; } /* brand spans full width */
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ─── MOBILE CALL BAR — ALWAYS VISIBLE PINNED CTA ─── */
+.mobile-call-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  background: linear-gradient(90deg, #0b2545, #081e3f);
+  border-top: 1px solid rgba(245,130,32,0.35);
+  padding: 10px 16px;
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+}
+@media (max-width: 768px) {
+  .mobile-call-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  body { padding-bottom: 64px; } /* prevent content hiding behind bar */
+}
+.mob-call-left { display: flex; align-items: center; gap: 8px; }
+.mob-call-name { font-size: 0.72rem; font-weight: 700; color: #94a3b8; }
+.mob-call-phone { font-size: 0.82rem; font-weight: 900; color: #fff; }
+.mob-call-btn-group { display: flex; gap: 8px; }
+.mob-call-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 10px; font-size: 0.8rem;
+  font-weight: 800; border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.2s ease;
+}
+.mob-call-btn-green { background: var(--green); color: #fff; }
+.mob-call-btn-amber { background: var(--amber); color: #04101e; }
+
