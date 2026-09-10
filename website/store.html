@@ -575,81 +575,81 @@
         </div>
     </section>
 
-    <!-- STORE TOAST NOTIFICATION -->
-    <div id="store-toast" class="store-toast"></div>
-
-    <!-- UNOBTRUSIVE FLOATING CART TRIGGER (Appears when items added, never blocks products) -->
-    <button type="button" id="store-cart-float-btn" onclick="STORE.openCart()" aria-label="Open Materials Cart">
-        <div class="store-cart-float-icon">🛒</div>
-        <div class="store-cart-float-info">
-            <span class="store-cart-float-title"><span id="float-cart-count">0</span> items in cart</span>
-            <span class="store-cart-float-price" id="float-cart-total">$0.00</span>
-        </div>
-    </button>
-
-    <!-- SLIDE-OUT CART BACKDROP -->
-    <div id="store-cart-backdrop" class="cart-backdrop" onclick="STORE.closeCart()"></div>
-
-    <!-- LUXURY SLIDE-OUT CART DRAWER -->
-    <div id="store-cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
-        <div class="cart-drawer-header">
-            <div style="display:flex;align-items:center;gap:12px;">
-                <div class="cart-drawer-icon">🛒</div>
-                <div>
-                    <h3 class="cart-drawer-title" id="drawer-title">Materials Order & Quote</h3>
-                    <span class="cart-drawer-subtitle"><span id="drawer-item-count">0</span> items selected</span>
-                </div>
-            </div>
-            <button type="button" class="cart-drawer-close" onclick="STORE.closeCart()" aria-label="Close cart">✕</button>
-        </div>
-
-        <div class="cart-drawer-body" id="cart-drawer-items">
-            <!-- Dynamically populated -->
-        </div>
-
-        <div class="cart-drawer-footer">
-            <div class="cart-subtotal-box">
-                <span class="cart-subtotal-label">Estimated Subtotal:</span>
-                <span class="cart-subtotal-amount" id="drawer-subtotal">$0.00</span>
-            </div>
-            <div class="cart-perks">
-                <span>⚡ 24hr Bronx Dispatch</span>
-                <span>✓ Direct Wholesale Pricing</span>
-            </div>
-
-            <form id="form-cart-checkout">
-                <div class="form-grid" style="gap:10px;margin-bottom:10px;">
-                    <div class="form-group" style="margin-bottom:0;">
-                        <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Full Name *</label>
-                        <input type="text" class="form-control" id="cart-name" required placeholder="Juan James" style="padding:8px 12px;font-size:0.84rem;">
-                    </div>
-                    <div class="form-group" style="margin-bottom:0;">
-                        <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Phone Number *</label>
-                        <input type="tel" class="form-control" id="cart-phone" required placeholder="(929) 555-0100" style="padding:8px 12px;font-size:0.84rem;">
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom:10px;">
-                    <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">NYC Delivery / Project Address *</label>
-                    <input type="text" class="form-control" id="cart-address" required placeholder="2760 Holland Ave, Bronx NY 10467" style="padding:8px 12px;font-size:0.84rem;">
-                </div>
-                <div class="form-group" style="margin-bottom:14px;">
-                    <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Fulfillment Option</label>
-                    <select class="form-control" id="cart-fulfillment" style="padding:8px 12px;font-size:0.84rem;">
-                        <option value="delivery">📦 Delivery Only (Drop-off to NYC job site)</option>
-                        <option value="bundle">🔨 Bundle with F.R.E. Labor (Turnkey Furnish & Install)</option>
-                        <option value="pickup">🏢 Contractor Warehouse Pickup (Bronx, NY)</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;padding:12px 16px;font-weight:800;" id="btn-submit-cart">
-                    Submit Material Order / Quote →
-                </button>
-            </form>
-        </div>
-    </div>
-
 </main>
 
 <div id="site-footer"></div>
+
+<!-- STORE TOAST NOTIFICATION (Direct child of body) -->
+<div id="store-toast" class="store-toast"></div>
+
+<!-- UNOBTRUSIVE FLOATING CART TRIGGER (Direct child of body) -->
+<button type="button" id="store-cart-float-btn" onclick="STORE.openCart()" aria-label="Open Materials Cart">
+    <div class="store-cart-float-icon">🛒</div>
+    <div class="store-cart-float-info">
+        <span class="store-cart-float-title"><span id="float-cart-count">0</span> items in cart</span>
+        <span class="store-cart-float-price" id="float-cart-total">$0.00</span>
+    </div>
+</button>
+
+<!-- SLIDE-OUT CART BACKDROP (Direct child of body) -->
+<div id="store-cart-backdrop" class="cart-backdrop" onclick="STORE.closeCart()"></div>
+
+<!-- LUXURY SLIDE-OUT CART DRAWER (Direct child of body) -->
+<div id="store-cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="cart-drawer-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="cart-drawer-icon">🛒</div>
+            <div>
+                <h3 class="cart-drawer-title" id="drawer-title">Materials Order & Quote</h3>
+                <span class="cart-drawer-subtitle"><span id="drawer-item-count">0</span> items selected</span>
+            </div>
+        </div>
+        <button type="button" class="cart-drawer-close" onclick="STORE.closeCart()" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="cart-drawer-body" id="cart-drawer-items">
+        <!-- Dynamically populated -->
+    </div>
+
+    <div class="cart-drawer-footer">
+        <div class="cart-subtotal-box">
+            <span class="cart-subtotal-label">Estimated Subtotal:</span>
+            <span class="cart-subtotal-amount" id="drawer-subtotal">$0.00</span>
+        </div>
+        <div class="cart-perks">
+            <span>⚡ 24hr Bronx Dispatch</span>
+            <span>✓ Direct Wholesale Pricing</span>
+        </div>
+
+        <form id="form-cart-checkout">
+            <div class="form-grid" style="gap:10px;margin-bottom:10px;">
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Full Name *</label>
+                    <input type="text" class="form-control" id="cart-name" required placeholder="Juan James" style="padding:8px 12px;font-size:0.84rem;">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Phone Number *</label>
+                    <input type="tel" class="form-control" id="cart-phone" required placeholder="(929) 555-0100" style="padding:8px 12px;font-size:0.84rem;">
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom:10px;">
+                <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">NYC Delivery / Project Address *</label>
+                <input type="text" class="form-control" id="cart-address" required placeholder="2760 Holland Ave, Bronx NY 10467" style="padding:8px 12px;font-size:0.84rem;">
+            </div>
+            <div class="form-group" style="margin-bottom:14px;">
+                <label class="form-label" style="font-size:0.75rem;margin-bottom:3px;">Fulfillment Option</label>
+                <select class="form-control" id="cart-fulfillment" style="padding:8px 12px;font-size:0.84rem;">
+                    <option value="delivery">📦 Delivery Only (Drop-off to NYC job site)</option>
+                    <option value="bundle">🔨 Bundle with F.R.E. Labor (Turnkey Furnish & Install)</option>
+                    <option value="pickup">🏢 Contractor Warehouse Pickup (Bronx, NY)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;padding:12px 16px;font-weight:800;" id="btn-submit-cart">
+                Submit Material Order / Quote →
+            </button>
+        </form>
+    </div>
+</div>
 
 <script src="js/shared.js?v=2026.5"></script>
 <script src="js/supabase-client.js"></script>
